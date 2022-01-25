@@ -1,0 +1,38 @@
+TABLAS
+
+INGREDIENT (tabla de ingredientes donde cada uno tiene su id, el nombre y la unidad de medida)
+-----------
+ID INGREDIENT (RELACION CON LA TABLA INGREDIENTS_RECIPES)
+NAME INGREDIENT
+ID UNIT (RELACION CON LA TABLA UNIDADES) es con qué unidades se mide el ingrediente
+
+
+UNIT (tabla de las distintas unidades y su id -podría tener como id la abreviación de la unidad-)
+-----
+ID UNIT (RELACION CON LA TABLA INGREDIENTS)
+NAME UNIT
+
+
+RECIPE (tabla con los nombres de las recetas, sus id, porciones, pasos a seguir y categoría)
+-------
+ID RECIPE (RELACION CON LA TABLA INGREDIENTS_RECIPES)
+NAME RECIPE
+SERVINGS
+STEPS
+ID RECIPE CATEGORY (RELACION CON LA TABLA RECIPES CATEGORIES)
+
+
+INGREDIENT_RECIPE (tabla intermedia para que por cada receta me indique los ingredientes y las cantidades a usar)
+-------------------
+ID
+QUANTITY
+ID RECIPE (RELACION CON LA TABLA RECIPES)
+ID INGREDIENT (RELACION CON LA TABLA INGREDIENTS)
+
+
+
+CATEGORY (tabla con las distintas categorías de las recetas)
+------------------
+ID CATEGORY (RELACION CON LA TABLA RECIPES)
+NAME CATEGORY
+

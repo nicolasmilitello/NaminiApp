@@ -1,0 +1,11 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0px;
+  align-items: center;
+}
+
+.home {
+  margin-top: 25px;
+  padding-top: 50px;
+}
