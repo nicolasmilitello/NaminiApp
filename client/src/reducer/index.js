@@ -62,18 +62,36 @@ function rootReducer(state = initialState, action) {
         recipes: action.payload,
       };
     case "GET_CATEGORIES":
+      let sortedCategories = action.payload.sort(function (a, b) {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (b.name > a.name) {
+          return -1;
+        }
+        return 0;
+      });
       return {
         ...state,
-        categories: action.payload,
+        categories: sortedCategories,
       };
     case "POST_RECIPE":
       return {
         ...state,
       };
     case "GET_INGREDIENTS":
+      let sortedIng = action.payload.sort(function (a, b) {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (b.name > a.name) {
+          return -1;
+        }
+        return 0;
+      });
       return {
         ...state,
-        ingredients: action.payload,
+        ingredients: sortedIng,
       };
     case "POST_CATEGORY":
       return {
@@ -98,9 +116,18 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "GET_UNITS":
+      let sortedUnits = action.payload.sort(function (a, b) {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (b.name > a.name) {
+          return -1;
+        }
+        return 0;
+      });
       return {
         ...state,
-        units: action.payload,
+        units: sortedUnits,
       };
     default:
       return {};

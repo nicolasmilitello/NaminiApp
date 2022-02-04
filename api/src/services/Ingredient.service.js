@@ -32,8 +32,7 @@ const createIngredient = async (req, res) => {
           UnitId,
         },
       });
-      // console.log(newIngredient);
-      // console.log(created);
+
       if (newIngredient) {
         created
           ? res.status(200).json({ newIngredient })
@@ -57,25 +56,4 @@ const createIngredient = async (req, res) => {
 module.exports = {
   get,
   createIngredient,
-  // getIngredientsByName,
 };
-
-// const getIngredientsByName = async (req, res) => {
-//   const { name } = req.query;
-//   if (name) {
-//     try {
-//       const foundIngredient = await Ingredient.findAll({
-//         where: {
-//           name,
-//         },
-//       });
-//       if (foundIngredient.length) {
-//         res.json(foundIngredient);
-//       } else {
-//         res.send("No existe un ingrediente con ese nombre");
-//       }
-//     } catch (e) {
-//       res.send(e);
-//     }
-//   }
-// };

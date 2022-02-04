@@ -1,0 +1,122 @@
+.imageEdit {
+  display: flex;
+  align-self: center;
+  max-width: 300px;
+  max-height: 250px;
+  border-radius: 20px;
+  margin: 10px;
+  border: 7px solid #e7e7e7;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+  border: 2px rgba(255, 255, 255, 0.4) solid;
+  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+  border-right: 2px rgba(40, 40, 40, 0.35) solid;
+}
+
+.nameRecipeEdit {
+  font-weight: bold;
+  font-family: "Josefin Sans";
+  margin: 0px;
+}
+
+.stepsEditButton {
+  display: flex;
+  align-self: center;
+}
+
+.nameEditCategoryServingEdit {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredientsEdit {
+  display: flex;
+  flex-direction: column;
+}
+/* stepsEditButton */
+.nameEditPage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 21px;
+}
+
+.imgButtonEdit {
+  display: flex;
+  align-items: center;
+}
+
+.grayEditButton {
+  display: flex;
+  align-self: center;
+  box-shadow: inset 0px 1px 0px 0px #276873;
+  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+  background-color: #599bb3;
+  border: 1px solid #29668f;
+  border-radius: 15px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "ABeeZee";
+  font-size: 12px;
+  padding: 1px 4px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2b665e;
+  margin-left: 5px;
+}
+
+.grayEditButton:hover {
+  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  background-color: #408c99;
+}
+
+.grayEditButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.titleAndButtonEdit {
+  display: flex;
+  justify-content: center;
+}
+
+/* .imageEdit {
+  display: flex;
+  align-self: center;
+  max-width: 300px;
+  max-height: 250px;
+  border-radius: 20px;
+  margin: 10px;
+  border: 7px solid #e7e7e7;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+  border: 2px rgba(255, 255, 255, 0.4) solid;
+  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+  border-right: 2px rgba(40, 40, 40, 0.35) solid;
+}
+
+.nameRecipeEdit {
+  font-weight: bold;
+  font-family: "Josefin Sans";
+  margin-top: 21px;
+  margin-bottom: 1px;
+}
+
+.stepsEditButton {
+  display: flex;
+  align-self: center;
+}
+
+.nameEditCategoryServingEdit {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredientsEdit {
+  display: flex;
+  flex-direction: column;
+} */

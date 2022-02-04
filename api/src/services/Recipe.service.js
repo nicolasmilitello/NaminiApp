@@ -1,23 +1,6 @@
-const { Recipe, Category, Ingredient_Recipe, Ingredient } = require("../db.js"); //importo el modelo Recipe de la base de datos;
+const { Recipe, Ingredient_Recipe, Ingredient } = require("../db.js"); //importo el modelo Recipe de la base de datos;
 
-// const getAll = async (req, res, next) => {
-//   try {
-//     const pedido = await Recipe.findAll({
-//       include: {
-//         model: Category,
-//         attributes: ["name"],
-//         through: {
-//           attributes: [],
-//         },
-//       },
-//     });
-//     res.send(pedido);
-//   } catch (e) {|
-//     next(e);
-//   }
-// };
-
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   try {
     const pedido = await Recipe.findAll();
     const { name } = req.query;
@@ -35,34 +18,14 @@ const getAll = async (req, res, next) => {
     }
   } catch (e) {
     res.status(400).send(e);
-    // next(e);
   }
 };
 
 const getRecipeById = async (req, res) => {
   try {
     const { id } = req.params;
-    let foundRecipe = await Recipe.findByPk(id); //ESTA SOLA LÍNEA FUNCIONA
-    //----------------------------------------------------------------
-    // let foundRecipe = await Recipe.findAll({
-    //   where: {
-    //     id,
-    //   },
-    //   include: {
-    //     model: Ingredient_Recipe,
-    //   },
-    // });
-    // console.log(foundRecipe);
-    // let foundIngredients = await Ingredient_Recipe.findAll({
-    //   // where: {
-    //   //   RecipeId: id,
-    //   // },
-    //   include: {
-    //     Ingredient,
-    //   },
-    // });
-    // console.log(foundIngredients);
-    //----------------------------------------------------------------
+    let foundRecipe = await Recipe.findByPk(id);
+
     if (foundRecipe) {
       res.status(200).json(foundRecipe);
     } else {
@@ -100,7 +63,6 @@ const getIngredientsRecipeById = async (req, res) => {
         RecipeId: id,
       },
     });
-    console.log(foundRecipe);
 
     if (foundRecipe) {
       res.status(200).json(foundRecipe);
@@ -114,8 +76,7 @@ const getIngredientsRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   const { name, servings, steps, CategoryId, img, ingredients } = req.body;
-  if (name && servings && steps && CategoryId) {
-    // console.log(typeof CategoryId);
+  if (name && servings && steps && CategoryId && img && ingredients) {
     try {
       let [newRecipe, created] = await Recipe.findOrCreate({
         where: { name: name },
@@ -137,17 +98,11 @@ const createRecipe = async (req, res) => {
           });
         }
       } catch (error) {
-        // await deleteDBRecipe(newRecipe.id);
-        // throw new Error("Problems setting Ingredients relations with Recipe");
+        // await deleteRecipe(newRecipe);
+        throw new Error("No se pudo crear la receta");
       }
 
-      //PROBLEMA CON STEPS!--------------------------------
-      // console.log(Array.isArray(newRecipe.steps)); //false
-      // console.log(typeof newRecipe.steps); //string
-      //----------------------------------------------------------
-
       if (newRecipe) {
-        // res.status(200).send("Receta creada con éxito");
         created
           ? res.status(200).json(newRecipe)
           : res.status(200).send("Ya existe una receta con ese nombre");
@@ -157,7 +112,7 @@ const createRecipe = async (req, res) => {
           .json({ message: "Error: no se pudo crear la nueva receta" });
       }
     } catch (e) {
-      await deleteRecipe(newRecipe.id);
+      // await deleteRecipe(newRecipe);
       console.log(e);
       res.status(400).send(e);
     }
@@ -181,11 +136,6 @@ const deleteRecipe = async (req, res) => {
         id,
       },
     });
-    // const deletedRecipe = await Ingredient_Recipe.destroy({
-    //   where: {
-    //     RecipeId: id,
-    //   },
-    // });
     res.status(200).send(id);
   } catch (e) {
     res.status(400).send(e);
@@ -194,27 +144,39 @@ const deleteRecipe = async (req, res) => {
 
 const updateRecipe = async (req, res) => {
   const { name, servings, steps, img, CategoryId, ingredients } = req.body;
-  // console.log(ingredients);
   try {
     const { id } = req.params;
 
-    let foundRecipe = await Recipe.findAll({
-      where: {
-        id: id,
-      },
-    });
-
-    try {
-      for (let ingredient of ingredients) {
-        await foundRecipe.addIngredient(ingredient.IngredientId, {
-          through: {
-            quantity: ingredient.quantity,
+    if (ingredients) {
+      // console.log(id);
+      // console.log(ingredients);
+      try {
+        await Ingredient_Recipe.destroy({
+          where: {
+            RecipeId: id,
           },
         });
+      } catch (e) {
+        console.log(e);
       }
-    } catch (error) {
-      // await deleteDBRecipe(newRecipe.id);
-      // throw new Error("Problems setting Ingredients relations with Recipe");
+
+      let foundRecipe = await Recipe.findOne({
+        where: {
+          id: id,
+        },
+      });
+
+      try {
+        for (let ingredient of ingredients) {
+          await foundRecipe.addIngredient(ingredient.IngredientId, {
+            through: {
+              quantity: ingredient.quantity,
+            },
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const updatedRecipe = await Recipe.update(
@@ -242,33 +204,10 @@ module.exports = {
   createRecipe,
   getRecipeById,
   getRecipesByCategory,
-  // getRecipesByName,
   getIngredientsRecipeById,
   deleteRecipe,
   updateRecipe,
 };
-
-// const getRecipesByName = async (req, res) => {
-//   const { name } = req.query;
-//   console.log(name);
-//   if (name) {
-//     try {
-//       const foundRecipes = await Recipe.findAll({
-//         where: {
-//           name,
-//         },
-//       });
-//       console.log(foundRecipes);
-//       if (foundRecipes) {
-//         res.json(foundRecipes);
-//       } else {
-//         res.send("No existen recetas con ese nombre");
-//       }
-//     } catch (e) {
-//       res.send(e);
-//     }
-//   }
-// };
 
 //* Set relations Ingredient,Steps & Diet
 // try {

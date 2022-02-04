@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css?family=ABeeZee");
+
+.error {
+  font-size: 10px;
+  color: red;
+}
+
+.successIngredientCreate {
+  font-size: 12px;
+  color: green;
+  display: flex;
+  align-items: center;
+}
+
+.messagesContentIngredientCreator {
+  width: 700px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 3px solid #e7e7e7; */
+}
+
+.titleIngredientCreator {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.ingredientCreatorContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredientCreator {
+  /* display: -webkit-flex; */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  /* -webkit-flex-direction: column-reverse; */
+  /* flex-direction: column-reverse; */
+  width: 700px;
+  /* height: 250px; */
+  box-sizing: content-box;
+  margin-top: 20px;
+  margin-bottom: 0px;
+
+  /* gap: 20px; --> genera como una especie de separación entre todos los elementos que compongan al elemento donde lo deifna*/
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(242, 242, 205, 0.075);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+  border: 2px rgba(255, 255, 255, 0.4) solid;
+  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+  border-right: 2px rgba(40, 40, 40, 0.35) solid;
+}
+
+.ingredientInputs {
+  width: 450px;
+  height: 80px;
+  display: flex;
+  /* border: 3px solid #e7e7e7; */
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formIngredientCreator {
+  width: 650px;
+  /* border: 3px solid #e7e7e7; */
+}
+
+.ingredientName {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 5px;
+  /* border: 3px solid #e7e7e7; */
+}
+
+.ingredientUnit {
+  display: flex;
+  justify-content: flex-start;
+  /* border: 3px solid #e7e7e7; */
+  width: 653px;
+}
+
+.inputNameIngredient {
+  /* background: inherit; fondo de input transparente */
+  width: 587px;
+  background-color: #eee;
+  border: none;
+}
+
+.inputUnitIngredient {
+  width: 519px;
+  background-color: #eee;
+  border: none;
+}
+
+.contenedorIngs {
+  font-family: "ABeeZee";
+  width: 700px;
+  box-sizing: content-box;
+  /* "box-sizing: content-box" --> adecúa su tamaño según el contenido */
+  border: 3px solid #e7e7e7;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0px;
+  align-items: flex-start;
+  align-content: flex-start;
+  /* display: flex;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 0px; */
+  gap: 0px;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(242, 242, 205, 0.075);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+  border: 2px rgba(255, 255, 255, 0.4) solid;
+  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+  border-right: 2px rgba(40, 40, 40, 0.35) solid;
+}
+
+.ings {
+  font-size: 12px;
+  /* display: flex;
+  flex-direction: row; */
+
+  /* border: 3px solid #e7e7e7; */
+}
+
+.createIngredientButton {
+  margin-top: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-self: center;
+  box-shadow: inset 0px 0px 2px 0px #3dc21b;
+  background: linear-gradient(to bottom, #23b84a 5%, #4d9925 100%);
+  background-color: #23b84a;
+  border-radius: 13px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 1px 4px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #2f6627;
+}
+
+.createIngredientButton:hover {
+  background: linear-gradient(to bottom, #4d9925 5%, #23b84a 100%);
+  background-color: #4d9925;
+}
+
+.createIngredientButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.stockButton {
+  margin-top: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-self: center;
+  box-shadow: inset 0px 0px 0px 0px #91b8b3;
+  background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+  background-color: #768d87;
+  border-radius: 15px;
+  border: 1px solid #566963;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 12px;
+  padding: 1px 4px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2b665e;
+}
+
+.stockButton:hover {
+  background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+  background-color: #6c7c7c;
+}
+
+.stockButton:active {
+  position: relative;
+  top: 1px;
+}

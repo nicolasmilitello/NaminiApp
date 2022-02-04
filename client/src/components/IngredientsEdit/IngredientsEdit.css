@@ -1,0 +1,81 @@
+.containerIngredientsPageEdit {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  box-sizing: content-box;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(242, 242, 205, 0.075);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+  border: 2px rgba(255, 255, 255, 0.4) solid;
+  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+  border-right: 2px rgba(40, 40, 40, 0.35) solid;
+  padding-bottom: 15px;
+}
+
+.ingredientItemsEditPage {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.titleIngEditPage {
+  font-family: "Josefin Sans";
+  font-weight: bold;
+  align-self: center;
+  margin-top: 10px;
+}
+
+.formIngConfirmedEditPage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.inputQuantityIngredientsEditPage {
+  width: 50px;
+  background: inherit;
+  border: none;
+  margin-left: 10px;
+}
+
+.inputsAddIngredientEditPage {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 15px;
+}
+
+.selectIngredientsEdit {
+  display: flex;
+  align-self: flex-end;
+  height: 18px;
+  background-color: #eee;
+  border: none;
+}
+
+.inputQuantityEdit {
+  display: flex;
+  align-self: flex-end;
+  width: 100px;
+  height: 18px;
+  background-color: #eee;
+  border: none;
+  margin-left: 10px;
+  padding: 0px;
+  color: grey;
+}
+
+.unitAddIngredientEditPage {
+  font-size: 13px;
+  margin-left: 5px;
+  font-family: "ABeeZee";
+}
+
+.items {
+  font-size: 20px;
+  color: black;
+}

@@ -1,0 +1,11 @@
+.inputAndButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputSearchBar {
+  width: 75%;
+  background-color: #eee;
+  border: none;
+}
