@@ -1,9 +1,40 @@
 @import url("https://fonts.googleapis.com/css?family=ABeeZee");
 
+.disabledButton {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  align-items: center;
+  height: 17px;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 13px;
+  border: 1px solid #dcdcdc;
+  cursor: default;
+  color: #666666;
+  font-family: "ABeeZee";
+  font-size: 12px;
+  font-weight: bold;
+  padding: 1px 4px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+
 .errorCategoryInput {
   font-size: 10px;
   margin: 5px;
   color: red;
+}
+
+.errorInputVisible {
+  font-size: 10px;
+  color: red;
+  margin: 0px;
+}
+
+.inputAndError {
+  height: 33px;
 }
 
 .categoryCreatorContent {
@@ -47,7 +78,9 @@
 }
 
 .categoryCreatorButtons {
-  /* border: 3px solid #e7e7e7; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contenedorCategories {

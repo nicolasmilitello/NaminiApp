@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   postRecipe,
   getCategories,
@@ -7,18 +8,19 @@ import {
 } from "../../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { MdAddCircleOutline } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 import "./RecipeCreate.css";
 import "../StepsEdit/StepsEdit.css";
 import "../Globales.css";
 
 function validate(input) {
   let errors = {};
-  if (!input.CategoryId) {
-    errors.CategoryId =
-      "Es un requerimiento obligatorio ingresar una categoría para la receta";
-  } else if (!input.name) {
+  if (!input.name) {
     errors.name =
       "Es un requerimiento obligatorio asignarle un nombre a la receta";
+  } else if (!input.CategoryId) {
+    errors.CategoryId =
+      "Es un requerimiento obligatorio ingresar una categoría para la receta";
   } else if (!input.servings) {
     errors.servings =
       "Es un requerimiento obligatorio introducir las porciones";
@@ -37,6 +39,7 @@ function validate(input) {
 
 export default function RecipeCreate() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const categories = useSelector((state) => state.categories);
   const ingredients = useSelector((state) => state.ingredients);
   const [errors, setErrors] = useState({});
@@ -65,8 +68,6 @@ export default function RecipeCreate() {
           e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1),
       })
     );
-    // console.log(input);
-    // console.log(errors);
   }
 
   function handleSelect(e) {
@@ -74,7 +75,12 @@ export default function RecipeCreate() {
       ...input,
       CategoryId: e.target.value,
     });
-    console.log(input);
+    setErrors(
+      validate({
+        ...input,
+        CategoryId: e.target.value,
+      })
+    );
   }
 
   //PARA OBTENER NOMBRES DE UNIDADES E INGREDIENTES------------------
@@ -83,7 +89,6 @@ export default function RecipeCreate() {
   const unitList = useSelector((state) => state.units); //listado de todas las unidades existentes en la db
 
   function obtenerIdUnidad(ingId) {
-    // console.log(ingId);
     const unitId = ingredientList?.filter((el) => el.id === Number(ingId))[0]
       ?.UnitId;
 
@@ -104,7 +109,6 @@ export default function RecipeCreate() {
   function handleInputSteps(e) {
     e.preventDefault();
     setStep(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
-    console.log(e.target.value.length);
   }
 
   function handleAddStep(e) {
@@ -114,7 +118,7 @@ export default function RecipeCreate() {
       ...input,
       steps: [...input.steps, step],
     });
-    // console.log(input);
+
     setErrors(
       validate({
         ...input,
@@ -207,7 +211,6 @@ export default function RecipeCreate() {
         ),
       })
     );
-    // console.log(input.ingredients);
   }
 
   //----------------------------------------------------------------
@@ -215,16 +218,13 @@ export default function RecipeCreate() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
     setCode(false);
     setShow2(true);
     const response = await dispatch(postRecipe(input));
-    console.log(response);
     setMessage(response?.data);
     if (response.status === 200) {
       setCode(true);
     }
-    // alert("La receta fue creada exitosamente");
     setInput({
       name: "",
       servings: "",
@@ -233,6 +233,9 @@ export default function RecipeCreate() {
       ingredients: [],
       img: "",
     });
+    if (typeof response.data != "string") {
+      history.push(`/home/${response.data.id}`);
+    }
   }
 
   useEffect(() => {
@@ -258,6 +261,7 @@ export default function RecipeCreate() {
               className="inputNameNewRecipe"
               onChange={(e) => handleChange(e)}
             />
+            {errors.name && <p className="errorInputVisible">{errors.name}</p>}
           </div>
 
           <div className="categoryAndServings">
@@ -276,6 +280,9 @@ export default function RecipeCreate() {
                   </option>
                 ))}
               </select>
+              {errors.CategoryId && (
+                <p className="errorInputVisible">{errors.CategoryId}</p>
+              )}
             </div>
 
             <div className="servingsNewRecipe">
@@ -290,53 +297,68 @@ export default function RecipeCreate() {
                 name="servings"
                 onChange={(e) => handleChange(e)}
               />
+              {errors.servings && (
+                <p className="errorInputVisible">{errors.servings}</p>
+              )}
             </div>
           </div>
-
           <div className="ingredientsNewRecipe">
-            <div>
-              <label>Ingredientes: </label>
-            </div>
+            <div className="inputsAddIngredient">
+              <label className="labelIngredients">Ingredientes: </label>
 
-            <div>
               <div>
-                <select
-                  className="inputsNewRecipe"
-                  onChange={(e) => handleInputIngredient(e)}
-                >
-                  <option disabled selected>
-                    Seleccione un ingrediente
-                  </option>
-                  {ingredients?.map((ing) => (
-                    <option value={ing.id} key={ing.id}>
-                      {ing.name}
+                <div>
+                  <select
+                    className="inputsNewRecipe"
+                    onChange={(e) => handleInputIngredient(e)}
+                  >
+                    <option disabled selected>
+                      Seleccione un ingrediente
                     </option>
-                  ))}
-                </select>
+                    {ingredients?.map((ing) => (
+                      <option value={ing.id} key={ing.id}>
+                        {ing.name}
+                      </option>
+                    ))}
+                  </select>
 
-                <input
-                  className="inputQuantityNewRecipe"
-                  type="number"
-                  min="0.1"
-                  step="0.1"
-                  placeholder="Cantidad"
-                  onChange={(e) => handleInputQuantity(e)}
-                />
+                  <input
+                    className="inputQuantityNewRecipe"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Cantidad"
+                    onChange={(e) => handleInputQuantity(e)}
+                  />
+                </div>
+              </div>
+              <div className="blankSpace">
+                <div className="titlesEditAndLabels">
+                  {obtenerIdUnidad(ingredientIdIn)}
+                </div>
+              </div>
+              <div className="buttonAdd">
+                <button
+                  className="addIngredientItem"
+                  onClick={(e) => handleAddIngredient(e)}
+                >
+                  <MdAddCircleOutline />
+                </button>
               </div>
             </div>
-            <div className="titlesEditAndLabels">
-              {obtenerIdUnidad(ingredientIdIn)}
-            </div>
+
             <div>
-              <button
-                className="addIngredientItem"
-                onClick={(e) => handleAddIngredient(e)}
-              >
-                <MdAddCircleOutline />
-              </button>
+              {repeated && (
+                <div className="errorInputVisible">
+                  El ingrediente seleccionado ya se encuentra añadido en la
+                  receta.
+                </div>
+              )}
+              {errors.ingredients && (
+                <p className="errorInputVisible">{errors.ingredients}</p>
+              )}
             </div>
           </div>
-
           <div className="allIngredients">
             {input.ingredients.map((ing, index) => (
               <p className="addedIngredient" key={index + 1}>
@@ -347,15 +369,14 @@ export default function RecipeCreate() {
                 )} `}</span>
 
                 <button
-                  className="deleteIngredientItem"
+                  className="redButtonStepEditPage"
                   onClick={(e) => handleDeleteIngredient(e, ing)}
                 >
-                  x
+                  <MdOutlineCancel />
                 </button>
               </p>
             ))}
           </div>
-
           <div className="stepsNewRecipe">
             <div>
               <label className="titleSteps">Pasos: </label>
@@ -381,6 +402,9 @@ export default function RecipeCreate() {
                 </button>
               </div>
             </div>
+            {errors.steps && (
+              <p className="errorInputVisible">{errors.steps}</p>
+            )}
           </div>
           {step.length === 255 ? (
             <div className="stepLengthError">
@@ -389,7 +413,6 @@ export default function RecipeCreate() {
           ) : (
             <br />
           )}
-
           <div className="allSteps">
             {input.steps.map((step, index) => (
               <p className="addedIngredient" key={index + 1}>
@@ -398,15 +421,14 @@ export default function RecipeCreate() {
                   <span>{`${step} `}</span>
                 </div>
                 <button
-                  className="deleteIngredientItem"
+                  className="redButtonStepEditPage"
                   onClick={(e) => handleDeleteStep(e, step)}
                 >
-                  x
+                  <MdOutlineCancel />
                 </button>
               </p>
             ))}
           </div>
-
           <div className="imgNewRecipe">
             <label>Imagen: </label>
             <input
@@ -417,29 +439,22 @@ export default function RecipeCreate() {
               name="img"
               onChange={(e) => handleChange(e)}
             />
+            {errors.img && <p className="errorInputVisible">{errors.img}</p>}
           </div>
-
-          {errors.name && <p className="error">{errors.name}</p>}
-          {errors.CategoryId && <p className="error">{errors.CategoryId}</p>}
-          {errors.servings && <p className="error">{errors.servings}</p>}
-          {repeated && (
-            <div className="error">
-              El ingrediente seleccionado ya se encuentra añadido en la receta.
-            </div>
+          {input.name &&
+          input.servings &&
+          input.steps.length &&
+          input.ingredients?.length &&
+          input.CategoryId &&
+          input.img ? (
+            <button className="saveRecipeButton" type="submit">
+              Guardar receta
+            </button>
+          ) : (
+            <button disabled={true} className="disabledButtonStepEditPage">
+              Guardar receta
+            </button>
           )}
-          {errors.ingredients && <p className="error">{errors.ingredients}</p>}
-          {errors.steps && <p className="error">{errors.steps}</p>}
-          {errors.img && <p className="error">{errors.img}</p>}
-          {!errors.CategoryId &&
-            !errors.name &&
-            !errors.servings &&
-            !errors.ingredients?.length &&
-            !errors.steps?.length &&
-            !errors.img && (
-              <button className="saveRecipeButton" type="submit">
-                Guardar receta
-              </button>
-            )}
         </form>
         <div>
           {show2 ? (
@@ -452,7 +467,6 @@ export default function RecipeCreate() {
               )
             ) : (
               <div className="lds-hourglass"></div>
-              // <span className="loading">Cargando...</span>
             )
           ) : (
             ""

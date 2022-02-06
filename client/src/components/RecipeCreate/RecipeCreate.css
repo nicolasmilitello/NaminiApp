@@ -25,6 +25,7 @@ label {
   border: 2px rgba(255, 255, 255, 0.4) solid;
   border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
+  padding-bottom: 10px;
 }
 
 .formNewRecipe {
@@ -41,6 +42,7 @@ label {
 
 .nameNewRecipe {
   margin-top: 5px;
+  height: 33px;
 }
 
 .inputNameNewRecipe {
@@ -59,6 +61,7 @@ label {
 
 .categoryNewRecipe {
   margin-right: 11px;
+  height: 33px;
 }
 
 .inputCategoryNewRecipe {
@@ -69,20 +72,39 @@ label {
 
 .servingsNewRecipe {
   margin-left: 11px;
+  height: 33px;
 }
 
 .inputServingsNewRecipe {
   width: 200px;
   background-color: #eee;
   border: none;
+  color: gray;
 }
 
 .ingredientsNewRecipe {
   display: flex;
+  flex-direction: column;
+  width: 705px;
+  height: 33px;
+  margin-top: 8px;
+}
+
+.labelIngredients {
+  display: flex;
+  align-self: flex-end;
+}
+
+.inputsAddIngredient {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 705px;
-  margin-top: 8px;
+  align-items: flex-end;
+}
+
+.buttonAdd {
+  display: flex;
+  align-items: flex-end;
 }
 
 .inputQuantityNewRecipe {
@@ -136,13 +158,19 @@ label {
   justify-content: space-between;
 }
 
+.blankSpace {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  border: 3px black;
+}
+
 .allIngredients {
   display: flex;
   flex-direction: column;
   width: 300px;
   margin-top: 5px;
   margin-bottom: 5px;
-  /* border: 3px solid #e7e7e7; */
 }
 
 .deleteIngredientItem {
@@ -216,13 +244,20 @@ label {
 
 .imgNewRecipe {
   margin-top: 8px;
+  height: 33px;
 }
 
-.error {
+.errorInputVisible {
   font-size: 10px;
   color: red;
-  margin-top: 8px;
-  margin-bottom: 25px;
+  margin: 0px;
+}
+
+.errorInputHidden {
+  font-size: 10px;
+  color: red;
+  margin: 0px;
+  visibility: hidden;
 }
 
 .stepLengthError {
@@ -233,8 +268,6 @@ label {
 
 .saveRecipeButton {
   margin-top: 8px;
-  margin-bottom: 20px;
-  display: flex;
   align-self: center;
   box-shadow: inset 0px 0px 2px 0px #3dc21b;
   background: linear-gradient(to bottom, #23b84a 5%, #4d9925 100%);

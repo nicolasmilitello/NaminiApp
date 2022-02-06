@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { getCategories } from "../../actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BiDish } from "react-icons/bi";
+import { ImSpoonKnife } from "react-icons/im";
 import "../Globales.css";
 import "./Card.css";
 
@@ -19,19 +21,21 @@ export default function Card({ id, name, servings, category, img }) {
   return (
     <div className="card">
       <div className="cardContent">
-        <img
-          className="imagenCard"
-          src={img}
-          // onerror="this.src='URL_de_imagen_alternativa.jpg';"
-          alt="not found"
-        />
+        <img className="imagenCard" src={img} alt="not found" />
         <div className="infoCard">
+          <div className="iconAndCategory">
+            <div className="iconCategory">
+              <BiDish />
+            </div>
+            <h6 className="categoryRecipeCard">{cat}</h6>
+          </div>
           <h3 className="nameRecipeCard">{name}</h3>
-          <h5 className="categoryRecipeCard">{cat}</h5>
-          <h6 className="servingsRecipeCard">{servings} porciones</h6>
-          <Link to={`/edit/${id}`}>
-            <button className="grayButton">Editar receta</button>
-          </Link>
+          <div className="iconAndServings">
+            <div>
+              <ImSpoonKnife />
+            </div>
+            <h6 className="servingsRecipeCard">{servings} porciones</h6>
+          </div>
         </div>
       </div>
     </div>

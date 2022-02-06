@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, postCategory } from "../../actions";
 import "./CategoryCreate.css";
@@ -14,6 +15,7 @@ function validate(cat) {
 
 export default function CategoryCreate() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const categories = useSelector((state) => state.categories);
   const [cat, setCat] = useState({
     name: "",
@@ -28,49 +30,44 @@ export default function CategoryCreate() {
     e.preventDefault();
     show ? setShow(false) : setShow(true);
     show ? setIntermedio([]) : setIntermedio([...categories]);
-    // console.log(show);
   }
 
   function handleChange(e) {
     setCat({
-      name: e.target.value,
+      name: e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1),
     });
     setErrors(
       validate({
-        name: e.target.value,
+        name: e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1),
       })
     );
-    // console.log(cat);
-    // console.log(errors);
   }
 
   const [message, setMessage] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // console.log(cat);
     setCode(false);
     setShow2(true);
     const response = await dispatch(postCategory(cat));
     setMessage(response?.data);
-    // console.log(typeof response);
     if (response.status === 200) {
       setCode(true);
     }
-    // alert("La categoría fue creada exitosamente");
     setCat("");
+    history.push("/home");
   }
 
   useEffect(() => {
     dispatch(getCategories());
-  }, []); //loop infinito si pongo "categories"
+  }, []);
 
   return (
     <div className="categoryCreatorContent">
       <div className="categoryCreator">
         <h1 className="titlePage">Crear categoría</h1>
         <form className="formCategoryCreator" onSubmit={(e) => handleSubmit(e)}>
-          <div>
+          <div className="inputAndError">
             <div className="inputCategoryName">
               <label>Nombre de la categoría: </label>
               <input
@@ -82,6 +79,7 @@ export default function CategoryCreate() {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+            {errors.name && <p className="errorInputVisible">{errors.name}</p>}
           </div>
 
           <div className="categoryCreatorButtons">
@@ -92,17 +90,15 @@ export default function CategoryCreate() {
                   : "Ver categorías existentes"}
               </button>
             </div>
-            <div className="create">
-              {cat.name ? (
-                <button className="greenButton" type="submit">
-                  Crear categoría
-                </button>
-              ) : (
-                errors.name && (
-                  <p className="errorCategoryInput">{errors.name}</p>
-                )
-              )}
-            </div>
+            {cat.name ? (
+              <button className="greenButton" type="submit">
+                Crear categoría
+              </button>
+            ) : (
+              <button disabled={true} className="disabledButtonStepEditPage">
+                Crear categoría
+              </button>
+            )}
           </div>
         </form>
 
@@ -118,7 +114,6 @@ export default function CategoryCreate() {
               )
             ) : (
               <div className="lds-hourglass"></div>
-              // <span className="loading">Cargando...</span>
             )
           ) : (
             ""
@@ -141,16 +136,3 @@ export default function CategoryCreate() {
     </div>
   );
 }
-// {
-//   intermedio.length ? (
-//     <div className="contenedorIngs">
-//       {intermedio?.map((ing) => (
-//         <div className="ings" key={ing.id}>
-//           {`‣ ${ing.name}`}
-//         </div>
-//       ))}
-//     </div>
-//   ) : (
-//     ""
-//   );
-// }

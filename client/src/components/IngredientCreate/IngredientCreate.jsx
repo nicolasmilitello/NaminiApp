@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIngredients, postIngredient, getUnits } from "../../actions";
+import { useHistory } from "react-router-dom";
 import "./IngredientCreate.css";
 import "../Globales.css";
 
@@ -17,6 +18,7 @@ function validate(ing) {
 
 export default function IngredientCreate() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const ingredients = useSelector((state) => state.ingredients);
   const units = useSelector((state) => state.units);
   const [ing, setIng] = useState({
@@ -43,7 +45,6 @@ export default function IngredientCreate() {
           e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1),
       })
     );
-    // console.log(ing);
   }
 
   function handleSelect(e) {
@@ -58,14 +59,12 @@ export default function IngredientCreate() {
         UnitId: e.target.value,
       })
     );
-    // console.log(ing);
   }
 
   function handleShow(e) {
     e.preventDefault();
     show ? setShow(false) : setShow(true);
     show ? setIntermedio([]) : setIntermedio([...ingredients]);
-    // console.log(show);
   }
 
   const [message, setMessage] = useState("");
@@ -80,11 +79,11 @@ export default function IngredientCreate() {
       name: "",
       UnitId: "",
     });
-    // console.log(response);
+
     if (response.status === 200) {
       setCode(true);
     }
-    // alert("Ingrediente creado exitosamente");
+    history.push("/home");
   }
 
   useEffect(() => {
@@ -101,42 +100,49 @@ export default function IngredientCreate() {
           onSubmit={(e) => handleSubmit(e)}
         >
           <div className="ingredientInputs">
-            <div className="ingredientName">
-              <label>Nombre: </label>
-              <input
-                className="inputNameIngredient"
-                type="text"
-                size="40"
-                name="name"
-                placeholder="Ingrese el nombre"
-                onChange={(e) => handleInput(e)}
-              />
+            <div className="inputAndErrorIngredientAndUnit">
+              <div className="ingredientName">
+                <label>Nombre: </label>
+                <input
+                  className="inputNameIngredient"
+                  type="text"
+                  size="40"
+                  name="name"
+                  placeholder="Ingrese el nombre"
+                  onChange={(e) => handleInput(e)}
+                />
+              </div>
+              <div className="spaceError">
+                {errors.name && (
+                  <p className="errorInputVisible">{errors.name}</p>
+                )}
+              </div>
             </div>
 
-            <div className="ingredientUnit">
-              <label>Unidad de medida: </label>
-              <select
-                className="inputUnitIngredient"
-                onChange={(e) => handleSelect(e)}
-              >
-                <option disabled selected>
-                  Seleccione una unidad
-                </option>
-                {units?.map((unit) => (
-                  <option value={unit.id} key={unit.id}>
-                    {unit.name}
+            <div className="inputAndErrorIngredientAndUnit">
+              <div className="ingredientUnit">
+                <label>Unidad de medida: </label>
+                <select
+                  className="inputUnitIngredient"
+                  onChange={(e) => handleSelect(e)}
+                >
+                  <option disabled selected>
+                    Seleccione una unidad
                   </option>
-                ))}
-              </select>
-            </div>
-
-            <div>{errors.name && <p className="error">{errors.name}</p>}</div>
-            <div>
-              {errors.UnitId && <p className="error">{errors.UnitId}</p>}
+                  {units?.map((unit) => (
+                    <option value={unit.id} key={unit.id}>
+                      {unit.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                {errors.UnitId && <p className="error">{errors.UnitId}</p>}
+              </div>
             </div>
           </div>
 
-          <div>
+          <div className="ingredientCreateButtons">
             <div>
               <button className="grayButton" onClick={(e) => handleShow(e)}>
                 {show
@@ -144,13 +150,21 @@ export default function IngredientCreate() {
                   : "Ver ingredientes existentes"}
               </button>
             </div>
-            <div>
-              {ing.name && ing.UnitId && (
+
+            {ing.name && ing.UnitId ? (
+              <button className="greenButton" type="submit">
+                Crear ingrediente
+              </button>
+            ) : (
+              <button disabled={true} className="disabledButtonStepEditPage">
+                Crear ingrediente
+              </button>
+            )}
+            {/* {ing.name && ing.UnitId && (
                 <button className="greenButton" type="submit">
                   Crear ingrediente
                 </button>
-              )}
-            </div>
+              )} */}
           </div>
         </form>
         <div className="messagesContentIngredientCreator">
@@ -166,7 +180,6 @@ export default function IngredientCreate() {
               )
             ) : (
               <div className="lds-hourglass"></div>
-              // <span className="loading">Cargando...</span>
             )
           ) : (
             ""
