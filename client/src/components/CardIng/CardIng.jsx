@@ -29,7 +29,6 @@ export default function Card({
   }
 
   function obtenerId(ingId) {
-    // console.log(typeof ingId);
     const select = ingredientList?.filter((el) => el.id === ingId);
     return select;
   }

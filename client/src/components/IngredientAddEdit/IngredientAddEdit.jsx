@@ -72,10 +72,11 @@ export default function IngredientAddEdit({
         >
           <div className="inputsAddIngredientEditPage">
             <select
+              defaultValue={"DEFAULT"}
               className="selectIngredientsEdit"
               onChange={(e) => handleInputIngredient(e)}
             >
-              <option disabled selected>
+              <option value="DEFAULT" disabled>
                 Seleccione un ingrediente
               </option>
               {ingredientList?.map((ing) => (
@@ -94,9 +95,11 @@ export default function IngredientAddEdit({
                 onChange={(e) => handleInputQuantity(e)}
               />
             </div>
-            {completed && (
-              <div className="unitAddIngredientEditPage">{`${unitName}`}</div>
-            )}
+            <div className="buttonsConfirmNewIngredient">
+              {completed && (
+                <div className="unitAddIngredientEditPage">{`${unitName}`}</div>
+              )}
+            </div>
             {input.quantity && input.IngredientId ? (
               <button className="greenButtonConfirmEditPage" type="submit">
                 <MdOutlineCheckCircleOutline />

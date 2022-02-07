@@ -1,5 +1,5 @@
 const initialState = {
-  recipes: [], //cuando aplico filtros, este es el que se modificará. Este es el que se estoy renderizando.
+  recipes: [], //cuando aplico filtros, este es el que se modificará. Este es el que estoy renderizando.
   allRecipes: [], //tendrá lo mismo que "recipes", me va a servir para que al filtrar, si vuelvo a aplicar otro filtro se me haga sobre la totalidad de las recetas y no intente hacer un filtro de las filtradas anteriormente.
   categories: [],
   ingredients: [],

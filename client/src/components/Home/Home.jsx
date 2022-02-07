@@ -79,7 +79,7 @@ export default function Home() {
 
           <div>
             <button
-              className="grayButton"
+              className="grayButtonsHome"
               onClick={(e) => {
                 handleClick(e);
               }}
@@ -95,11 +95,11 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <div className="cards">
-          {currentRecipes &&
-            currentRecipes.map((el) => {
+        {currentRecipes ? (
+          <div className="cards">
+            {currentRecipes.map((el) => {
               return (
-                <Link to={`/home/${el.id}`} className="cardsLink">
+                <Link to={`/home/${el.id}`} className="cardsLink" key={el.id}>
                   <Card
                     img={el.img}
                     name={el.name}
@@ -111,7 +111,12 @@ export default function Home() {
                 </Link>
               );
             })}
-        </div>
+          </div>
+        ) : (
+          <div className="loading">
+            <div className="lds-hourglass"></div>
+          </div>
+        )}
       </div>
       <Paginado
         recipesPerPage={recipesPerPage}

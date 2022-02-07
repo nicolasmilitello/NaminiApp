@@ -27,7 +27,6 @@ export default function IngredientsEdit(props) {
     setInput({
       [e.target.name]: e.target.value,
     });
-    console.log(input);
   }
   async function guardarCambio(e) {
     e.preventDefault();

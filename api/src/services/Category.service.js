@@ -36,11 +36,9 @@ const createCategory = async (req, res) => {
   }
 };
 
-//HAY UN ERROR:
 const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     res.status(200).json(
       await Category.destroy({
         where: {

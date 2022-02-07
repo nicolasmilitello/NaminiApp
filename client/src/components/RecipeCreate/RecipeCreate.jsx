@@ -99,7 +99,7 @@ export default function RecipeCreate() {
 
   function obtenerId(ingId) {
     const select = ingredientList.filter((el) => el.id === Number(ingId));
-    // console.log(select[0]);
+
     return select[0];
   }
 
@@ -268,10 +268,11 @@ export default function RecipeCreate() {
             <div className="categoryNewRecipe">
               <label>Categoría: </label>
               <select
+                defaultValue={"DEFAULT"}
                 className="inputCategoryNewRecipe"
                 onChange={(e) => handleSelect(e)}
               >
-                <option disabled selected>
+                <option value="DEFAULT" disabled>
                   Seleccione una categoría
                 </option>
                 {categories?.map((cat) => (
@@ -309,10 +310,11 @@ export default function RecipeCreate() {
               <div>
                 <div>
                   <select
+                    defaultValue={"DEFAULT"}
                     className="inputsNewRecipe"
                     onChange={(e) => handleInputIngredient(e)}
                   >
-                    <option disabled selected>
+                    <option value="DEFAULT" disabled>
                       Seleccione un ingrediente
                     </option>
                     {ingredients?.map((ing) => (

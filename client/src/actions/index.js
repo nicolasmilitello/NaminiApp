@@ -66,7 +66,6 @@ export function postRecipe(payload) {
       "http://localhost:3001/recipe/create",
       payload
     );
-    console.log(response);
     return response;
   };
 }
@@ -77,7 +76,7 @@ export async function putRecipe(id, payload) {
     `http://localhost:3001/recipe/update/${id}`,
     payload
   );
-  console.log(response);
+
   return response;
 }
 // }
@@ -88,7 +87,7 @@ export function postCategory(payload) {
       "http://localhost:3001/category/create",
       payload
     );
-    console.log(response);
+
     return response;
   };
 }
@@ -99,14 +98,13 @@ export function postIngredient(payload) {
       "http://localhost:3001/ingredient/create",
       payload
     );
-    console.log(response);
+
     return response;
   };
 }
 
 export function filterRecipesByCategory(payload) {
   //recibo como payload lo que llamé "value" en las opciones para filtrar
-  console.log(payload);
   return {
     type: "FILTER_BY_CATEGORY",
     payload,

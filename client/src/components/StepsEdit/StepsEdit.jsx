@@ -67,7 +67,7 @@ export default function StepsEdit(props) {
             )}
           </div>
           {stepState.steps?.map((st, index) => (
-            <div className="confirmedStepContent">
+            <div className="confirmedStepContent" key={index}>
               <div className="ingrItem">
                 <span className="numberStep">{`${index + 1}. `}</span>
                 <span>{`${st} `}</span>
@@ -86,7 +86,7 @@ export default function StepsEdit(props) {
         </div>
         {recipeDetails &&
           recipeDetails[0].steps.map((st, index) => (
-            <div>
+            <div key={index}>
               <CardStep
                 st={st}
                 index={index}

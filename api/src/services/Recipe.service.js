@@ -8,6 +8,7 @@ const getAll = async (req, res) => {
       let recipeName = await pedido.filter((recipe) =>
         recipe.name.toLowerCase().includes(name.toLowerCase())
       );
+
       if (recipeName.length) {
         res.status(200).send(recipeName);
       } else {
@@ -57,7 +58,7 @@ const getRecipesByCategory = async (req, res) => {
 const getIngredientsRecipeById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+
     let foundRecipe = await Ingredient_Recipe.findAll({
       where: {
         RecipeId: id,
@@ -112,7 +113,7 @@ const createRecipe = async (req, res) => {
       }
     } catch (e) {
       // await deleteRecipe(newRecipe);
-      console.log(e);
+
       res.status(400).send(e);
     }
   } else {
@@ -147,8 +148,7 @@ const updateRecipe = async (req, res) => {
     const { id } = req.params;
 
     if (ingredients) {
-      // console.log(id);
-      // console.log(ingredients);
+
       try {
         await Ingredient_Recipe.destroy({
           where: {

@@ -45,6 +45,7 @@
 
 .inputsAddIngredientEditPage {
   display: flex;
+  justify-content: space-between;
   align-items: flex-end;
   margin-top: 15px;
 }
@@ -69,7 +70,12 @@
   color: grey;
 }
 
+.buttonsConfirmNewIngredient {
+  width: 135px;
+}
+
 .unitAddIngredientEditPage {
+  width: 100%;
   font-size: 13px;
   margin-left: 5px;
   font-family: "ABeeZee";

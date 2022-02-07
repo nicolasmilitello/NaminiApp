@@ -5,19 +5,18 @@ import { getNameRecipes } from "../../actions";
 import "./SearchBar.css";
 import "../Globales.css";
 
-export default function SearchBar() {
+export default function SearchBar(setSearch) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value);
-    // setName(""); //para limpiar el input pero no me funciona
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getNameRecipes(name)); //name es el estado que lo setee con lo que ingresó el usuario en handleInputChange().
+    const foundRecipes = await dispatch(getNameRecipes(name));
   }
 
   return (
@@ -29,7 +28,7 @@ export default function SearchBar() {
         onChange={(e) => handleInputChange(e)}
       />
       <button
-        className="grayButton"
+        className="grayButtonSearch"
         type="submit"
         onClick={(e) => handleSubmit(e)}
       >

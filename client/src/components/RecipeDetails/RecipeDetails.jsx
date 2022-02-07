@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { ImSpoonKnife } from "react-icons/im";
 import { GiReturnArrow } from "react-icons/gi";
 import { BiEditAlt, BiDish } from "react-icons/bi";
+import ImgNotFound from "../../img/ImgNotFound.png";
 import "../Globales.css";
 import "../RecipeDetails/RecipeDetails.css";
 
@@ -65,6 +66,10 @@ export default function RecipeDetails(props) {
                 <img
                   className="imgRecipeDetails"
                   src={recipeDetails[0].img}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = ImgNotFound;
+                  }}
                   alt="not found"
                 />
               </div>
@@ -120,7 +125,7 @@ export default function RecipeDetails(props) {
 
                 <div className="allStepsItems">
                   {recipeDetails[0].steps.map((st, index) => (
-                    <div className="stepItem">
+                    <div className="stepItem" key={index}>
                       <span className="numberStep">{`${index + 1}. `}</span>
                       <span>{`${st}`}</span>
                     </div>
@@ -129,7 +134,7 @@ export default function RecipeDetails(props) {
               </div>
             </div>
           ) : (
-            <div class="lds-hourglass"></div>
+            <div className="lds-hourglass"></div>
           )}
         </div>
       </div>

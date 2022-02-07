@@ -60,9 +60,6 @@ export default function IngredientsEdit(props) {
     e.preventDefault();
     setShow(true);
     const response = await putRecipe(props.match.params.id, ingState);
-    // if (response.status === 200) {
-    //   setCode(true);
-    // }
     history.push(`/edit/${props.match.params.id}`);
   }
 

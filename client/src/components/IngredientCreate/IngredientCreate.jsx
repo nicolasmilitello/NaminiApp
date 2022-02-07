@@ -123,10 +123,11 @@ export default function IngredientCreate() {
               <div className="ingredientUnit">
                 <label>Unidad de medida: </label>
                 <select
+                  defaultValue={"DEFAULT"}
                   className="inputUnitIngredient"
                   onChange={(e) => handleSelect(e)}
                 >
-                  <option disabled selected>
+                  <option value="DEFAULT" disabled>
                     Seleccione una unidad
                   </option>
                   {units?.map((unit) => (
@@ -160,11 +161,6 @@ export default function IngredientCreate() {
                 Crear ingrediente
               </button>
             )}
-            {/* {ing.name && ing.UnitId && (
-                <button className="greenButton" type="submit">
-                  Crear ingrediente
-                </button>
-              )} */}
           </div>
         </form>
         <div className="messagesContentIngredientCreator">

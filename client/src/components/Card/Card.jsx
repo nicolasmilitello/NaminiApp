@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiDish } from "react-icons/bi";
 import { ImSpoonKnife } from "react-icons/im";
+import ImgNotFound from "../../img/ImgNotFound.png";
 import "../Globales.css";
 import "./Card.css";
 
@@ -21,7 +22,15 @@ export default function Card({ id, name, servings, category, img }) {
   return (
     <div className="card">
       <div className="cardContent">
-        <img className="imagenCard" src={img} alt="not found" />
+        <img
+          src={img}
+          className="imagenCard"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = ImgNotFound;
+          }}
+          alt="not found"
+        />
         <div className="infoCard">
           <div className="iconAndCategory">
             <div className="iconCategory">

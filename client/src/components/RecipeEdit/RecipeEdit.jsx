@@ -14,6 +14,7 @@ import { BiEditAlt, BiDish } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { GiReturnArrow } from "react-icons/gi";
 import { ImSpoonKnife } from "react-icons/im";
+import ImgNotFound from "../../img/ImgNotFound.png";
 import "../RecipeDetails/RecipeDetails.css";
 import "../RecipeEdit/RecipeEdit.css";
 import "../Globales.css";
@@ -78,6 +79,10 @@ export default function RecipeEdit(props) {
                 <img
                   className="imgRecipeDetails"
                   src={recipeDetails[0].img}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = ImgNotFound;
+                  }}
                   alt="img not found"
                 />
               </div>
@@ -107,6 +112,10 @@ export default function RecipeEdit(props) {
                 <img
                   className="imageEdit"
                   src={recipeDetails[0].img}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = ImgNotFound;
+                  }}
                   alt="img not found"
                 />
                 <Link
@@ -191,26 +200,13 @@ export default function RecipeEdit(props) {
                 </div>
                 <div className="allStepsItems">
                   {recipeDetails[0].steps.map((st, index) => (
-                    <div className="stepItem">
+                    <div className="stepItem" key={index}>
                       <span className="numberStep">{`${index + 1}. `}</span>
                       <span>{`${st}`}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              {/* {est ? (
-                <div>
-                  <div className="success">Receta eliminada exitosamente</div>
-                </div>
-              ) : (
-                <div>
-                  <Link to={`/home/${props.match.params.id}`}>
-                    <button className="grayButton">
-                      <GiReturnArrow />
-                    </button>
-                  </Link>
-                </div>
-              )} */}
             </div>
           ) : (
             <div className="lds-hourglass"></div>
