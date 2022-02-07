@@ -114,7 +114,7 @@ export default function IngredientCreate() {
               </div>
               <div className="spaceError">
                 {errors.name && (
-                  <p className="errorInputVisible">{errors.name}</p>
+                  <div className="errorInputVisible">{errors.name}</div>
                 )}
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function IngredientCreate() {
                 </select>
               </div>
               <div>
-                {errors.UnitId && <p className="error">{errors.UnitId}</p>}
+                {errors.UnitId && <div className="error">{errors.UnitId}</div>}
               </div>
             </div>
           </div>

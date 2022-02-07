@@ -116,13 +116,17 @@ export default function Home() {
           </div>
         )}
       </div>
-      <Paginado
-        recipesPerPage={recipesPerPage}
-        allRecipes={allRecipes?.length}
-        handleClickPage={handleClickPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      {typeof allRecipes !== "string" ? (
+        <Paginado
+          recipesPerPage={recipesPerPage}
+          allRecipes={allRecipes?.length}
+          handleClickPage={handleClickPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

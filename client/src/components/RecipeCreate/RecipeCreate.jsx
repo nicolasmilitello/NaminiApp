@@ -193,6 +193,8 @@ export default function RecipeCreate() {
         ],
       })
     );
+    setQuantityIn("");
+    setIngredientIdIn("");
   }
 
   //Para eliminar ingredientes ya agregados:
@@ -260,7 +262,9 @@ export default function RecipeCreate() {
               className="inputNameNewRecipe"
               onChange={(e) => handleChange(e)}
             />
-            {errors.name && <p className="errorInputVisible">{errors.name}</p>}
+            {errors.name && (
+              <div className="errorInputVisible">{errors.name}</div>
+            )}
           </div>
 
           <div className="categoryAndServings">
@@ -281,7 +285,7 @@ export default function RecipeCreate() {
                 ))}
               </select>
               {errors.CategoryId && (
-                <p className="errorInputVisible">{errors.CategoryId}</p>
+                <div className="errorInputVisible">{errors.CategoryId}</div>
               )}
             </div>
 
@@ -298,7 +302,7 @@ export default function RecipeCreate() {
                 onChange={(e) => handleChange(e)}
               />
               {errors.servings && (
-                <p className="errorInputVisible">{errors.servings}</p>
+                <div className="errorInputVisible">{errors.servings}</div>
               )}
             </div>
           </div>
@@ -329,6 +333,7 @@ export default function RecipeCreate() {
                     min="0.1"
                     step="0.1"
                     placeholder=" Cantidad"
+                    value={quantityIn}
                     onChange={(e) => handleInputQuantity(e)}
                   />
                 </div>
@@ -369,13 +374,13 @@ export default function RecipeCreate() {
                 </div>
               )}
               {errors.ingredients && (
-                <p className="errorInputVisible">{errors.ingredients}</p>
+                <div className="errorInputVisible">{errors.ingredients}</div>
               )}
             </div>
           </div>
           <div className="allIngredients">
             {input.ingredients.map((ing, index) => (
-              <p className="addedIngredient" key={index + 1}>
+              <div className="addedIngredient" key={index + 1}>
                 <span className="ingredientItem">{` ${
                   obtenerId(ing.IngredientId)?.name
                 }: ${ing.quantity} ${obtenerIdUnidad(
@@ -388,7 +393,7 @@ export default function RecipeCreate() {
                 >
                   <MdOutlineCancel />
                 </button>
-              </p>
+              </div>
             ))}
           </div>
           <div className="stepsNewRecipe">
@@ -404,6 +409,7 @@ export default function RecipeCreate() {
                   type="text"
                   placeholder=" Ingrese paso..."
                   name="steps"
+                  value={step}
                   onChange={(e) => handleInputSteps(e)}
                 />
               </div>
@@ -422,7 +428,7 @@ export default function RecipeCreate() {
               </div>
             </div>
             {errors.steps && (
-              <p className="errorInputVisible">{errors.steps}</p>
+              <div className="errorInputVisible">{errors.steps}</div>
             )}
           </div>
           {step.length === 255 ? (
@@ -434,7 +440,7 @@ export default function RecipeCreate() {
           )}
           <div className="allSteps">
             {input.steps.map((step, index) => (
-              <p className="addedIngredient" key={index + 1}>
+              <div className="addedIngredient" key={index + 1}>
                 <div className="ingredientItem">
                   <span className="numberStep">{`${index + 1}. `}</span>
                   <span>{`${step} `}</span>
@@ -445,7 +451,7 @@ export default function RecipeCreate() {
                 >
                   <MdOutlineCancel />
                 </button>
-              </p>
+              </div>
             ))}
           </div>
           <div className="imgNewRecipe">
@@ -458,7 +464,9 @@ export default function RecipeCreate() {
               name="img"
               onChange={(e) => handleChange(e)}
             />
-            {errors.img && <p className="errorInputVisible">{errors.img}</p>}
+            {errors.img && (
+              <div className="errorInputVisible">{errors.img}</div>
+            )}
           </div>
           {input.name &&
           input.servings &&

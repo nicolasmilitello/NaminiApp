@@ -31,6 +31,7 @@ export default function CardAddStep({ setStepState, stepState }) {
         <form className="formAddStepEditPage" onSubmit={(e) => handleSubmit(e)}>
           <div className="textareaAndButton">
             <textarea
+              value={input}
               maxLength="255"
               className="inputAddStepEditPage"
               type="text"

@@ -79,7 +79,9 @@ export default function CategoryCreate() {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            {errors.name && <p className="errorInputVisible">{errors.name}</p>}
+            {errors.name && (
+              <div className="errorInputVisible">{errors.name}</div>
+            )}
           </div>
 
           <div className="categoryCreatorButtons">

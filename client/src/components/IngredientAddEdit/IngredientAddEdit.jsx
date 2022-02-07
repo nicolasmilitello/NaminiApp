@@ -60,6 +60,10 @@ export default function IngredientAddEdit({
       setIngState({
         ingredients: [...ingState.ingredients, input],
       });
+      setInput({
+        ...input,
+        quantity: "",
+      });
     }
   }
 
@@ -91,6 +95,7 @@ export default function IngredientAddEdit({
                 type="number"
                 min="0.1"
                 step="0.1"
+                value={input.quantity}
                 placeholder="Cantidad"
                 onChange={(e) => handleInputQuantity(e)}
               />

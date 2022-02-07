@@ -23,6 +23,7 @@ export default function SearchBar(setSearch) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setName("");
     const foundRecipes = await dispatch(getNameRecipes(name));
   }
 
@@ -31,6 +32,7 @@ export default function SearchBar(setSearch) {
       <input
         className="inputSearchBar"
         type="text"
+        value={name}
         placeholder="  Buscar..."
         onChange={(e) => handleInputChange(e)}
       />
