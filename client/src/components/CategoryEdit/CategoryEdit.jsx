@@ -1,20 +1,28 @@
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, putRecipe } from "../../actions";
+import { getCategories, putRecipe, getDetail } from "../../actions";
 import { useEffect, useState } from "react";
 import { GiReturnArrow } from "react-icons/gi";
 import "./CategoryEdit.css";
 import "../Globales.css";
 import "../NameEdit/NameEdit.css";
 
-export default function IngredientsEdit(props) {
+export default function CategoryEdit(props) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getDetail(props.match.params.id));
+  }, [dispatch]);
+
   const [input, setInput] = useState({});
   const [show, setShow] = useState(false);
+
   const categories = useSelector((state) => state.categories);
-  // const [code, setCode] = useState(false);
+
+  const recipeDetails = useSelector((state) => state.detail);
 
   function handleSelect(e) {
     e.preventDefault();
@@ -22,23 +30,14 @@ export default function IngredientsEdit(props) {
       ...input,
       CategoryId: e.target.value,
     });
-    console.log(input);
   }
 
   async function guardarCambio(e) {
     e.preventDefault();
-    // setCode(false);
     setShow(true);
     const response = await putRecipe(props.match.params.id, input);
-    // if (response.status === 200) {
-    //   setCode(true);
-    // }
     history.push(`/edit/${props.match.params.id}`);
   }
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
 
   return (
     <div className="pageItemEdit">
@@ -54,12 +53,10 @@ export default function IngredientsEdit(props) {
           <div className="labelAndInput">
             <label>Categoría: </label>
             <select
+              defaultValue={recipeDetails && recipeDetails[0]?.CategoryId}
               className="inputCategoryEditPage"
               onChange={(e) => handleSelect(e)}
             >
-              <option disabled selected>
-                Seleccione la nueva categoría
-              </option>
               {categories?.map((cat) => (
                 <option value={cat.id} key={cat.id}>
                   {cat.name}

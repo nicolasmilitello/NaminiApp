@@ -1,7 +1,9 @@
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { putRecipe } from "../../actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../../actions/index";
 import { GiReturnArrow } from "react-icons/gi";
 import "./ServingsEdit.css";
 import "../NameEdit/NameEdit.css";
@@ -11,6 +13,13 @@ export default function IngredientsEdit(props) {
   const [input, setInput] = useState({});
   const [show, setShow] = useState(false);
   // const [code, setCode] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDetail(props.match.params.id));
+  }, []);
+
+  const recipeDetails = useSelector((state) => state.detail);
 
   function handleChange(e) {
     e.preventDefault();
@@ -47,7 +56,7 @@ export default function IngredientsEdit(props) {
             <input
               className="inputServingEditPage"
               type="number"
-              placeholder="Ingrese las porciones"
+              defaultValue={recipeDetails?.[0].servings}
               value={input.servings}
               min="1"
               max="99"

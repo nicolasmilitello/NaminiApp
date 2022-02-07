@@ -82,6 +82,19 @@
   justify-content: center;
 }
 
+.titleCategoryEdit {
+  font-family: "Josefin Sans";
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+  margin-bottom: 15%;
+}
+
+.iconCategoryRecipeEdit {
+  font-size: 20px;
+  height: 21px;
+}
+
 /* .imageEdit {
   display: flex;
   align-self: center;

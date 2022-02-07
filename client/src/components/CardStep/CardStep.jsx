@@ -43,9 +43,18 @@ export default function CardStep({ st, index, setStepState, stepState }) {
                 onChange={(e) => handleChange(e)}
               ></textarea>
 
-              <button className="greenButtonConfirmEditPage" type="submit">
-                <MdOutlineCheckCircleOutline />
-              </button>
+              {step.length < 256 ? (
+                <button className="greenButtonConfirmEditPage" type="submit">
+                  <MdOutlineCheckCircleOutline />
+                </button>
+              ) : (
+                <button
+                  disabled={true}
+                  className="disabledButtonConfirmEditPage"
+                >
+                  <MdOutlineCheckCircleOutline />
+                </button>
+              )}
             </div>
             {step.length > 255 ? (
               <div className="stepLengthError">

@@ -30,16 +30,15 @@ export default function Home() {
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handleClickPage = (e) => {
+    setCurrentPage(Number(e.target.id));
   };
   //-------------------------------------------------------------------
 
-  //para traer las recetas cuando el componente se monta:
   useEffect(() => {
-    dispatch(getRecipes()); //getRecipes() es la action creada en actions.
+    dispatch(getRecipes());
     dispatch(getCategories());
-  }, [dispatch]); //arreglo vacío como segundo parámetro para que no se genere un loop infinito
+  }, [dispatch]);
 
   function handleClick(e) {
     e.preventDefault();
@@ -112,29 +111,14 @@ export default function Home() {
                 </Link>
               );
             })}
-          {/* {allRecipes &&
-            allRecipes.map((el) => {
-              return (
-                <div>
-                  <Link className="linkToRecipes" to={`/home/${el.id}`}>
-                  <Card
-                  img={el.img}
-                  name={el.name}
-                  servings={el.servings}
-                  category={el.CategoryId}
-                  key={el.id}
-                  id={el.id}
-                  />
-                  </Link>
-                  </div>
-              );
-            })} */}
         </div>
       </div>
       <Paginado
         recipesPerPage={recipesPerPage}
         allRecipes={allRecipes?.length}
-        paginado={paginado}
+        handleClickPage={handleClickPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
     </div>
   );

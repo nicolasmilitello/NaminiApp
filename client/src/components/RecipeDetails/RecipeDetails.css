@@ -128,6 +128,19 @@
   font-weight: bold;
 }
 
+.iconCategoryRecipeDetails {
+  font-size: 20px;
+  height: 21px;
+}
+
+.titleCategoryDetails {
+  font-family: "Josefin Sans";
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+  margin-bottom: 25%;
+}
+
 /* .detailsContent {
   display: flex;
   justify-content: center;

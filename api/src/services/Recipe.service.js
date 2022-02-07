@@ -98,7 +98,6 @@ const createRecipe = async (req, res) => {
           });
         }
       } catch (error) {
-        // await deleteRecipe(newRecipe);
         throw new Error("No se pudo crear la receta");
       }
 

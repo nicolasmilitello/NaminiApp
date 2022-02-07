@@ -10,9 +10,10 @@ import {
   getUnits,
 } from "../../actions/index";
 import { useEffect, useState } from "react";
-import { BiEditAlt } from "react-icons/bi";
+import { BiEditAlt, BiDish } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { GiReturnArrow } from "react-icons/gi";
+import { ImSpoonKnife } from "react-icons/im";
 import "../RecipeDetails/RecipeDetails.css";
 import "../RecipeEdit/RecipeEdit.css";
 import "../Globales.css";
@@ -121,8 +122,11 @@ export default function RecipeEdit(props) {
               <div className="nameEditCategoryServingIngDetails">
                 <div className="nameEditCategoryServingEdit">
                   <div className="categoryServingDetails">
+                    <div className="iconCategoryRecipeEdit">
+                      <BiDish />
+                    </div>
                     <div className="titleAndButtonEdit">
-                      <div className="titleSectionsDetails">
+                      <div className="titleCategoryEdit">
                         {obtenerNombreCategoria()}
                       </div>
                       <Link to={`/category/${props.match.params.id}`}>
@@ -132,6 +136,9 @@ export default function RecipeEdit(props) {
                       </Link>
                     </div>
 
+                    <div>
+                      <ImSpoonKnife />
+                    </div>
                     <div className="titleAndButtonEdit">
                       <div className="titleSectionsDetails">
                         {recipeDetails[0].servings} porciones

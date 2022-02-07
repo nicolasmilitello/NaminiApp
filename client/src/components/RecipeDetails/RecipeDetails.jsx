@@ -9,8 +9,9 @@ import {
   getUnits,
 } from "../../actions";
 import { useEffect } from "react";
+import { ImSpoonKnife } from "react-icons/im";
 import { GiReturnArrow } from "react-icons/gi";
-import { BiEditAlt } from "react-icons/bi";
+import { BiEditAlt, BiDish } from "react-icons/bi";
 import "../Globales.css";
 import "../RecipeDetails/RecipeDetails.css";
 
@@ -85,7 +86,13 @@ export default function RecipeDetails(props) {
               <div className="nameEditCategoryServingIngDetails">
                 <div className="nameEditCategoryServingDetails">
                   <div className="categoryServingDetails">
-                    <div className="titleSectionsDetails">{`${cats()}`}</div>
+                    <div className="iconCategoryRecipeDetails">
+                      <BiDish />
+                    </div>
+                    <div className="titleCategoryDetails">{`${cats()}`}</div>
+                    <div>
+                      <ImSpoonKnife />
+                    </div>
                     <div className="titleSectionsDetails">
                       {recipeDetails[0].servings} porciones
                     </div>

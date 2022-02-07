@@ -1,7 +1,9 @@
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { putRecipe } from "../../actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../../actions/index";
 import { GiReturnArrow } from "react-icons/gi";
 import "./ImgEdit.css";
 import "../NameEdit/NameEdit.css";
@@ -9,9 +11,16 @@ import "../Globales.css";
 
 export default function IngredientsEdit(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [input, setInput] = useState({});
   const [show, setShow] = useState(false);
   // const [code, setCode] = useState(false);
+
+  useEffect(() => {
+    dispatch(getDetail(props.match.params.id));
+  }, []);
+
+  const recipeDetails = useSelector((state) => state.detail);
 
   function handleChange(e) {
     e.preventDefault();
@@ -47,7 +56,7 @@ export default function IngredientsEdit(props) {
             <input
               className="inputEditPage"
               type="text"
-              placeholder="Ingrese la URL de la nueva imagen"
+              defaultValue={recipeDetails?.[0].img}
               value={input.img}
               name="img"
               onChange={(e) => handleChange(e)}

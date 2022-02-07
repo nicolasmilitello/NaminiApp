@@ -375,33 +375,6 @@ select {
   top: 1px;
 }
 
-.pageButton {
-  box-shadow: inset 0px -3px 7px 0px #efdcfb;
-  background: linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
-  background-color: #dfbdfa;
-  border-radius: 3px;
-  border: 1px solid #c584f3;
-  display: inline-block;
-  cursor: pointer;
-  color: rgb(82, 6, 88);
-  font-family: "ABeeZee";
-  font-size: 11px;
-  padding: 2px 4px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #9752cc;
-  margin-right: 2px;
-}
-.pageButton:hover {
-  transition-duration: 1s;
-  background: linear-gradient(to bottom, #694783 5%, #9178a5 100%);
-  background-color: #9547d1;
-  color: white;
-}
-.pageButton:active {
-  position: relative;
-  top: 1px;
-}
-
 .pinkButton {
   box-shadow: inset 0px -3px 7px 0px #fbafe3;
   background: linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);

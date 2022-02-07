@@ -1,13 +1,23 @@
-import { Link, useHistory } from "react-router-dom";
 import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { putRecipe } from "../../actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../../actions/index";
 import { GiReturnArrow } from "react-icons/gi";
 import "./NameEdit.css";
 import "../Globales.css";
 
-export default function IngredientsEdit(props) {
+export default function NameEdit(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDetail(props.match.params.id));
+  }, []);
+
+  const recipeDetails = useSelector((state) => state.detail);
+
   const [input, setInput] = useState({});
   const [show, setShow] = useState(false);
   // const [code, setCode] = useState(false);
@@ -15,9 +25,9 @@ export default function IngredientsEdit(props) {
   function handleChange(e) {
     e.preventDefault();
     setInput({
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1),
     });
-    console.log(input);
   }
 
   async function guardarCambio(e) {
@@ -47,8 +57,8 @@ export default function IngredientsEdit(props) {
             <input
               className="inputEditPage"
               type="text"
-              placeholder="Ingrese el nuevo nombre"
               value={input.name}
+              defaultValue={recipeDetails?.[0].name}
               name="name"
               onChange={(e) => handleChange(e)}
             />
