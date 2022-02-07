@@ -17,10 +17,10 @@ import ImgEdit from "./components/ImgEdit/ImgEdit";
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <div className="App">
+    <div className="App">
+      <BrowserRouter>
+        <NavBar />
+        <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />
           <Route path="/home/:id" component={RecipeDetails} />
@@ -34,9 +34,9 @@ function App() {
           <Route path="/recipe" component={RecipeCreate} />
           <Route exact path="/category" component={CategoryCreate} />
           <Route path="/ingredient" component={IngredientCreate} />
-        </div>
-      </Switch>
-    </BrowserRouter>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 

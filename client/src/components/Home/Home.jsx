@@ -30,6 +30,7 @@ export default function Home() {
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
+
   const handleClickPage = (e) => {
     setCurrentPage(Number(e.target.id));
   };
@@ -76,17 +77,6 @@ export default function Home() {
               <option value="desc">Z - A</option>
             </select>
           </div>
-
-          {/* <div>
-            <button
-              className="grayButtonsHome"
-              onClick={(e) => {
-                handleClick(e);
-              }}
-            >
-              Reestablecer las recetas
-            </button>
-          </div> */}
         </div>
 
         <h1 className="titlePage">Recetas</h1>
@@ -95,9 +85,9 @@ export default function Home() {
         </div>
       </div>
       <div>
-        {currentRecipes ? (
+        {typeof allRecipes === "object" && currentRecipes ? (
           <div className="cards">
-            {currentRecipes.map((el) => {
+            {currentRecipes?.map((el) => {
               return (
                 <Link to={`/home/${el.id}`} className="cardsLink" key={el.id}>
                   <Card
@@ -112,6 +102,8 @@ export default function Home() {
               );
             })}
           </div>
+        ) : typeof allRecipes === "string" ? (
+          <div className="noResults">No results found</div>
         ) : (
           <div className="loading">
             <div className="lds-hourglass"></div>

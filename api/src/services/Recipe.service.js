@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
       if (recipeName.length) {
         res.status(200).send(recipeName);
       } else {
-        res.status(404).send("No se encontró ninguna coincidencia");
+        res.status(200).json("No se encontró ninguna coincidencia");
       }
     } else {
       res.status(200).send(pedido);
@@ -148,7 +148,6 @@ const updateRecipe = async (req, res) => {
     const { id } = req.params;
 
     if (ingredients) {
-
       try {
         await Ingredient_Recipe.destroy({
           where: {
