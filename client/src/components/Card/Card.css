@@ -21,9 +21,7 @@
   min-width: 60%;
   width: 60%;
   height: 100%;
-  /* "object-fit: cover;" hace que la imágen ocupe exactamente las dimensiones que se le asignó a ese elemento, evitando que se deforme, es decir que hara el zoom necesario sobre la foto para evitar deformarla: */
   object-fit: cover;
-  /* object-fit: contain; */
   border-radius: 10% 78% 97% 10% / 10% 100% 100% 10%;
 }
 
@@ -32,19 +30,10 @@
   height: 21px;
 }
 
-.iconAndCategory {
-  /* margin-bottom: 20%; */
-}
-
-.iconAndServings {
-}
-
 .infoCard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* justify-content: center; */
-  /* align-items: center; */
   width: 100%;
   height: 80%;
 }
@@ -64,73 +53,3 @@
   font-family: "Josefin Sans";
   margin: 0px;
 }
-
-/* 
-.card {
-
-}
-
-.cardContent {
-  display: flex;
-  width: 300px;
-  height: 180px;
-  margin: 10px;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  background-color: rgba(242, 242, 205, 0.075);
-  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
-  border: 2px rgba(255, 255, 255, 0.4) solid;
-  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
-  border-right: 2px rgba(40, 40, 40, 0.35) solid;
-}
-
-.cardContent:hover {
-
-}
-
-.imagenCard {
-  max-width: 60%;
-  min-width: 60%;
-
-  width: 60%;
-  height: 100%;
-  "object-fit: cover;" hace que la imágen ocupe exactamente las dimensiones que se le asignó a ese elemento, evitando que se deforme, es decir que hara el zoom necesario sobre la foto para evitar deformarla:
-  object-fit: cover;
-  object-fit: contain;
-  border-radius: 10% 78% 97% 10% / 10% 100% 100% 10%;
-
-}
-
-.infoCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 80%;
-
-}
-
-.nameRecipeCard {
-
-  font-family: "Josefin Sans";
-
-  font-size: 20px;
-  margin-top: 0px;
-}
-
-.categoryRecipeCard {
-  font-family: "Josefin Sans";
-  margin: 0px;
-}
-
-.servingsRecipeCard {
-  font-family: "Josefin Sans";
-  margin: 0px;
-}
-
-.textRecipeCard {
-  font-family: Tahoma;
-} */

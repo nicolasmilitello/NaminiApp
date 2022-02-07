@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
-import "./CardStep.css";
 import "../NameEdit/NameEdit.css";
 import "../StepsEdit/StepsEdit.css";
 
