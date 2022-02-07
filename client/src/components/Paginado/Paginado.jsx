@@ -13,7 +13,7 @@ export default function Paginado({
 }) {
   const pageNumbers = [];
 
-  const [pageNumberLimit] = useState(4);
+  const [pageNumberLimit] = useState(1);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 

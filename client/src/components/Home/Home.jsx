@@ -9,6 +9,7 @@ import {
   orderByName,
   getCategories,
 } from "../../actions";
+import { MdSearchOff } from "react-icons/md";
 import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
@@ -103,7 +104,12 @@ export default function Home() {
             })}
           </div>
         ) : typeof allRecipes === "string" ? (
-          <div className="noResults">No results found</div>
+          <div className="noResults">
+            <div className="scale-down-center">
+              <MdSearchOff />
+            </div>
+            <div className="noResultsText">No se encontraron coincidencias</div>
+          </div>
         ) : (
           <div className="loading">
             <div className="lds-hourglass"></div>
