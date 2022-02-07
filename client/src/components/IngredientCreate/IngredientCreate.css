@@ -94,12 +94,14 @@
 .inputNameIngredient {
   width: 587px;
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 
 .inputUnitIngredient {
-  width: 519px;
+  width: 522px;
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 

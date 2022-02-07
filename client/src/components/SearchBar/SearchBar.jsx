@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNameRecipes } from "../../actions";
+import { getNameRecipes, getRecipes } from "../../actions";
+import { BiRefresh } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
 import "./SearchBar.css";
 import "../Globales.css";
 
@@ -14,6 +16,11 @@ export default function SearchBar(setSearch) {
     setName(e.target.value);
   }
 
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getRecipes());
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const foundRecipes = await dispatch(getNameRecipes(name));
@@ -24,15 +31,23 @@ export default function SearchBar(setSearch) {
       <input
         className="inputSearchBar"
         type="text"
-        placeholder="Buscar..."
+        placeholder="  Buscar..."
         onChange={(e) => handleInputChange(e)}
       />
       <button
-        className="grayButtonSearch"
+        className="grayButtonRefresh"
         type="submit"
         onClick={(e) => handleSubmit(e)}
       >
-        Buscar
+        <AiOutlineSearch />
+      </button>
+      <button
+        className="grayButtonRefresh"
+        onClick={(e) => {
+          handleClick(e);
+        }}
+      >
+        <BiRefresh />
       </button>
     </div>
   );

@@ -169,19 +169,18 @@
 .categoryFilter {
   background-color: #eee;
   border: none;
+  border-radius: 10px;
+  height: 18px;
   width: 69%;
 }
 
 .aToZFilter {
   background-color: #eee;
   border: none;
+  border-radius: 10px;
+  height: 18px;
   width: 31%;
 }
-
-/* .titlePage {
-  font-family: "Josefin Sans";
-  width: 75%;
-} */
 
 .searchBarSize {
   width: 75%;

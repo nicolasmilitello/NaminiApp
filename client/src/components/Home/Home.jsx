@@ -77,7 +77,7 @@ export default function Home() {
             </select>
           </div>
 
-          <div>
+          {/* <div>
             <button
               className="grayButtonsHome"
               onClick={(e) => {
@@ -86,7 +86,7 @@ export default function Home() {
             >
               Reestablecer las recetas
             </button>
-          </div>
+          </div> */}
         </div>
 
         <h1 className="titlePage">Recetas</h1>

@@ -73,7 +73,7 @@ export default function CategoryCreate() {
               <input
                 type="text"
                 size="40"
-                placeholder="Ingrese el nombre"
+                placeholder=" Ingrese el nombre"
                 name="name"
                 className="inputNameCategoryCreator"
                 onChange={(e) => handleChange(e)}

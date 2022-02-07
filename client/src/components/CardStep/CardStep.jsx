@@ -43,7 +43,7 @@ export default function CardStep({ st, index, setStepState, stepState }) {
                 onChange={(e) => handleChange(e)}
               ></textarea>
 
-              {step.length < 256 ? (
+              {step.length < 256 && step.length > 0 ? (
                 <button className="greenButtonConfirmEditPage" type="submit">
                   <MdOutlineCheckCircleOutline />
                 </button>

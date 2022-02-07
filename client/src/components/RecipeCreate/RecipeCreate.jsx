@@ -113,18 +113,17 @@ export default function RecipeCreate() {
 
   function handleAddStep(e) {
     e.preventDefault();
-    setStep("");
     setInput({
       ...input,
       steps: [...input.steps, step],
     });
-
     setErrors(
       validate({
         ...input,
         steps: [...input.steps, step],
       })
     );
+    setStep("");
   }
 
   //Para eliminar pasos ya agregados:
@@ -255,7 +254,7 @@ export default function RecipeCreate() {
             <input
               type="text"
               value={input.name}
-              placeholder="Ingrese el nombre"
+              placeholder=" Ingrese el nombre"
               name="name"
               size="40"
               className="inputNameNewRecipe"
@@ -291,7 +290,7 @@ export default function RecipeCreate() {
               <input
                 className="inputServingsNewRecipe"
                 type="number"
-                placeholder="Ingrese las porciones"
+                placeholder=" Ingrese las porciones"
                 value={input.servings}
                 min="1"
                 max="99"
@@ -329,7 +328,7 @@ export default function RecipeCreate() {
                     type="number"
                     min="0.1"
                     step="0.1"
-                    placeholder="Cantidad"
+                    placeholder=" Cantidad"
                     onChange={(e) => handleInputQuantity(e)}
                   />
                 </div>
@@ -341,7 +340,16 @@ export default function RecipeCreate() {
               </div>
               <div className="buttonAdd">
                 <button
-                  className="addIngredientItem"
+                  disabled={
+                    quantityIn.length && ingredientIdIn.length ? false : true
+                  }
+                  className={
+                    quantityIn.length &&
+                    Number(quantityIn) &&
+                    ingredientIdIn.length
+                      ? "addIngredientItem"
+                      : "addIngredientItemDisabled"
+                  }
                   onClick={(e) => handleAddIngredient(e)}
                 >
                   <MdAddCircleOutline />
@@ -364,7 +372,7 @@ export default function RecipeCreate() {
           <div className="allIngredients">
             {input.ingredients.map((ing, index) => (
               <p className="addedIngredient" key={index + 1}>
-                <span className="ingredientItem">{`${
+                <span className="ingredientItem">{` ${
                   obtenerId(ing.IngredientId)?.name
                 }: ${ing.quantity} ${obtenerIdUnidad(
                   ing.IngredientId
@@ -390,14 +398,19 @@ export default function RecipeCreate() {
                   maxLength="255"
                   className="inputStepsNewRecipe"
                   type="text"
-                  placeholder="Ingrese paso..."
+                  placeholder=" Ingrese paso..."
                   name="steps"
                   onChange={(e) => handleInputSteps(e)}
                 />
               </div>
               <div className="buttonAddStep">
                 <button
-                  className="addIngredientItem"
+                  disabled={step.length ? false : true}
+                  className={
+                    step.length
+                      ? "addIngredientItem"
+                      : "addIngredientItemDisabled"
+                  }
                   onClick={(e) => handleAddStep(e)}
                 >
                   <MdAddCircleOutline />
@@ -436,7 +449,7 @@ export default function RecipeCreate() {
             <input
               type="text"
               className="inputImgNewRecipe"
-              placeholder="Ingrese la URL de la imagen"
+              placeholder=" Ingrese la URL de la imagen"
               value={input.img}
               name="img"
               onChange={(e) => handleChange(e)}

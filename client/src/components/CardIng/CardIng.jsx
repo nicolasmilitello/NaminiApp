@@ -88,7 +88,15 @@ export default function Card({
                 {`${obtenerIdUnidad(IngredientId)}`}{" "}
               </div>
             </div>
-            <button className="greenButtonConfirmEditPage" type="submit">
+            <button
+              className={
+                Number(ing.quantity)
+                  ? "greenButtonConfirmEditPage"
+                  : "disabledButtonConfirmEditPage"
+              }
+              disabled={Number(ing.quantity) ? false : true}
+              type="submit"
+            >
               <MdOutlineCheckCircleOutline />
             </button>
           </form>

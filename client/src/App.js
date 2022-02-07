@@ -18,9 +18,9 @@ import ImgEdit from "./components/ImgEdit/ImgEdit";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <NavBar />
-        <Switch>
+      <NavBar />
+      <Switch>
+        <div className="App">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />
           <Route path="/home/:id" component={RecipeDetails} />
@@ -32,62 +32,62 @@ function App() {
           <Route path="/steps/:id" component={StepsEdit} />
           <Route path="/ingredients/:id" component={IngredientsEdit} />
           <Route path="/recipe" component={RecipeCreate} />
-          <Route path="/category" component={CategoryCreate} />
+          <Route exact path="/category" component={CategoryCreate} />
           <Route path="/ingredient" component={IngredientCreate} />
-        </Switch>
-      </div>
+        </div>
+      </Switch>
     </BrowserRouter>
   );
 }
 
-// <Route exact path="/" component={LandingPage} />
-// <Route exact path="/home">
-//   <NavBar />
-//   <Home />
-// </Route>
-// <Route path="/home/:id">
-//   <NavBar />
-//   <RecipeDetails />
-// </Route>
-// <Route path="/edit/:id">
-//   <NavBar />
-//   <RecipeEdit />
-// </Route>
-// <Route path="/img/:id">
-//   <NavBar />
-//   <ImgEdit />
-// </Route>
-// <Route path="/name/:id">
-//   <NavBar />
-//   <NameEdit />
-// </Route>
-// <Route path="/category/:id">
-//   <NavBar />
-//   <CategoryEdit />
-// </Route>
-// <Route path="/servings/:id">
-//   <NavBar />
-//   <ServingsEdit />
-// </Route>
-// <Route path="/steps/:id">
-//   <NavBar />
-//   <StepsEdit />
-// </Route>
-// <Route path="/ingredients/:id">
-//   <NavBar />
-//   <IngredientsEdit />
-// </Route>
-// <Route path="/recipe">
-//   <NavBar />
-//   <RecipeCreate />
-// </Route>
-// <Route path="/category">
-//   <NavBar />
-//   <CategoryCreate />
-// </Route>
-// <Route path="/ingredient">
-//   <NavBar />
-//   <IngredientCreate />
-// </Route>
-
 export default App;
+
+//   <Route exact path="/" component={LandingPage} />
+//   <Route exact path="/home">
+//     <NavBar />
+//     <Home />
+//   </Route>
+//   <Route path="/home/:id">
+//     <NavBar />
+//     <RecipeDetails />
+//   </Route>
+//   <Route path="/edit/:id">
+//     <NavBar />
+//     <RecipeEdit />
+//   </Route>
+//   <Route path="/img/:id">
+//     <NavBar />
+//     <ImgEdit />
+//   </Route>
+//   <Route path="/name/:id">
+//     <NavBar />
+//     <NameEdit />
+//   </Route>
+//   <Route path="/category/:id">
+//     <NavBar />
+//     <CategoryEdit />
+//   </Route>
+//   <Route path="/servings/:id">
+//     <NavBar />
+//     <ServingsEdit />
+//   </Route>
+//   <Route path="/steps/:id">
+//     <NavBar />
+//     <StepsEdit />
+//   </Route>
+//   <Route path="/ingredients/:id">
+//     <NavBar />
+//     <IngredientsEdit />
+//   </Route>
+//   <Route path="/recipe">
+//     <NavBar />
+//     <RecipeCreate />
+//   </Route>
+//   <Route path="/category">
+//     <NavBar />
+//     <CategoryCreate />
+//   </Route>
+//   <Route path="/ingredient">
+//     <NavBar />
+//     <IngredientCreate />
+//   </Route>

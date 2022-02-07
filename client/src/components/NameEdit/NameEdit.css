@@ -62,18 +62,21 @@
 .inputEditPage {
   width: 475px;
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 
 .inputServingEditPage {
   width: 455px;
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 
 .inputCategoryEditPage {
   width: 455px;
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 

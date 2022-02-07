@@ -108,7 +108,7 @@ export default function IngredientCreate() {
                   type="text"
                   size="40"
                   name="name"
-                  placeholder="Ingrese el nombre"
+                  placeholder=" Ingrese el nombre"
                   onChange={(e) => handleInput(e)}
                 />
               </div>

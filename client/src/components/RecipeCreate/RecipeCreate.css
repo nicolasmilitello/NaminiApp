@@ -7,7 +7,6 @@ label {
   display: flex;
   justify-content: center;
 }
-/* el elemento que contiene a esta clase tiene dos elementos hijos: el titulo "crear una receta" y el "form": */
 
 .recipeCreator {
   display: flex;
@@ -47,7 +46,10 @@ label {
 
 .inputNameNewRecipe {
   width: 635px;
+  color: rgb(73, 72, 72);
+  font-family: "ABeeZee";
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 
@@ -56,7 +58,6 @@ label {
   flex-direction: row;
   align-self: center;
   margin-top: 8px;
-  /* align-items: center; */
 }
 
 .categoryNewRecipe {
@@ -66,7 +67,9 @@ label {
 
 .inputCategoryNewRecipe {
   width: 331px;
+  color: rgb(73, 72, 72);
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 
@@ -77,9 +80,11 @@ label {
 
 .inputServingsNewRecipe {
   width: 200px;
+  font-family: "ABeeZee";
+  color: rgb(73, 72, 72);
   background-color: #eee;
+  border-radius: 10px;
   border: none;
-  color: gray;
 }
 
 .ingredientsNewRecipe {
@@ -109,15 +114,40 @@ label {
 
 .inputQuantityNewRecipe {
   width: 100px;
+  font-family: "ABeeZee";
+  color: rgb(73, 72, 72);
   background-color: #eee;
   border: none;
+  border-radius: 10px;
   margin-left: 10px;
 }
 
 .inputImgNewRecipe {
   width: 630px;
+  color: rgb(73, 72, 72);
+  font-family: "ABeeZee";
   background-color: #eee;
+  border-radius: 10px;
   border: 0;
+}
+
+.addIngredientItemDisabled {
+  align-items: center;
+  height: 17px;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 13px;
+  border: 1px solid #dcdcdc;
+  font-size: 15px;
+  padding: 0px 0px;
+  display: inline-block;
+  cursor: default;
+  color: #666666;
+  font-family: Arial;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
 }
 
 .addIngredientItem {
@@ -214,8 +244,10 @@ label {
 .inputStepsNewRecipe {
   width: 685px;
   height: 70px;
-  font-family: arial, verdana, ms sans serif;
+  font-family: "ABeeZee";
+  color: rgb(73, 72, 72);
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
 
@@ -297,5 +329,6 @@ label {
 
 .inputsNewRecipe {
   background-color: #eee;
+  border-radius: 10px;
   border: none;
 }
