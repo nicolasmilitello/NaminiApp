@@ -341,7 +341,11 @@ export default function RecipeCreate() {
               <div className="buttonAdd">
                 <button
                   disabled={
-                    quantityIn.length && ingredientIdIn.length ? false : true
+                    quantityIn.length &&
+                    Number(quantityIn) &&
+                    ingredientIdIn.length
+                      ? false
+                      : true
                   }
                   className={
                     quantityIn.length &&
