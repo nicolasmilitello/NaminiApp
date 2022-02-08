@@ -18,9 +18,10 @@ export default function NameEdit(props) {
 
   const recipeDetails = useSelector((state) => state.detail);
 
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    name: "",
+  });
   const [show, setShow] = useState(false);
-  // const [code, setCode] = useState(false);
 
   function handleChange(e) {
     e.preventDefault();
@@ -32,12 +33,8 @@ export default function NameEdit(props) {
 
   async function guardarCambio(e) {
     e.preventDefault();
-    // setCode(false);
     setShow(true);
     const response = await putRecipe(props.match.params.id, input);
-    // if (response.status === 200) {
-    //   setCode(true);
-    // }
     history.push(`/edit/${props.match.params.id}`);
   }
 
@@ -57,7 +54,6 @@ export default function NameEdit(props) {
             <input
               className="inputEditPage"
               type="text"
-              value={input.name}
               defaultValue={recipeDetails?.[0].name}
               name="name"
               onChange={(e) => handleChange(e)}
@@ -79,17 +75,6 @@ export default function NameEdit(props) {
             </div>
           )}
         </form>
-        {/* <div>
-          {show ? (
-            code ? (
-              <span className="success">Nombre actualizado exitosamente</span>
-            ) : (
-              <div className="lds-hourglass"></div>
-            )
-          ) : (
-            ""
-          )}
-        </div> */}
       </div>
     </div>
   );

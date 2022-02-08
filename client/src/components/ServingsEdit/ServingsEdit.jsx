@@ -10,7 +10,9 @@ import "../NameEdit/NameEdit.css";
 
 export default function IngredientsEdit(props) {
   const history = useHistory();
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    servings: "",
+  });
   const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
@@ -52,7 +54,6 @@ export default function IngredientsEdit(props) {
               className="inputServingEditPage"
               type="number"
               defaultValue={recipeDetails?.[0].servings}
-              value={input.servings}
               min="1"
               max="99"
               name="servings"

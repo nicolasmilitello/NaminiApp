@@ -84,7 +84,7 @@ export default function IngredientsEdit(props) {
         <div className="allIngredientsIngredientEditPage">
           {ingState.ingredients.map((ing) => {
             return (
-              <div>
+              <div key={ing.IngredientId}>
                 <div className="addedIngredient" key={ing.IngredientId}>
                   <span className="ingredientItem">{`✔ ${
                     obtenerId(ing.IngredientId)?.name

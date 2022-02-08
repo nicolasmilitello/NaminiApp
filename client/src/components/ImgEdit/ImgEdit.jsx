@@ -12,9 +12,10 @@ import "../Globales.css";
 export default function IngredientsEdit(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    img: "",
+  });
   const [show, setShow] = useState(false);
-  // const [code, setCode] = useState(false);
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
@@ -30,12 +31,9 @@ export default function IngredientsEdit(props) {
   }
   async function guardarCambio(e) {
     e.preventDefault();
-    // setCode(false);
+
     setShow(true);
     const response = await putRecipe(props.match.params.id, input);
-    // if (response.status === 200) {
-    //   setCode(true);
-    // }
     history.push(`/edit/${props.match.params.id}`);
   }
 
@@ -56,7 +54,6 @@ export default function IngredientsEdit(props) {
               className="inputEditPage"
               type="text"
               defaultValue={recipeDetails?.[0].img}
-              value={input.img}
               name="img"
               onChange={(e) => handleChange(e)}
             />
@@ -77,18 +74,6 @@ export default function IngredientsEdit(props) {
             </div>
           )}
         </form>
-
-        {/* <div>
-          {show ? (
-            code ? (
-              <span className="success">Imagen actualizada exitosamente</span>
-            ) : (
-              <div className="lds-hourglass"></div>
-            )
-          ) : (
-            ""
-          )}
-        </div> */}
       </div>
     </div>
   );
