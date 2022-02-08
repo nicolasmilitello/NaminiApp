@@ -89,7 +89,6 @@ const createRecipe = async (req, res) => {
           img,
         },
       });
-
       try {
         for (let ingredient of ingredients) {
           await newRecipe.addIngredient(ingredient.IngredientId, {
@@ -112,8 +111,11 @@ const createRecipe = async (req, res) => {
           .json({ message: "Error: no se pudo crear la nueva receta" });
       }
     } catch (e) {
-      // await deleteRecipe(newRecipe);
-
+      // await Recipe.destroy({
+      //   where: {
+      //     id: newRecipe.id,
+      //   },
+      // });
       res.status(400).send(e);
     }
   } else {
@@ -206,34 +208,3 @@ module.exports = {
   deleteRecipe,
   updateRecipe,
 };
-
-//* Set relations Ingredient,Steps & Diet
-// try {
-//   for (let ingredient of ingredients) {
-//     await newRecipe.addIngredient(ingredient.id, {
-//       through: {
-//         amount: ingredient.amount,
-//         unit: ingredient.unit,
-//       },
-//     });
-//   }
-// } catch (error) {
-//   await deleteDBRecipe(newRecipe.id);
-//   throw new Error("Problems setting Ingredients relations with Recipe");
-// }
-
-// try {
-//   for (let step of steps) {
-//     await newRecipe.createStep({ number: step.number, content: step.content });
-//   }
-// } catch (error) {
-//   await deleteDBRecipe(newRecipe.id);
-//   throw new Error("Problems creating Steps of the procedure");
-// }
-
-// try {
-//   await newRecipe.addDiets(diets);
-// } catch (error) {
-//   await deleteDBRecipe(newRecipe.id);
-//   throw new Error("Problems setting Diets relations with Recipe");
-// }
