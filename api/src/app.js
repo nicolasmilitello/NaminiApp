@@ -1,7 +1,7 @@
 const express = require("express");
-const cookieParser = require("cookie-parser"); //para autenticación
-const bodyParser = require("body-parser"); //para autenticación
-const morgan = require("morgan"); //para mostrar cierta info
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const routes = require("./routes/index.js");
 
 require("./db.js");
@@ -25,7 +25,6 @@ server.use((req, res, next) => {
   next();
 });
 
-//Request (desde el front) --> SERVIDOR --> INDEX ROUTES
 server.use("/", routes);
 
 // Error catching endware.

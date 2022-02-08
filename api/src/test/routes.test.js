@@ -1,18 +1,13 @@
 var supertest = require("supertest-as-promised")(require("../app"));
 var expect = require("chai").expect;
-// var model = require("../models/model");
 
 describe("Routes", function () {
-  // beforeEach(function () {
-  //   model.reset();
-  // });
-
   describe("/get", function () {
     it("Categories: GET responde con un array con las categorías existentes", function () {
-      return supertest // supertest nos permite hacer y testear requests HTTP
-        .get("/category/get") // hacemos un request HTTP: GET a '/houses'
-        .expect(200) // el codigo de status del response
-        .expect("Content-Type", /json/) // podemos testear los headers
+      return supertest
+        .get("/category/get")
+        .expect(200)
+        .expect("Content-Type", /json/)
         .expect(function (res) {
           expect(res.body).to.eql([
             {
@@ -52,20 +47,13 @@ describe("Routes", function () {
     });
 
     it("Recipes: GET responde con un array con las recetas existentes", function () {
-      // model.addHouse("Gryffindor");
-      // model.addHouse("Slytherin");
       return supertest
         .get("/recipe/get")
         .expect(200)
         .expect("Content-Type", /json/);
-      // .expect(function (res) {
-      //   expect(res.body).to.eql(["Gryffindor", "Slytherin"]);
-      // });
     });
 
     it("Recipes: si le paso por query un nombre, GET responde con un array con la receta con el nombre ingresado", function () {
-      // model.addHouse("Gryffindor");
-      // model.addHouse("Slytherin");
       return supertest
         .get("/recipe/get?name=selva negra")
         .expect(200)
@@ -91,8 +79,6 @@ describe("Routes", function () {
     });
 
     it("Recipes: si le paso por query un nombre que no existe, GET responde con un status 404", function () {
-      // model.addHouse("Gryffindor");
-      // model.addHouse("Slytherin");
       return supertest
         .get("/recipe/get?name=alfajor")
         .expect(404)
@@ -100,8 +86,6 @@ describe("Routes", function () {
     });
 
     it("Ingredients: GET responde con un array con los ingredientes existentes", function () {
-      // model.addHouse("Gryffindor");
-      // model.addHouse("Slytherin");
       return supertest
         .get("/ingredient/get")
         .expect(200)
@@ -328,8 +312,6 @@ describe("Routes", function () {
     });
 
     it("Units: GET responde con un array con todas las unidades existentes", function () {
-      // model.addHouse("Gryffindor");
-      // model.addHouse("Slytherin");
       return supertest
         .get("/unit/get")
         .expect(200)

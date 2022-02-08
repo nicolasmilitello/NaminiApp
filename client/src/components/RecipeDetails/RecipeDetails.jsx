@@ -19,9 +19,6 @@ import "../RecipeDetails/RecipeDetails.css";
 export default function RecipeDetails(props) {
   const dispatch = useDispatch();
 
-  // const { history } = props;
-  // console.log(history);
-
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
     dispatch(getIngredientsRecipe(props.match.params.id));
@@ -31,7 +28,7 @@ export default function RecipeDetails(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  const recipeDetails = useSelector((state) => state.detail); //para traerme los detalles de una receta (no incluye los ingredientes)
+  const recipeDetails = useSelector((state) => state.detail); //detalles de una receta (no incluye los ingredientes)
 
   const categories = useSelector((state) => state.categories); //para traerme el listado de categorías existentes
 

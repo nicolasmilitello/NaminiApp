@@ -1,8 +1,8 @@
-require("dotenv").config(); //para trabajar con las variables de entorno, instalarlo.
+require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const fs = require("fs"); //file system, viene con Windows, sin necesidad de instalarlo
-const path = require("path"); //file system, viene con Windows, sin necesidad de instalarlo
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env; //debo crear el archivo .env
+const fs = require("fs");
+const path = require("path");
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/namini`,
@@ -53,8 +53,6 @@ Recipe.belongsToMany(Ingredient, { through: Ingredient_Recipe });
 //Relación uno a muchos Recipe y Category:
 Category.hasMany(Recipe);
 Recipe.belongsTo(Category);
-// Category.hasMany(Recipe, { foreignKey: "categoryId", sourceKey: "id" });
-// Recipe.belongsTo(Category, { foreignKey: "categoryId", sourceKey: "id" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

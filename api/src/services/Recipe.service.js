@@ -1,4 +1,4 @@
-const { Recipe, Ingredient_Recipe, Ingredient } = require("../db.js"); //importo el modelo Recipe de la base de datos;
+const { Recipe, Ingredient_Recipe, Ingredient } = require("../db.js"); 
 
 const getAll = async (req, res) => {
   try {
