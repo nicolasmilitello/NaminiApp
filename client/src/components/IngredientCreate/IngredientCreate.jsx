@@ -83,7 +83,10 @@ export default function IngredientCreate() {
     if (response.status === 200) {
       setCode(true);
     }
-    history.push("/home");
+
+    if (response?.data !== "Ya existe un ingrediente con ese nombre") {
+      history.push("/home");
+    }
   }
 
   useEffect(() => {

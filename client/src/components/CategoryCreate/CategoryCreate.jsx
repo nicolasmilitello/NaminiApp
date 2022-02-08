@@ -55,7 +55,9 @@ export default function CategoryCreate() {
       setCode(true);
     }
     setCat("");
-    history.push("/home");
+    if (response?.data !== "Ya existe una categoría con ese nombre") {
+      history.push("/home");
+    }
   }
 
   useEffect(() => {

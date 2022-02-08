@@ -70,7 +70,7 @@
   border: none;
   border-radius: 10px;
   height: 18px;
-  width: 69%;
+  width: 64%;
 }
 
 .aToZFilter {
@@ -79,6 +79,7 @@
   border-radius: 10px;
   height: 18px;
   width: 31%;
+  margin-left: 8px;
 }
 
 .searchBarSize {

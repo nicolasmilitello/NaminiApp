@@ -19,14 +19,14 @@ import "../Globales.css";
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
-  const [setOrden] = useState("");
-  // const [orden, setOrden] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [orden, setOrden] = useState("");
   const categories = useSelector((state) => state.categories);
 
   //PAGINADO:------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage] = useState(9);
-  // const [recipesPerPage, setRecipesPerPage] = useState(9);
+  // eslint-disable-next-line no-unused-vars
+  const [recipesPerPage, setRecipesPerPage] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes?.slice(
@@ -40,8 +40,11 @@ export default function Home() {
   //-------------------------------------------------------------------
 
   useEffect(() => {
-    dispatch(getRecipes());
+    if (!allRecipes?.length) {
+      dispatch(getRecipes());
+    }
     dispatch(getCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   function handleFilterCategory(e) {
