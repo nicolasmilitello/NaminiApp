@@ -9,7 +9,7 @@ import "./ImgEdit.css";
 import "../NameEdit/NameEdit.css";
 import "../Globales.css";
 
-export default function IngredientsEdit(props) {
+export default function ImgEdit(props) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -19,6 +19,7 @@ export default function IngredientsEdit(props) {
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const recipeDetails = useSelector((state) => state.detail);
@@ -33,7 +34,7 @@ export default function IngredientsEdit(props) {
     e.preventDefault();
 
     setShow(true);
-    const response = await putRecipe(props.match.params.id, input);
+    await putRecipe(props.match.params.id, input);
     history.push(`/edit/${props.match.params.id}`);
   }
 

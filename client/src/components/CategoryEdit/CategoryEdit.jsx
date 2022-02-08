@@ -15,6 +15,7 @@ export default function CategoryEdit(props) {
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getDetail(props.match.params.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const [input, setInput] = useState({});
@@ -35,7 +36,7 @@ export default function CategoryEdit(props) {
   async function guardarCambio(e) {
     e.preventDefault();
     setShow(true);
-    const response = await putRecipe(props.match.params.id, input);
+    await putRecipe(props.match.params.id, input);
     history.push(`/edit/${props.match.params.id}`);
   }
 

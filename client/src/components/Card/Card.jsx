@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { getCategories } from "../../actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +17,7 @@ export default function Card({ id, name, servings, category, img }) {
 
   useEffect(() => {
     dispatch(getCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="card">

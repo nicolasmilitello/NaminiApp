@@ -9,7 +9,7 @@ import {
   getIngredients,
   getUnits,
 } from "../../actions/index";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BiEditAlt, BiDish } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { GiReturnArrow } from "react-icons/gi";
@@ -29,6 +29,7 @@ export default function RecipeEdit(props) {
     dispatch(getIngredientsRecipe(props.match.params.id));
     dispatch(getIngredients());
     dispatch(getUnits());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const recipeDetails = useSelector((state) => state.detail); //para traerme los detalles de una receta (no incluye los ingredientes)
@@ -36,8 +37,6 @@ export default function RecipeEdit(props) {
   const categories = useSelector((state) => state.categories); //para traerme el listado de categorías existentes
 
   const ingredients = useSelector((state) => state.ing_rec); //listado de ingredientes de una receta en particular
-
-  const [est, setEst] = useState(false);
 
   function obtenerNombreCategoria() {
     let categoryRecipe = categories
@@ -65,7 +64,6 @@ export default function RecipeEdit(props) {
 
   function deleteRec(id) {
     dispatch(deleteRecipe(id));
-    setEst(true);
     history.push("/home");
   }
 

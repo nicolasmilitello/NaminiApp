@@ -25,6 +25,7 @@ export default function RecipeDetails(props) {
     dispatch(getCategories());
     dispatch(getIngredients());
     dispatch(getUnits());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const recipeDetails = useSelector((state) => state.detail); //para traerme los detalles de una receta (no incluye los ingredientes)

@@ -6,7 +6,7 @@ import "../NameEdit/NameEdit.css";
 import "../StepsEdit/StepsEdit.css";
 import "../IngredientsEdit/IngredientsEdit.css";
 
-export default function Card({
+export default function CardIng({
   quantity,
   IngredientId,
   RecipeId,

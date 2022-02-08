@@ -17,14 +17,16 @@ import "./Home.css";
 import "../Globales.css";
 
 export default function Home() {
-  const dispatch = useDispatch(); //mapDispatchToProps
-  const allRecipes = useSelector((state) => state.recipes); //mapStateToProps
-  const [orden, setOrden] = useState("");
+  const dispatch = useDispatch();
+  const allRecipes = useSelector((state) => state.recipes);
+  const [setOrden] = useState("");
+  // const [orden, setOrden] = useState("");
   const categories = useSelector((state) => state.categories);
 
   //PAGINADO:------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(9);
+  const [recipesPerPage] = useState(9);
+  // const [recipesPerPage, setRecipesPerPage] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes?.slice(
@@ -41,11 +43,6 @@ export default function Home() {
     dispatch(getRecipes());
     dispatch(getCategories());
   }, [dispatch]);
-
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getRecipes());
-  }
 
   function handleFilterCategory(e) {
     dispatch(filterRecipesByCategory(e.target.value));

@@ -89,6 +89,7 @@ export default function IngredientCreate() {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getUnits());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

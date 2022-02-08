@@ -8,7 +8,7 @@ import { GiReturnArrow } from "react-icons/gi";
 import "./ServingsEdit.css";
 import "../NameEdit/NameEdit.css";
 
-export default function IngredientsEdit(props) {
+export default function ServingsEdit(props) {
   const history = useHistory();
   const [input, setInput] = useState({
     servings: "",
@@ -19,6 +19,7 @@ export default function IngredientsEdit(props) {
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const recipeDetails = useSelector((state) => state.detail);
@@ -33,7 +34,7 @@ export default function IngredientsEdit(props) {
   async function guardarCambio(e) {
     e.preventDefault();
     setShow(true);
-    const response = await putRecipe(props.match.params.id, input);
+    await putRecipe(props.match.params.id, input);
     history.push(`/edit/${props.match.params.id}`);
   }
 

@@ -6,19 +6,13 @@ import "../StepsEdit/StepsEdit.css";
 export default function CardAddStep({ setStepState, stepState }) {
   const [input, setInput] = useState("");
 
-  const [completed, setCompleted] = useState(false);
-
   function handleChange(e) {
     e.preventDefault();
-
-    setCompleted(true);
-
     setInput(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    setCompleted(false);
     setStepState({
       steps: [...stepState.steps, input],
     });

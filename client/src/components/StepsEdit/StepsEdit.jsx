@@ -15,12 +15,11 @@ export default function StepsEdit(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
-  // const [code, setCode] = useState(false);
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const recipeDetails = useSelector((state) => state.detail);
@@ -31,12 +30,8 @@ export default function StepsEdit(props) {
 
   async function guardarCambios(e) {
     e.preventDefault();
-    // setCode(false);
     setShow(true);
-    const response = await putRecipe(props.match.params.id, stepState);
-    // if (response.status === 200) {
-    //   setCode(true);
-    // }
+    await putRecipe(props.match.params.id, stepState);
     history.push(`/edit/${props.match.params.id}`);
   }
 

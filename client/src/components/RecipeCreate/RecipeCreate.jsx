@@ -243,6 +243,7 @@ export default function RecipeCreate() {
     dispatch(getCategories());
     dispatch(getIngredients());
     dispatch(getUnits());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

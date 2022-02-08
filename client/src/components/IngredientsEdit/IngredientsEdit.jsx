@@ -28,6 +28,7 @@ export default function IngredientsEdit(props) {
     dispatch(getIngredientsRecipe(props.match.params.id));
     dispatch(getIngredients());
     dispatch(getUnits());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ingredients = useSelector((state) => state.ing_rec); //listado de ingredientes de una receta en particular
@@ -59,7 +60,7 @@ export default function IngredientsEdit(props) {
   async function guardarCambios(e) {
     e.preventDefault();
     setShow(true);
-    const response = await putRecipe(props.match.params.id, ingState);
+    await putRecipe(props.match.params.id, ingState);
     history.push(`/edit/${props.match.params.id}`);
   }
 

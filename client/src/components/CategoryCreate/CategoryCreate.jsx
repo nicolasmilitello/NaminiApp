@@ -60,6 +60,7 @@ export default function CategoryCreate() {
 
   useEffect(() => {
     dispatch(getCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -109,7 +110,8 @@ export default function CategoryCreate() {
             code ? (
               // <span className="success">Categoría creada exitosamente</span>
               // <span className="success">{message}</span>
-              typeof message === "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
+              //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría:
+              typeof message === "object" ? (
                 <span className="success">Categoría creada exitosamente</span>
               ) : (
                 <span className="failure">{message}</span> //sino me envió una string que dice "Ya existe una categoría con ese nombre"

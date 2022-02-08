@@ -24,7 +24,7 @@ export default function SearchBar(setSearch) {
   async function handleSubmit(e) {
     e.preventDefault();
     setName("");
-    const foundRecipes = await dispatch(getNameRecipes(name));
+    await dispatch(getNameRecipes(name));
   }
 
   return (
