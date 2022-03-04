@@ -1,10 +1,11 @@
 import React from "react";
-import LogoImgText from "../../logoImg&Text.png";
 
 //? STYLES:
 import { Container } from "./LandingPageSC";
 import "../Globales.css";
-import "./LandingPage.css";
+
+//? IMAGES:
+import LogoImgText from "../../logoImg&Text.png";
 
 export default function LandingPage() {
   return (
