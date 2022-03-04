@@ -8,9 +8,6 @@ export default function LandingPage() {
   return (
     <div className="contentLandingPage">
       <img className="slide-top" src={LogoImgText} alt="not found" />
-      <Link to="/home">
-        <button className="pinkButton">Ingresar</button>
-      </Link>
     </div>
   );
 }
