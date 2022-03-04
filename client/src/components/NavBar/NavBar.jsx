@@ -1,45 +1,38 @@
-import { Link } from "react-router-dom";
-import "./NavBar.css";
-import "../Globales.css";
+import React from "react";
+
+//? STYLES:
+import { Container, Menu, MenuOption, LinkStyle } from "./NavBarSC";
+
+//? IMAGES:
 import Logo from "../../logo.png";
 import Nombre from "../../img/nombre dos líneas.png";
 
 export default function NavBar() {
   return (
     <nav>
-      <div className="contenedor">
-        <div>
-          <img className="logoImagen" src={Logo} alt="not found" />
-        </div>
-        <div className="align">
-          <span className="menu">
-            <Link to="/home" className="link">
-              Home
-            </Link>
-          </span>
+      <Container>
+        <img src={Logo} alt="not found" />
 
-          <span className="menu">
-            <Link to="/recipe" className="link">
-              Crear receta
-            </Link>
-          </span>
+        <Menu>
+          <MenuOption>
+            <LinkStyle to="/home">Home</LinkStyle>
+          </MenuOption>
 
-          <span className="menu">
-            <Link to="/category" className="link">
-              Crear categoría
-            </Link>
-          </span>
+          <MenuOption>
+            <LinkStyle to="/recipe">Crear receta</LinkStyle>
+          </MenuOption>
 
-          <span className="menu">
-            <Link to="/ingredient" className="link">
-              Crear ingrediente
-            </Link>
-          </span>
-        </div>
-        <div>
-          <img className="logoTexto" src={Nombre} alt="not found" />
-        </div>
-      </div>
+          <MenuOption>
+            <LinkStyle to="/category">Crear categoría</LinkStyle>
+          </MenuOption>
+
+          <MenuOption>
+            <LinkStyle to="/ingredient">Crear ingrediente</LinkStyle>
+          </MenuOption>
+        </Menu>
+
+        <img src={Nombre} alt="not found" />
+      </Container>
     </nav>
   );
 }

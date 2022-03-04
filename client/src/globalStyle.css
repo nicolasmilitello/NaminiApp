@@ -6,7 +6,40 @@
   position: relative;
 } */
 
+nav {
+  display: flex;
+  justify-content: center;
+  background-image: radial-gradient(
+    circle at 50% -20.71%,
+    #ffdfda 0,
+    #ffdfd8 6.25%,
+    #ffe0d5 12.5%,
+    #ffe1d3 18.75%,
+    #fee2d1 25%,
+    #fbe3cf 31.25%,
+    #f8e4ce 37.5%,
+    #f5e5cd 43.75%,
+    #f2e6cd 50%,
+    #eee7cd 56.25%,
+    #ebe8ce 62.5%,
+    #e7e9cf 68.75%,
+    #e3ead0 75%,
+    #dfebd2 81.25%,
+    #dcecd4 87.5%,
+    #d8edd7 93.75%,
+    #d5edda 100%
+  );
+  width: 99.7%;
+  border: 5px solid #e7e7e7;
+  background-color: rgba(242, 242, 205, 0.075);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+  border: 2px rgba(255, 255, 255, 0.4) solid;
+  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+  border-right: 2px rgba(40, 40, 40, 0.35) solid;
+}
+
 :root {
+  --primaryFont: "Josefin Sans";
   --logoFont: "Germania One", sans-serif;
   --InitialMessageAddCitiesFont: "Barlow", sans-serif;
   --inputFont: "Barlow";

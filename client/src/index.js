@@ -1,12 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import dotenv from "react-dotenv";
+
+//? STYLES:
+import "./globalStyle.css";
+import "./normalize.css";
+import "./index.css";
+
+//? COMPONENTS:
+import App from "./App";
+
 dotenv?.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
