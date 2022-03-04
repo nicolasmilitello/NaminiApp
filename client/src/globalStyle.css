@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+@import url("https://fonts.googleapis.com/css?family=ABeeZee");
+
+/* html {
+  min-height: 100%;
+  position: relative;
+} */
+
+:root {
+  --logoFont: "Germania One", sans-serif;
+  --InitialMessageAddCitiesFont: "Barlow", sans-serif;
+  --inputFont: "Barlow";
+  --TitleCardFont: "Barlow";
+  --cityDetailsFont: "Barlow";
+}
+
+body {
+  /* background-image: url("./img/background_clouds.jpg");
+  background-attachment: scroll;
+  margin-bottom: 40px; */
+}
