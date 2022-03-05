@@ -1,13 +1,27 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React from "react";
-import { putRecipe } from "../../actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../actions/index";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  ReturnButtonContainer,
+  ReturnButton,
+  ImgForm,
+  InputContainer,
+  LoadingAnimation,
+  ButtonContainer,
+  SaveButton,
+  DisabledButton,
+} from "./ImgEditSC";
+
+//? ICONS:
 import { GiReturnArrow } from "react-icons/gi";
-import "./ImgEdit.css";
-import "../NameEdit/NameEdit.css";
-import "../Globales.css";
+
+//? ACTIONS:
+import { putRecipe, getDetail } from "../../actions";
 
 export default function ImgEdit(props) {
   const history = useHistory();
@@ -39,43 +53,37 @@ export default function ImgEdit(props) {
   }
 
   return (
-    <div className="pageItemEdit">
-      <div className="containerImgEdit">
-        <Link className="returnPage" to={`/edit/${props.match.params.id}`}>
-          <button className="returnButton">
+    <Container>
+      <Card>
+        <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
+          <ReturnButton>
             <GiReturnArrow />
-          </button>
-        </Link>
-        <form onSubmit={(e) => guardarCambio(e)}>
-          <h1 className="titleItemEdit">Editar imagen</h1>
+          </ReturnButton>
+        </ReturnButtonContainer>
 
-          <div className="labelAndInput">
+        <h1>Editar imagen</h1>
+
+        <ImgForm onSubmit={(e) => guardarCambio(e)}>
+          <InputContainer>
             <label>Imagen: </label>
             <input
-              className="inputEditPage"
               type="text"
               defaultValue={recipeDetails?.[0].img}
               name="img"
               onChange={(e) => handleChange(e)}
             />
-          </div>
-          {show ? (
-            <div className="lds-hourglassEditCreate"></div>
-          ) : input.img ? (
-            <div className="goBack">
-              <button className="greenButton" type="submit">
-                Guardar cambio
-              </button>
-            </div>
-          ) : (
-            <div className="goBack">
-              <button disabled={true} className="disabledButtonStepEditPage">
-                Guardar cambio
-              </button>
-            </div>
-          )}
-        </form>
-      </div>
-    </div>
+          </InputContainer>
+          <ButtonContainer>
+            {show ? (
+              <LoadingAnimation></LoadingAnimation>
+            ) : input.img ? (
+              <SaveButton type="submit">Guardar cambio</SaveButton>
+            ) : (
+              <DisabledButton disabled={true}>Guardar cambio</DisabledButton>
+            )}
+          </ButtonContainer>
+        </ImgForm>
+      </Card>
+    </Container>
   );
 }
