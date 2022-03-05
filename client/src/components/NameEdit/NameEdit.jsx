@@ -57,7 +57,7 @@ export default function NameEdit(props) {
     <Container>
       <Card>
         <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
-          <ReturnButton className="returnButton">
+          <ReturnButton>
             <GiReturnArrow />
           </ReturnButton>
         </ReturnButtonContainer>
