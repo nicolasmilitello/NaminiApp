@@ -1,12 +1,26 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { putRecipe } from "../../actions";
+import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../actions/index";
 import { GiReturnArrow } from "react-icons/gi";
-import "./NameEdit.css";
-import "../Globales.css";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  ReturnButtonContainer,
+  ReturnButton,
+  NameForm,
+  InputContainer,
+  LoadingAnimation,
+  ButtonContainer,
+  DisabledButton,
+  SaveButton,
+} from "./NameEditSC";
+
+//? ACTIONS:
+import { putRecipe } from "../../actions";
 
 export default function NameEdit(props) {
   const history = useHistory();
@@ -40,43 +54,36 @@ export default function NameEdit(props) {
   }
 
   return (
-    <div className="pageItemEdit">
-      <div className="containerNameEdit">
-        <Link className="returnPage" to={`/edit/${props.match.params.id}`}>
-          <button className="returnButton">
+    <Container>
+      <Card>
+        <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
+          <ReturnButton className="returnButton">
             <GiReturnArrow />
-          </button>
-        </Link>
-        <form onSubmit={(e) => guardarCambio(e)}>
-          <h1 className="titleItemEdit">Editar nombre</h1>
+          </ReturnButton>
+        </ReturnButtonContainer>
 
-          <div className="labelAndInput">
+        <h1>Editar nombre</h1>
+        <NameForm onSubmit={(e) => guardarCambio(e)}>
+          <InputContainer>
             <label>Nombre: </label>
             <input
-              className="inputEditPage"
               type="text"
               defaultValue={recipeDetails?.[0].name}
               name="name"
               onChange={(e) => handleChange(e)}
             />
-          </div>
-          {show ? (
-            <div className="lds-hourglassEditCreate"></div>
-          ) : input.name ? (
-            <div className="goBack">
-              <button className="greenButton" type="submit">
-                Guardar cambio
-              </button>
-            </div>
-          ) : (
-            <div className="goBack">
-              <button disabled={true} className="disabledButtonStepEditPage">
-                Guardar cambio
-              </button>
-            </div>
-          )}
-        </form>
-      </div>
-    </div>
+          </InputContainer>
+          <ButtonContainer>
+            {show ? (
+              <LoadingAnimation></LoadingAnimation>
+            ) : input.name ? (
+              <SaveButton type="submit">Guardar cambio</SaveButton>
+            ) : (
+              <DisabledButton disabled={true}>Guardar cambio</DisabledButton>
+            )}
+          </ButtonContainer>
+        </NameForm>
+      </Card>
+    </Container>
   );
 }
