@@ -1,12 +1,29 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React from "react";
-import { putRecipe } from "../../actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../actions/index";
-import { GiReturnArrow } from "react-icons/gi";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  ReturnButtonContainer,
+  ReturnButton,
+  NameForm,
+  InputContainer,
+  LoadingAnimation,
+  ButtonContainer,
+  SaveButton,
+  DisabledButton,
+} from "./ServingsEditSC";
 import "./ServingsEdit.css";
 import "../NameEdit/NameEdit.css";
+
+//? ACTIONS:
+import { putRecipe, getDetail } from "../../actions";
+
+//? ICONS:
+import { GiReturnArrow } from "react-icons/gi";
 
 export default function ServingsEdit(props) {
   const history = useHistory();
@@ -39,20 +56,20 @@ export default function ServingsEdit(props) {
   }
 
   return (
-    <div className="pageItemEdit">
-      <div className="containerServingsEdit">
-        <Link className="returnPage" to={`/edit/${props.match.params.id}`}>
-          <button className="returnButton">
+    <Container>
+      <Card>
+        <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
+          <ReturnButton>
             <GiReturnArrow />
-          </button>
-        </Link>
-        <form onSubmit={(e) => guardarCambio(e)}>
-          <h1 className="titleItemEdit">Editar porciones</h1>
+          </ReturnButton>
+        </ReturnButtonContainer>
 
-          <div className="labelAndInput">
+        <h1>Editar porciones</h1>
+
+        <NameForm onSubmit={(e) => guardarCambio(e)}>
+          <InputContainer>
             <label>Porciones: </label>
             <input
-              className="inputServingEditPage"
               type="number"
               defaultValue={recipeDetails?.[0].servings}
               min="1"
@@ -60,24 +77,18 @@ export default function ServingsEdit(props) {
               name="servings"
               onChange={(e) => handleChange(e)}
             />
-          </div>
-          {show ? (
-            <div className="lds-hourglassEditCreate"></div>
-          ) : input.servings ? (
-            <div className="goBack">
-              <button className="greenButton" type="submit">
-                Guardar cambio
-              </button>
-            </div>
-          ) : (
-            <div className="goBack">
-              <button disabled={true} className="disabledButtonStepEditPage">
-                Guardar cambio
-              </button>
-            </div>
-          )}
-        </form>
-      </div>
-    </div>
+          </InputContainer>
+          <ButtonContainer>
+            {show ? (
+              <LoadingAnimation></LoadingAnimation>
+            ) : input.servings ? (
+              <SaveButton type="submit">Guardar cambio</SaveButton>
+            ) : (
+              <DisabledButton disabled={true}>Guardar cambio</DisabledButton>
+            )}
+          </ButtonContainer>
+        </NameForm>
+      </Card>
+    </Container>
   );
 }

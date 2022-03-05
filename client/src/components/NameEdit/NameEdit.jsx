@@ -15,8 +15,8 @@ import {
   InputContainer,
   LoadingAnimation,
   ButtonContainer,
-  DisabledButton,
   SaveButton,
+  DisabledButton,
 } from "./NameEditSC";
 
 //? ACTIONS:
@@ -63,6 +63,7 @@ export default function NameEdit(props) {
         </ReturnButtonContainer>
 
         <h1>Editar nombre</h1>
+
         <NameForm onSubmit={(e) => guardarCambio(e)}>
           <InputContainer>
             <label>Nombre: </label>
