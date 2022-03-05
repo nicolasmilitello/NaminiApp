@@ -123,9 +123,7 @@ export default function CategoryCreate() {
           ) : (
             <LoadingAnimation></LoadingAnimation>
           )
-        ) : (
-          <></>
-        )}
+        ) : null}
       </CreatorCard>
 
       {intermedio.length ? (
@@ -134,9 +132,7 @@ export default function CategoryCreate() {
             <p key={c.id}>{c.name}</p>
           ))}
         </CategoriesContainer>
-      ) : (
-        ""
-      )}
+      ) : null}
     </Container>
   );
 }
