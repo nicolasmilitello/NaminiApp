@@ -13,9 +13,9 @@ export const CreatorCard = styled.div`
   align-items: center;
   width: 700px;
   box-sizing: content-box;
-  padding-bottom: 20px;
   margin-top: 20px;
   margin-bottom: 0px;
+  padding-bottom: 20px;
   border-radius: 10px;
   backdrop-filter: blur(8px);
   background-color: rgba(242, 242, 205, 0.075);
@@ -31,23 +31,32 @@ export const CreatorCard = styled.div`
   }
 `;
 
-export const CategoryForm = styled.form`
+export const IngredientForm = styled.form`
   // width: 650px;
   width: 100%;
 `;
 
-export const InputContainer = styled.div`
+export const InputsContainer = styled.div`
   margin-left: 5%;
   margin-right: 5%;
+  // width: 100%;
+  // height: 80px;
+  // display: flex;
+  // justify-content: flex-start;
+  // flex-direction: column;
+  // align-items: flex-start;
+`;
 
+export const NameInput = styled.div`
   & label {
     font-family: var(--secondaryFont);
     font-size: 14px;
+    height: 14px;
   }
 
   & input {
     // width: 475px;
-    width: 70%;
+    width: 89%;
     background-color: #eee;
     border-radius: 10px;
     border: none;
@@ -55,7 +64,7 @@ export const InputContainer = styled.div`
 `;
 
 export const ErrorContainer = styled.div`
-  height: 20px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,13 +78,29 @@ export const ErrorContainer = styled.div`
   }
 `;
 
+export const UnitInput = styled.div`
+  & label {
+    font-family: var(--secondaryFont);
+    font-size: 14px;
+    height: 14px;
+  }
+
+  & select {
+    // width: 475px;
+    width: 79%;
+    background-color: #eee;
+    border-radius: 10px;
+    border: none;
+  }
+`;
+
 export const Buttons = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const CategoriesButton = styled.div`
+export const IngredientsButton = styled.div`
   display: flex;
   align-self: center;
   margin: 5px;
@@ -189,7 +214,7 @@ export const LoadingAnimation = styled.div`
   }
 `;
 
-export const CategoriesContainer = styled.div`
+export const IngredientsContainer = styled.div`
   width: 500px;
   font-family: var(--secondaryFont);
   box-sizing: content-box;

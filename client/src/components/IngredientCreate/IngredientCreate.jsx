@@ -1,9 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getIngredients, postIngredient, getUnits } from "../../actions";
 import { useHistory } from "react-router-dom";
+
+//? STYLES:
+import {
+  Container,
+  CreatorCard,
+  IngredientForm,
+  InputsContainer,
+  NameInput,
+  ErrorContainer,
+  UnitInput,
+  Buttons,
+  IngredientsButton,
+  SaveButton,
+  DisabledButton,
+  Failure,
+  LoadingAnimation,
+  IngredientsContainer,
+} from "./IngredientCreateSC";
 import "./IngredientCreate.css";
 import "../Globales.css";
+
+//? ACTIONS:
+import { getIngredients, postIngredient, getUnits } from "../../actions";
 
 function validate(ing) {
   let errors = {};
@@ -96,108 +116,85 @@ export default function IngredientCreate() {
   }, []);
 
   return (
-    <div className="ingredientCreatorContent">
-      <div className="ingredientCreator">
-        <h1 className="titlePage">Crear ingrediente</h1>
-        <form
-          className="formIngredientCreator"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <div className="ingredientInputs">
-            <div className="inputAndErrorIngredientAndUnit">
-              <div className="ingredientName">
-                <label>Nombre: </label>
-                <input
-                  className="inputNameIngredient"
-                  type="text"
-                  size="40"
-                  name="name"
-                  placeholder=" Ingrese el nombre"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="spaceError">
-                {errors.name && (
-                  <div className="errorInputVisible">{errors.name}</div>
-                )}
-              </div>
-            </div>
+    <Container>
+      <CreatorCard>
+        <h1>Crear ingrediente</h1>
+        <IngredientForm onSubmit={(e) => handleSubmit(e)}>
+          <InputsContainer>
+            <NameInput>
+              <label>Nombre: </label>
 
-            <div className="inputAndErrorIngredientAndUnit">
-              <div className="ingredientUnit">
-                <label>Unidad de medida: </label>
-                <select
-                  defaultValue={"DEFAULT"}
-                  className="inputUnitIngredient"
-                  onChange={(e) => handleSelect(e)}
-                >
-                  <option value="DEFAULT" disabled>
-                    Seleccione una unidad
+              <input
+                type="text"
+                size="40"
+                name="name"
+                placeholder=" Ingrese el nombre"
+                onChange={(e) => handleInput(e)}
+              />
+            </NameInput>
+            <ErrorContainer>
+              {errors.name && <p>{errors.name}</p>}
+            </ErrorContainer>
+
+            <UnitInput>
+              <label>Unidad de medida: </label>
+              <select
+                defaultValue={"DEFAULT"}
+                onChange={(e) => handleSelect(e)}
+              >
+                <option value="DEFAULT" disabled>
+                  Seleccione una unidad
+                </option>
+                {units?.map((unit) => (
+                  <option value={unit.id} key={unit.id}>
+                    {unit.name}
                   </option>
-                  {units?.map((unit) => (
-                    <option value={unit.id} key={unit.id}>
-                      {unit.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                {errors.UnitId && <div className="error">{errors.UnitId}</div>}
-              </div>
-            </div>
-          </div>
+                ))}
+              </select>
+            </UnitInput>
+            <ErrorContainer>
+              {errors.UnitId && <p>{errors.UnitId}</p>}
+            </ErrorContainer>
+          </InputsContainer>
 
-          <div className="ingredientCreateButtons">
-            <div>
-              <button className="grayButton" onClick={(e) => handleShow(e)}>
-                {show
-                  ? "Ocultar ingredientes existentes"
-                  : "Ver ingredientes existentes"}
-              </button>
-            </div>
+          <Buttons>
+            <IngredientsButton onClick={(e) => handleShow(e)}>
+              {show
+                ? "Ocultar ingredientes existentes"
+                : "Ver ingredientes existentes"}
+            </IngredientsButton>
 
             {ing.name && ing.UnitId ? (
-              <button className="greenButton" type="submit">
-                Crear ingrediente
-              </button>
+              <SaveButton type="submit">Crear ingrediente</SaveButton>
             ) : (
-              <button disabled={true} className="disabledButtonStepEditPage">
-                Crear ingrediente
-              </button>
+              <DisabledButton disabled={true}>Crear ingrediente</DisabledButton>
             )}
-          </div>
-        </form>
-        <div className="messagesContentIngredientCreator">
-          {show2 ? (
-            code ? (
-              // <span className="success">Ingrediente creado exitosamente</span>
-              typeof message === "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
-                <span className="successIngredientCreate">
-                  Ingrediente creado exitosamente
-                </span>
-              ) : (
-                <span className="failure">{message}</span> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
-              )
+          </Buttons>
+        </IngredientForm>
+
+        {show2 ? (
+          code ? (
+            // <span className="success">Ingrediente creado exitosamente</span>
+            typeof message === "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
+              <></>
             ) : (
-              <div className="lds-hourglass"></div>
+              <Failure>{message}</Failure> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
             )
           ) : (
-            ""
-          )}
-        </div>
-      </div>
+            <LoadingAnimation></LoadingAnimation>
+          )
+        ) : null}
+      </CreatorCard>
 
       {intermedio.length ? (
-        <div className="contenedorIngs">
+        <IngredientsContainer>
           {intermedio?.map((ing) => (
-            <div className="ings" key={ing.id}>
+            <p className="ings" key={ing.id}>
               {`‣ ${ing.name}`}
-            </div>
+            </p>
           ))}
-        </div>
-      ) : (
-        ""
-      )}
-    </div>
+        </IngredientsContainer>
+      ) : null}
+    </Container>
   );
 }

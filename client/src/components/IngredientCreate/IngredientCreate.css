@@ -24,11 +24,11 @@
   margin-bottom: 10px;
 }
 
-.ingredientCreatorContent {
+/* .ingredientCreatorContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .ingredientCreator {
   display: flex;
