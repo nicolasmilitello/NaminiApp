@@ -19,8 +19,6 @@ import {
   LoadingAnimation,
   IngredientsContainer,
 } from "./IngredientCreateSC";
-import "./IngredientCreate.css";
-import "../Globales.css";
 
 //? ACTIONS:
 import { getIngredients, postIngredient, getUnits } from "../../actions";
