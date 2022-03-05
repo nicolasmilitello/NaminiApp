@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+//? STYLES:
+import {
+  Container,
+  CreatorCard,
+  CategoryForm,
+  ErrorContainer,
+  InputContainer,
+  Buttons,
+  CategoriesButton,
+  SaveButton,
+  DisabledButton,
+  Failure,
+  LoadingAnimation,
+  CategoriesContainer,
+} from "./CategoryCreateSC";
+
+//? ACTIONS:
 import { getCategories, postCategory } from "../../actions";
-import "./CategoryCreate.css";
-import "../Globales.css";
 
 function validate(cat) {
   let errors = {};
@@ -66,79 +82,61 @@ export default function CategoryCreate() {
   }, []);
 
   return (
-    <div className="categoryCreatorContent">
-      <div className="categoryCreator">
-        <h1 className="titlePage">Crear categoría</h1>
-        <form className="formCategoryCreator" onSubmit={(e) => handleSubmit(e)}>
-          <div className="inputAndError">
-            <div className="inputCategoryName">
-              <label>Nombre de la categoría: </label>
-              <input
-                type="text"
-                size="40"
-                placeholder=" Ingrese el nombre"
-                name="name"
-                className="inputNameCategoryCreator"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            {errors.name && (
-              <div className="errorInputVisible">{errors.name}</div>
-            )}
-          </div>
+    <Container>
+      <CreatorCard>
+        <h1>Crear categoría</h1>
+        <CategoryForm onSubmit={(e) => handleSubmit(e)}>
+          <InputContainer>
+            <label>Nombre de la categoría: </label>
+            <input
+              type="text"
+              size="40"
+              placeholder=" Ingrese el nombre"
+              name="name"
+              onChange={(e) => handleChange(e)}
+            />
+          </InputContainer>
+          <ErrorContainer>{errors.name && <p>{errors.name}</p>}</ErrorContainer>
 
-          <div className="categoryCreatorButtons">
-            <div>
-              <button className="grayButton" onClick={(e) => handleShow(e)}>
-                {show
-                  ? "Ocultar categorías existentes"
-                  : "Ver categorías existentes"}
-              </button>
-            </div>
+          <Buttons>
+            <CategoriesButton onClick={(e) => handleShow(e)}>
+              {show
+                ? "Ocultar categorías existentes"
+                : "Ver categorías existentes"}
+            </CategoriesButton>
             {cat.name ? (
-              <button className="greenButton" type="submit">
-                Crear categoría
-              </button>
+              <SaveButton type="submit">Crear categoría</SaveButton>
             ) : (
-              <button disabled={true} className="disabledButtonStepEditPage">
-                Crear categoría
-              </button>
+              <DisabledButton disabled={true}>Crear categoría</DisabledButton>
             )}
-          </div>
-        </form>
+          </Buttons>
+        </CategoryForm>
 
-        <div className="messagesContentCategoryCreator">
-          {show2 ? (
-            code ? (
-              // <span className="success">Categoría creada exitosamente</span>
-              // <span className="success">{message}</span>
-              //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría:
-              typeof message === "object" ? (
-                <span className="success">Categoría creada exitosamente</span>
-              ) : (
-                <span className="failure">{message}</span> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
-              )
+        {show2 ? (
+          code ? (
+            //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría:
+            typeof message === "object" ? (
+              <></>
             ) : (
-              <div className="lds-hourglass"></div>
+              <Failure>{message}</Failure> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
             )
           ) : (
-            ""
-          )}
-        </div>
-      </div>
-      <div>
-        {intermedio.length ? (
-          <div className="contenedorCategories">
-            {intermedio?.map((c) => (
-              <div className="categories" key={c.id}>
-                {c.name}
-              </div>
-            ))}
-          </div>
+            <LoadingAnimation></LoadingAnimation>
+          )
         ) : (
-          ""
+          <></>
         )}
-      </div>
-    </div>
+      </CreatorCard>
+
+      {intermedio.length ? (
+        <CategoriesContainer>
+          {intermedio?.map((c) => (
+            <p key={c.id}>{c.name}</p>
+          ))}
+        </CategoriesContainer>
+      ) : (
+        ""
+      )}
+    </Container>
   );
 }

@@ -27,23 +27,23 @@
   color: red;
 }
 
-.errorInputVisible {
+/* .errorInputVisible {
   font-size: 10px;
   color: red;
   margin: 0px;
-}
+} */
 
-.inputAndError {
+/* .inputAndError {
   height: 33px;
-}
+} */
 
-.categoryCreatorContent {
+/* .categoryCreatorContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-.categoryCreator {
+/* .categoryCreator {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -60,26 +60,25 @@
   border: 2px rgba(255, 255, 255, 0.4) solid;
   border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
-}
+} */
 
 .titleCategoryCreator {
   margin-top: 8px;
   margin-bottom: 10px;
 }
-
-.inputCategoryName {
+/* .inputCategoryName {
   display: flex;
   justify-content: flex-start;
   padding-bottom: 5px;
-}
+} */
 
-.categoryCreatorButtons {
+/* .categoryCreatorButtons {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-.contenedorCategories {
+/* .contenedorCategories {
   width: 500px;
   font-family: "ABeeZee";
   box-sizing: content-box;
@@ -98,22 +97,22 @@
   border: 2px rgba(255, 255, 255, 0.4) solid;
   border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
-}
+} */
 
-.categories {
+/* .categories {
   font-size: 12px;
-}
+} */
 
-.formCategoryCreator {
+/* .formCategoryCreator {
   width: 650px;
-}
+} */
 
-.inputNameCategoryCreator {
+/* .inputNameCategoryCreator {
   width: 475px;
   background-color: #eee;
   border-radius: 10px;
   border: none;
-}
+} */
 
 .createCategoryButton {
   margin-top: 8px;

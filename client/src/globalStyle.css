@@ -40,11 +40,7 @@ nav {
 
 :root {
   --primaryFont: "Josefin Sans";
-  --logoFont: "Germania One", sans-serif;
-  --InitialMessageAddCitiesFont: "Barlow", sans-serif;
-  --inputFont: "Barlow";
-  --TitleCardFont: "Barlow";
-  --cityDetailsFont: "Barlow";
+  --secondaryFont: "ABeeZee";
 }
 
 body {
