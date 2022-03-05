@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -64,7 +64,7 @@ export default function CategoryEdit(props) {
           </ReturnButton>
         </ReturnButtonContainer>
 
-        <h1 className="titleItemEdit">Editar categoría</h1>
+        <h1>Editar categoría</h1>
 
         <CategoryForm onSubmit={(e) => guardarCambio(e)}>
           <InputContainer>
