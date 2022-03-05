@@ -1,12 +1,27 @@
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, putRecipe, getDetail } from "../../actions";
 import { useEffect, useState } from "react";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  ReturnButtonContainer,
+  ReturnButton,
+  CategoryForm,
+  InputContainer,
+  LoadingAnimation,
+  ButtonContainer,
+  SaveButton,
+  DisabledButton,
+} from "./CategoryEditSC";
+
+//? ICONS:
 import { GiReturnArrow } from "react-icons/gi";
-import "./CategoryEdit.css";
-import "../Globales.css";
-import "../NameEdit/NameEdit.css";
+
+//? ACTIONS:
+import { getCategories, putRecipe, getDetail } from "../../actions";
 
 export default function CategoryEdit(props) {
   const dispatch = useDispatch();
@@ -41,21 +56,21 @@ export default function CategoryEdit(props) {
   }
 
   return (
-    <div className="pageItemEdit">
-      <div className="containerCategoryEdit">
-        <Link className="returnPage" to={`/edit/${props.match.params.id}`}>
-          <button className="returnButton">
+    <Container>
+      <Card>
+        <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
+          <ReturnButton>
             <GiReturnArrow />
-          </button>
-        </Link>
-        <form onSubmit={(e) => guardarCambio(e)}>
-          <h1 className="titleItemEdit">Editar categoría</h1>
+          </ReturnButton>
+        </ReturnButtonContainer>
 
-          <div className="labelAndInput">
+        <h1 className="titleItemEdit">Editar categoría</h1>
+
+        <CategoryForm onSubmit={(e) => guardarCambio(e)}>
+          <InputContainer>
             <label>Categoría: </label>
             <select
               defaultValue={recipeDetails && recipeDetails[0]?.CategoryId}
-              className="inputCategoryEditPage"
               onChange={(e) => handleSelect(e)}
             >
               {categories?.map((cat) => (
@@ -64,26 +79,19 @@ export default function CategoryEdit(props) {
                 </option>
               ))}
             </select>
-          </div>
+          </InputContainer>
 
-          {show ? (
-            <div className="lds-hourglassEditCreate"></div>
-          ) : input.CategoryId ? (
-            <div className="goBack">
-              <button className="greenButton" type="submit">
-                Guardar cambio
-              </button>
-            </div>
-          ) : (
-            <div className="goBack">
-              <button disabled={true} className="disabledButtonStepEditPage">
-                Guardar cambio
-              </button>
-            </div>
-          )}
-        </form>
-        <div></div>
-      </div>
-    </div>
+          <ButtonContainer>
+            {show ? (
+              <LoadingAnimation></LoadingAnimation>
+            ) : input.CategoryId ? (
+              <SaveButton type="submit">Guardar cambio</SaveButton>
+            ) : (
+              <DisabledButton disabled={true}>Guardar cambio</DisabledButton>
+            )}
+          </ButtonContainer>
+        </CategoryForm>
+      </Card>
+    </Container>
   );
 }

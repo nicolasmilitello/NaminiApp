@@ -16,8 +16,6 @@ import {
   SaveButton,
   DisabledButton,
 } from "./ServingsEditSC";
-import "./ServingsEdit.css";
-import "../NameEdit/NameEdit.css";
 
 //? ACTIONS:
 import { putRecipe, getDetail } from "../../actions";
