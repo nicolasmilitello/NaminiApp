@@ -1,15 +1,37 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, putRecipe } from "../../actions";
 import { useEffect, useState } from "react";
-import CardStep from "../CardStep/CardStep";
-import CardAddStep from "../CardAddStep/CardAddStep";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  ReturnButtonContainer,
+  ReturnButton,
+  ConfirmedStepsContainer,
+  ConfirmedTitle,
+  NoConfirmedIngr,
+  ItemsContainer,
+  Item,
+  RemoveStepButton,
+  ConfirmTitle,
+  LoadingAnimation,
+  ButtonContainer,
+  SaveButton,
+  DisabledButton,
+} from "./StepsEditSC";
+
+//? ICONS:
 import { GiReturnArrow } from "react-icons/gi";
 import { MdOutlineCancel } from "react-icons/md";
-import "../Globales.css";
-import "../NameEdit/NameEdit.css";
-import "./StepsEdit.css";
+
+//? COMPONENTS:
+import CardStep from "../CardStep/CardStep";
+import CardAddStep from "../CardAddStep/CardAddStep";
+
+//? ACTIONS:
+import { getDetail, putRecipe } from "../../actions";
 
 export default function StepsEdit(props) {
   const dispatch = useDispatch();
@@ -43,72 +65,69 @@ export default function StepsEdit(props) {
   }
 
   return (
-    <div className="pageItemEdit">
-      <div className="containerStepsPageEdit">
-        <Link className="returnPage" to={`/edit/${props.match.params.id}`}>
-          <button className="returnButton">
+    <Container>
+      <Card>
+        <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
+          <ReturnButton>
             <GiReturnArrow />
-          </button>
-        </Link>
-        <h1 className="titlePage">Editar pasos</h1>
-        <div className="checkedStep">
-          <div className="titleStepEditPage">
+          </ReturnButton>
+        </ReturnButtonContainer>
+
+        <h1>Editar pasos</h1>
+
+        <ConfirmedStepsContainer>
+          <ConfirmedTitle>
             {stepState.steps.length === 0 ? (
-              <div className="redTitle">No hay pasos confirmados.</div>
+              <NoConfirmedIngr>No hay pasos confirmados.</NoConfirmedIngr>
             ) : stepState.steps.length === 1 ? (
               `Un paso confirmado: `
             ) : (
               `${stepState.steps?.length} pasos confirmados: `
             )}
-          </div>
+          </ConfirmedTitle>
+
           {stepState.steps?.map((st, index) => (
-            <div className="confirmedStepContent" key={index}>
-              <div className="ingrItem">
+            <ItemsContainer key={index}>
+              <Item>
                 <span className="numberStep">{`${index + 1}. `}</span>
                 <span>{`${st} `}</span>
-              </div>
-              <button
-                className="redButtonStepEditPage"
-                onClick={(e) => handleDeleteStep(e, st)}
-              >
+              </Item>
+              <RemoveStepButton onClick={(e) => handleDeleteStep(e, st)}>
                 <MdOutlineCancel />
-              </button>
-            </div>
+              </RemoveStepButton>
+            </ItemsContainer>
           ))}
-        </div>
-        <div className="titleStepEditPage">
+        </ConfirmedStepsContainer>
+
+        <ConfirmTitle>
           Confirme y/o edite pasos ya existentes y agregue nuevos:
-        </div>
+        </ConfirmTitle>
+
         {recipeDetails &&
           recipeDetails[0].steps.map((st, index) => (
-            <div key={index}>
-              <CardStep
-                st={st}
-                index={index}
-                setStepState={setStepState}
-                stepState={stepState}
-              />
-            </div>
+            <CardStep
+              key={index}
+              st={st}
+              index={index}
+              setStepState={setStepState}
+              stepState={stepState}
+            />
           ))}
 
         <CardAddStep setStepState={setStepState} stepState={stepState} />
 
-        {show ? (
-          <div className="lds-hourglassEditCreate"></div>
-        ) : stepState.steps?.length ? (
-          <div className="goBack">
-            <button className="greenButton" onClick={(e) => guardarCambios(e)}>
+        <ButtonContainer>
+          {show ? (
+            <LoadingAnimation></LoadingAnimation>
+          ) : stepState.steps?.length ? (
+            <SaveButton onClick={(e) => guardarCambios(e)}>
               Guardar cambios
-            </button>
-          </div>
-        ) : (
-          <div className="goBack">
-            <button disabled={true} className="disabledButtonStepEditPage">
-              Guardar cambios
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+            </SaveButton>
+          ) : (
+            <DisabledButton disabled={true}>Guardar cambios</DisabledButton>
+          )}
+        </ButtonContainer>
+      </Card>
+    </Container>
   );
 }
