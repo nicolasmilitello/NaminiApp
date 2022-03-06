@@ -1,19 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  ReturnButtonContainer,
+  ReturnButton,
+  ConfirmedIngrContainer,
+  NoConfirmedIngr,
+  ItemsContainer,
+  Item,
+  RemoveIngrButton,
+  ConfirmTitle,
+  LoadingAnimation,
+  ButtonContainer,
+  SaveButton,
+  DisabledButton,
+} from "./IngredientsEditSC";
+
+//? ICONS:
+import { GiReturnArrow } from "react-icons/gi";
+import { MdOutlineCancel } from "react-icons/md";
+
+//? COMPONENTS:
+import CardIng from "../CardIng/CardIng";
+import IngredientAddEdit from "../IngredientAddEdit/IngredientAddEdit";
+
+//? ACTIONS:
 import {
   getIngredients,
   getIngredientsRecipe,
   getUnits,
   putRecipe,
 } from "../../actions";
-import CardIng from "../CardIng/CardIng";
-import IngredientAddEdit from "../IngredientAddEdit/IngredientAddEdit";
-import { GiReturnArrow } from "react-icons/gi";
-import { MdOutlineCancel } from "react-icons/md";
-import "../Globales.css";
-import "../NameEdit/NameEdit.css";
-import "../IngredientsEdit/IngredientsEdit.css";
 
 export default function IngredientsEdit(props) {
   const idRecipe = props.match.params.id; //para pasarle el id de la receta a editar como propiedad al componente para agregar ingredientes nuevos
@@ -65,91 +86,84 @@ export default function IngredientsEdit(props) {
   }
 
   return (
-    <div className="pageItemEdit">
-      <div className="containerIngredientsPageEdit">
-        <Link className="returnPage" to={`/edit/${props.match.params.id}`}>
-          <button className="returnButton">
+    <Container>
+      <Card>
+        <ReturnButtonContainer to={`/edit/${props.match.params.id}`}>
+          <ReturnButton>
             <GiReturnArrow />
-          </button>
-        </Link>
-        <h1 className="titleItemEdit">Editar ingredientes</h1>
-        <div className="titleStepEditPage">
+          </ReturnButton>
+        </ReturnButtonContainer>
+
+        <h1>Editar ingredientes</h1>
+
+        <ConfirmedIngrContainer>
           {ingState.ingredients.length === 0 ? (
-            <div className="redTitle">No hay ingredientes confirmados.</div>
+            <NoConfirmedIngr>No hay ingredientes confirmados.</NoConfirmedIngr>
           ) : ingState.ingredients.length === 1 ? (
             `Un ingrediente confirmado: `
           ) : (
             `${ingState.ingredients?.length} ingredientes confirmados: `
           )}
-        </div>
-        <div className="allIngredientsIngredientEditPage">
+        </ConfirmedIngrContainer>
+
+        <ItemsContainer>
           {ingState.ingredients.map((ing) => {
             return (
-              <div key={ing.IngredientId}>
-                <div className="addedIngredient" key={ing.IngredientId}>
-                  <span className="ingredientItem">{`✔ ${
-                    obtenerId(ing.IngredientId)?.name
-                  }: ${ing.quantity} ${obtenerIdUnidad(
-                    ing.IngredientId
-                  )} `}</span>
+              <Item key={ing.IngredientId}>
+                <span>{`✔ ${obtenerId(ing.IngredientId)?.name}: ${
+                  ing.quantity
+                } ${obtenerIdUnidad(ing.IngredientId)} `}</span>
 
-                  <button
-                    className="redButtonStepEditPage"
-                    onClick={(e) => handleDeleteIngredient(e, ing)}
-                  >
-                    <MdOutlineCancel />
-                  </button>
-                </div>
-              </div>
+                <RemoveIngrButton
+                  onClick={(e) => handleDeleteIngredient(e, ing)}
+                >
+                  <MdOutlineCancel />
+                </RemoveIngrButton>
+              </Item>
             );
           })}
-        </div>
+        </ItemsContainer>
 
-        <div className="titleIngEditPage">
+        <ConfirmTitle>
           Confirme y/o edite ingredientes ya existentes y agregue nuevos:
-        </div>
-        <div>
-          {ingredients &&
-            ingredients.map((el) => {
-              return (
-                <CardIng
-                  quantity={el.quantity}
-                  IngredientId={el.IngredientId}
-                  RecipeId={el.RecipeId}
-                  ingState={ingState}
-                  setIngState={setIngState}
-                  ingredientList={ingredientList} //el arreglo todos los ingredientes de la base de datos
-                  unitList={unitList}
-                  key={el.id}
-                />
-              );
-            })}
-        </div>
-        <div>
-          <IngredientAddEdit
-            idRecipe={idRecipe}
-            ingState={ingState}
-            setIngState={setIngState}
-            ingredientList={ingredientList} //el arreglo todos los ingredientes de la base de datos
-            unitList={unitList}
-          />
-        </div>
-        {show ? (
-          <div className="lds-hourglassEditCreate"></div>
-        ) : ingState.ingredients?.length ? (
-          <div className="goBack">
-            <button className="greenButton" onClick={(e) => guardarCambios(e)}>
+        </ConfirmTitle>
+
+        {ingredients &&
+          ingredients.map((el) => {
+            return (
+              <CardIng
+                quantity={el.quantity}
+                IngredientId={el.IngredientId}
+                RecipeId={el.RecipeId}
+                ingState={ingState}
+                setIngState={setIngState}
+                ingredientList={ingredientList} //el arreglo todos los ingredientes de la base de datos
+                unitList={unitList}
+                key={el.id}
+              />
+            );
+          })}
+
+        <IngredientAddEdit
+          idRecipe={idRecipe}
+          ingState={ingState}
+          setIngState={setIngState}
+          ingredientList={ingredientList} //el arreglo todos los ingredientes de la base de datos
+          unitList={unitList}
+        />
+
+        <ButtonContainer>
+          {show ? (
+            <LoadingAnimation></LoadingAnimation>
+          ) : ingState.ingredients?.length ? (
+            <SaveButton onClick={(e) => guardarCambios(e)}>
               Guardar cambios
-            </button>
-          </div>
-        ) : (
-          <div className="goBack">
-            <button disabled={true} className="disabledButtonStepEditPage">
-              Guardar cambios
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+            </SaveButton>
+          ) : (
+            <DisabledButton disabled={true}>Guardar cambios</DisabledButton>
+          )}
+        </ButtonContainer>
+      </Card>
+    </Container>
   );
 }
