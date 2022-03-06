@@ -115,7 +115,7 @@ export const RemoveIngrButton = styled.button`
   border: 1px solid #942911;
   cursor: pointer;
   color: #ffffff;
-  font-family: "ABeeZee";
+  font-family: var(--secondaryFont);
   text-decoration: none;
   text-shadow: 0px 0px 0px #854629;
 
@@ -131,7 +131,7 @@ export const RemoveIngrButton = styled.button`
 `;
 
 export const ConfirmTitle = styled.p`
-  font-family: "Josefin Sans";
+  font-family: var(--primaryFont);
   font-weight: bold;
   align-self: center;
   margin: 10px 0 0 0;
