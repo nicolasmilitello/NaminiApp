@@ -79,7 +79,7 @@ export const ConfirmedTitle = styled.p`
   margin: 0;
 `;
 
-export const NoConfirmedIngr = styled.p`
+export const NoConfirmedIngr = styled.span`
   color: red;
   margin: 0;
 `;
