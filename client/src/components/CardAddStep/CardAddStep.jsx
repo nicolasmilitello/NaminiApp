@@ -1,7 +1,18 @@
 import React, { useState } from "react";
+
+//? STYLES:
+import {
+  Container,
+  AddStepForm,
+  TexteareaAndButton,
+  Textarea,
+  AddStepButton,
+  DisabledAddButton,
+  ErrorStepLength,
+} from "./CardAddStepSC";
+
+//? ICONS:
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
-import "../NameEdit/NameEdit.css";
-import "../StepsEdit/StepsEdit.css";
 
 export default function CardAddStep({ setStepState, stepState }) {
   const [input, setInput] = useState("");
@@ -20,39 +31,34 @@ export default function CardAddStep({ setStepState, stepState }) {
   }
 
   return (
-    <div className="addStepEditPage">
-      <div>
-        <form className="formAddStepEditPage" onSubmit={(e) => handleSubmit(e)}>
-          <div className="textareaAndButton">
-            <textarea
-              value={input}
-              maxLength="255"
-              className="inputAddStepEditPage"
-              type="text"
-              cols="100"
-              rows="5"
-              placeholder="Ingrese paso..."
-              onChange={(e) => handleChange(e)}
-            />
-            {input.length ? (
-              <button className="greenButtonConfirmEditPage" type="submit">
-                <MdOutlineCheckCircleOutline />
-              </button>
-            ) : (
-              <button disabled={true} className="disabledButtonConfirmEditPage">
-                <MdOutlineCheckCircleOutline />
-              </button>
-            )}
-          </div>
-          {input.length === 255 ? (
-            <div className="stepLengthError">
-              Excede la longitud permitida para cada paso.
-            </div>
+    <Container>
+      <AddStepForm onSubmit={(e) => handleSubmit(e)}>
+        <TexteareaAndButton>
+          <Textarea
+            value={input}
+            maxLength="255"
+            type="text"
+            cols="100"
+            rows="5"
+            placeholder="Ingrese paso..."
+            onChange={(e) => handleChange(e)}
+          />
+          {input.length ? (
+            <AddStepButton type="submit">
+              <MdOutlineCheckCircleOutline />
+            </AddStepButton>
           ) : (
-            <br />
+            <DisabledAddButton disabled={true}>
+              <MdOutlineCheckCircleOutline />
+            </DisabledAddButton>
           )}
-        </form>
-      </div>
-    </div>
+        </TexteareaAndButton>
+        <ErrorStepLength>
+          {input.length === 255
+            ? `Excede la longitud permitida para cada paso`
+            : null}
+        </ErrorStepLength>
+      </AddStepForm>
+    </Container>
   );
 }
