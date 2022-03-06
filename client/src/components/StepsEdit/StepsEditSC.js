@@ -73,7 +73,7 @@ export const ConfirmedStepsContainer = styled.div`
 `;
 
 export const ConfirmedTitle = styled.p`
-  font-family: "Josefin Sans";
+  font-family: var(--primaryFont);
   font-weight: bold;
   align-self: center;
   margin: 0;
