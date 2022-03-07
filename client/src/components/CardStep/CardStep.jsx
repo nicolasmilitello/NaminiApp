@@ -1,8 +1,20 @@
 import React from "react";
 import { useState } from "react";
+
+//? STYLES
+import {
+  Container,
+  EditStepFormContainer,
+  TexteareaAndButtonContainer,
+  StepNumber,
+  Textarea,
+  ConfirmStep,
+  DisabledButton,
+  ErrorStepLength,
+} from "./CardStepSC";
+
+//? ICONS
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
-import "../NameEdit/NameEdit.css";
-import "../StepsEdit/StepsEdit.css";
 
 export default function CardStep({ st, index, setStepState, stepState }) {
   const [step, setStep] = useState(st);
@@ -22,49 +34,37 @@ export default function CardStep({ st, index, setStepState, stepState }) {
   }
 
   return (
-    <div>
-      {show ? (
-        ""
-      ) : (
-        <div className="confirmStepContent">
-          <form
-            className="formStepConfirmedEditPage"
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            <div className="stepDescriptionAndButton">
-              <div className="numberStepEditPage">{`${index + 1}. `}</div>
-              <textarea
-                className="inputStepEditPage"
-                cols="100"
-                rows="5"
-                type="text"
-                defaultValue={st}
-                onChange={(e) => handleChange(e)}
-              ></textarea>
+    <Container>
+      {show ? null : (
+        <EditStepFormContainer onSubmit={(e) => handleSubmit(e)}>
+          <TexteareaAndButtonContainer>
+            <StepNumber>{`${index + 1}. `}</StepNumber>
 
-              {step.length < 256 && step.length > 0 ? (
-                <button className="greenButtonConfirmEditPage" type="submit">
-                  <MdOutlineCheckCircleOutline />
-                </button>
-              ) : (
-                <button
-                  disabled={true}
-                  className="disabledButtonConfirmEditPage"
-                >
-                  <MdOutlineCheckCircleOutline />
-                </button>
-              )}
-            </div>
-            {step.length > 255 ? (
-              <div className="stepLengthError">
-                Excede la longitud permitida para cada paso.
-              </div>
+            <Textarea
+              cols="100"
+              rows="5"
+              type="text"
+              defaultValue={st}
+              onChange={(e) => handleChange(e)}
+            ></Textarea>
+
+            {step.length < 256 && step.length > 0 ? (
+              <ConfirmStep type="submit">
+                <MdOutlineCheckCircleOutline />
+              </ConfirmStep>
             ) : (
-              <br />
+              <DisabledButton disabled={true}>
+                <MdOutlineCheckCircleOutline />
+              </DisabledButton>
             )}
-          </form>
-        </div>
+          </TexteareaAndButtonContainer>
+          <ErrorStepLength>
+            {step.length > 255
+              ? `Excede la longitud permitida para cada paso.`
+              : null}
+          </ErrorStepLength>
+        </EditStepFormContainer>
       )}
-    </div>
+    </Container>
   );
 }
