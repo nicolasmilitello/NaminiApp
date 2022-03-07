@@ -191,7 +191,7 @@ export const ImageEditContainer = styled.div`
 
     &:active {
       position: relative;
-      top: 1px;
+      top: 21px;
     }
   }
 `;
