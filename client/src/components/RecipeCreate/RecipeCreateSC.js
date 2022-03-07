@@ -98,7 +98,7 @@ export const IngredientInputs = styled.div`
   display: flex;
   flex-direction: column;
   width: 705px;
-  height: 33px;
+  height: 38px;
   margin-top: 8px;
 `;
 
@@ -186,5 +186,51 @@ export const AddButton = styled.button`
   &:active {
     position: relative;
     top: 1px;
+  }
+`;
+
+export const AddedIngredientsContainer = styled.div`
+  width: 300px;
+  margin-top: 2px;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+
+  & span {
+    font-family: var(--secondaryFont);
+    text-align: justify;
+    font-size: 12px;
+    color: #000000;
+  }
+
+  & button {
+    display: flex;
+    align-items: center;
+    height: 17px;
+    font-size: 15px;
+    padding: 0px 0px;
+    margin-left: 5px;
+    box-shadow: inset 0px 0px 2px 0px #cf866c;
+    background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+    background-color: #d0451b;
+    border-radius: 13px;
+    border: 1px solid #942911;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: "ABeeZee";
+    text-decoration: none;
+    text-shadow: 0px 0px 0px #854629;
+
+    &:hover {
+      background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+      background-color: #bc3315;
+    }
+
+    &:active {
+      position: relative;
+      top: 1px;
+    }
   }
 `;

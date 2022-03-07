@@ -18,6 +18,7 @@ import {
   AddButtonContainer,
   AddButtonDisabled,
   AddButton,
+  AddedIngredientsContainer,
 } from "./RecipeCreateSC";
 import "./RecipeCreate.css";
 import "../StepsEdit/StepsEdit.css";
@@ -376,24 +377,18 @@ export default function RecipeCreate() {
             {errors.ingredients && <Error>{errors.ingredients}</Error>}
           </IngredientInputs>
 
-          <div className="allIngredients">
-            {input.ingredients.map((ing, index) => (
-              <div className="addedIngredient" key={index + 1}>
-                <span className="ingredientItem">{` ${
-                  obtenerId(ing.IngredientId)?.name
-                }: ${ing.quantity} ${obtenerIdUnidad(
-                  ing.IngredientId
-                )} `}</span>
+          {input.ingredients.map((ing, index) => (
+            <AddedIngredientsContainer key={index + 1}>
+              <span>{` ${obtenerId(ing.IngredientId)?.name}: ${
+                ing.quantity
+              } ${obtenerIdUnidad(ing.IngredientId)} `}</span>
 
-                <button
-                  className="redButtonStepEditPage"
-                  onClick={(e) => handleDeleteIngredient(e, ing)}
-                >
-                  <MdOutlineCancel />
-                </button>
-              </div>
-            ))}
-          </div>
+              <button onClick={(e) => handleDeleteIngredient(e, ing)}>
+                <MdOutlineCancel />
+              </button>
+            </AddedIngredientsContainer>
+          ))}
+
           <div className="stepsNewRecipe">
             <div>
               <label className="titleSteps">Pasos: </label>
