@@ -138,7 +138,7 @@ export const Unit = styled.span`
 
 export const AddButtonContainer = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 export const AddButtonDisabled = styled.button`
@@ -219,7 +219,6 @@ export const AddedIngredientsContainer = styled.div`
     border: 1px solid #942911;
     cursor: pointer;
     color: #ffffff;
-    font-family: "ABeeZee";
     text-decoration: none;
     text-shadow: 0px 0px 0px #854629;
 
@@ -233,4 +232,43 @@ export const AddedIngredientsContainer = styled.div`
       top: 1px;
     }
   }
+`;
+
+export const StepsInputsContainer = styled.div`
+  margin-top: 8px;
+  height: 113px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & label {
+    align-self: flex-start;
+  }
+`;
+
+export const StepInputAndButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ConfirmedStepsContainer = styled.div`
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+export const ConfirmedStepContainer = styled.div`
+  width: 680px;
+  margin-top: 2px;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Item = styled.div`
+  font-family: var(--secondaryFont);
+  text-align: justify;
+  font-size: 12px;
+  color: #000000;
 `;

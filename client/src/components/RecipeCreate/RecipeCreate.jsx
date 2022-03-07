@@ -19,6 +19,11 @@ import {
   AddButtonDisabled,
   AddButton,
   AddedIngredientsContainer,
+  StepsInputsContainer,
+  StepInputAndButtonContainer,
+  ConfirmedStepsContainer,
+  ConfirmedStepContainer,
+  Item,
 } from "./RecipeCreateSC";
 import "./RecipeCreate.css";
 import "../StepsEdit/StepsEdit.css";
@@ -389,64 +394,54 @@ export default function RecipeCreate() {
             </AddedIngredientsContainer>
           ))}
 
-          <div className="stepsNewRecipe">
-            <div>
-              <label className="titleSteps">Pasos: </label>
-            </div>
+          <StepsInputsContainer>
+            <label>Pasos: </label>
 
-            <div className="newStep">
-              <div>
-                <textarea
-                  maxLength="255"
-                  className="inputStepsNewRecipe"
-                  type="text"
-                  placeholder=" Ingrese paso..."
-                  name="steps"
-                  value={step}
-                  onChange={(e) => handleInputSteps(e)}
-                />
-              </div>
-              <div className="buttonAddStep">
-                <button
-                  disabled={step.length ? false : true}
-                  className={
-                    step.length
-                      ? "addIngredientItem"
-                      : "addIngredientItemDisabled"
-                  }
-                  onClick={(e) => handleAddStep(e)}
-                >
-                  <MdAddCircleOutline />
-                </button>
-              </div>
-            </div>
-            {errors.steps && (
-              <div className="errorInputVisible">{errors.steps}</div>
+            <StepInputAndButtonContainer>
+              <textarea
+                maxLength="255"
+                className="inputStepsNewRecipe"
+                type="text"
+                placeholder=" Ingrese paso..."
+                name="steps"
+                value={step}
+                onChange={(e) => handleInputSteps(e)}
+              />
+
+              <AddButtonContainer>
+                {step.length ? (
+                  <AddButton onClick={(e) => handleAddStep(e)}>
+                    <MdAddCircleOutline />
+                  </AddButton>
+                ) : (
+                  <AddButtonDisabled disabled={true}>
+                    <MdAddCircleOutline />
+                  </AddButtonDisabled>
+                )}
+              </AddButtonContainer>
+            </StepInputAndButtonContainer>
+
+            {errors.steps && <Error>{errors.steps}</Error>}
+            {step.length === 255 && (
+              <Error>Excede la longitud permitida para cada paso</Error>
             )}
-          </div>
-          {step.length === 255 ? (
-            <div className="stepLengthError">
-              Excede la longitud permitida para cada paso.
-            </div>
-          ) : (
-            <br />
-          )}
-          <div className="allSteps">
-            {input.steps.map((step, index) => (
-              <div className="addedIngredient" key={index + 1}>
-                <div className="ingredientItem">
-                  <span className="numberStep">{`${index + 1}. `}</span>
-                  <span>{`${step} `}</span>
-                </div>
-                <button
-                  className="redButtonStepEditPage"
-                  onClick={(e) => handleDeleteStep(e, step)}
-                >
-                  <MdOutlineCancel />
-                </button>
-              </div>
-            ))}
-          </div>
+          </StepsInputsContainer>
+
+          {input.steps.map((step, index) => (
+            <ConfirmedStepContainer key={index + 1}>
+              <Item>
+                <span className="numberStep">{`${index + 1}. `}</span>
+                <span>{`${step} `}</span>
+              </Item>
+              <button
+                className="redButtonStepEditPage"
+                onClick={(e) => handleDeleteStep(e, step)}
+              >
+                <MdOutlineCancel />
+              </button>
+            </ConfirmedStepContainer>
+          ))}
+
           <div className="imgNewRecipe">
             <label>Imagen: </label>
             <input
