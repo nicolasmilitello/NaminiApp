@@ -176,7 +176,7 @@ export const ButtonContainer = styled.div`
 export const SaveButton = styled.button`
   display: flex;
   align-self: center;
-  margin: 5px;
+  margin: 10px;
   box-shadow: inset 0px 0px 2px 0px #3dc21b;
   background: linear-gradient(to bottom, #23b84a 5%, #4d9925 100%);
   background-color: #23b84a;

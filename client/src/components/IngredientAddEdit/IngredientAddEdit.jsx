@@ -1,8 +1,17 @@
 import React, { useState } from "react";
+
+//? STYLES:
+import {
+  FormContainer,
+  InputsContainer,
+  Unit,
+  AddIngrButton,
+  DisabledAddButton,
+  IngrError,
+} from "./IngredientAddEditSC";
+
+//? ICONS:
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
-import "../RecipeCreate/RecipeCreate.css";
-import "../NameEdit/NameEdit.css";
-import "../IngredientsEdit/IngredientsEdit.css";
 
 export default function IngredientAddEdit({
   idRecipe,
@@ -49,13 +58,13 @@ export default function IngredientAddEdit({
   const [repeated, setRepeated] = useState(false);
   function handleSubmit(e) {
     e.preventDefault();
-    setCompleted(false);
     if (
       ingState.ingredients.filter((i) => i.IngredientId === input.IngredientId)
         .length
     ) {
       setRepeated(true);
     } else {
+      setCompleted(false);
       setRepeated(false);
       setIngState({
         ingredients: [...ingState.ingredients, input],
@@ -68,60 +77,47 @@ export default function IngredientAddEdit({
   }
 
   return (
-    <div>
-      <div>
-        <form
-          className="formAddIngredientEditPage"
-          onSubmit={(e) => handleSubmit(e)}
+    <FormContainer onSubmit={(e) => handleSubmit(e)}>
+      <InputsContainer>
+        <select
+          defaultValue={"DEFAULT"}
+          onChange={(e) => handleInputIngredient(e)}
         >
-          <div className="inputsAddIngredientEditPage">
-            <select
-              defaultValue={"DEFAULT"}
-              className="selectIngredientsEdit"
-              onChange={(e) => handleInputIngredient(e)}
-            >
-              <option value="DEFAULT" disabled>
-                Seleccione un ingrediente
-              </option>
-              {ingredientList?.map((ing) => (
-                <option value={ing.id} key={ing.id}>
-                  {ing.name}
-                </option>
-              ))}
-            </select>
-            <div>
-              <input
-                className="inputQuantityEdit "
-                type="number"
-                min="0.1"
-                step="0.1"
-                value={input.quantity}
-                placeholder="Cantidad"
-                onChange={(e) => handleInputQuantity(e)}
-              />
-            </div>
-            <div className="buttonsConfirmNewIngredient">
-              {completed && (
-                <div className="unitAddIngredientEditPage">{`${unitName}`}</div>
-              )}
-            </div>
-            {input.quantity && input.IngredientId ? (
-              <button className="greenButtonConfirmEditPage" type="submit">
-                <MdOutlineCheckCircleOutline />
-              </button>
-            ) : (
-              <button disabled={true} className="disabledButtonConfirmEditPage">
-                <MdOutlineCheckCircleOutline />
-              </button>
-            )}
-          </div>
-          {repeated && (
-            <div className="failure">
-              El ingrediente seleccionado ya se encuentra añadido en la receta.
-            </div>
-          )}
-        </form>
-      </div>
-    </div>
+          <option value="DEFAULT" disabled>
+            Seleccione un ingrediente
+          </option>
+          {ingredientList?.map((ing) => (
+            <option value={ing.id} key={ing.id}>
+              {ing.name}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="number"
+          min="0.1"
+          step="0.1"
+          value={input.quantity}
+          placeholder="Cantidad"
+          onChange={(e) => handleInputQuantity(e)}
+        />
+
+        {/* <div className="buttonsConfirmNewIngredient"> */}
+        <Unit>{completed && `${unitName}`}</Unit>
+        {/* </div> */}
+
+        {input.quantity && input.IngredientId ? (
+          <AddIngrButton type="submit">
+            <MdOutlineCheckCircleOutline />
+          </AddIngrButton>
+        ) : (
+          <DisabledAddButton disabled={true}>
+            <MdOutlineCheckCircleOutline />
+          </DisabledAddButton>
+        )}
+      </InputsContainer>
+
+      {repeated && <IngrError>Ya se encuentra añadido en la receta.</IngrError>}
+    </FormContainer>
   );
 }
