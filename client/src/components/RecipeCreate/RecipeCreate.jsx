@@ -3,7 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 //? STYLES:
-import { Container, Card, FormContainer, NameInput } from "./RecipeCreateSC";
+import {
+  Container,
+  Card,
+  FormContainer,
+  NameInput,
+  CategoryAndServingsContainer,
+  CategorySelect,
+  Error,
+  ServingInput,
+  IngredientInputs,
+  Ingredients,
+  Unit,
+  AddButtonContainer,
+  AddButtonDisabled,
+  AddButton,
+} from "./RecipeCreateSC";
 import "./RecipeCreate.css";
 import "../StepsEdit/StepsEdit.css";
 import "../Globales.css";
@@ -269,15 +284,14 @@ export default function RecipeCreate() {
               size="40"
               onChange={(e) => handleChange(e)}
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.name && <Error>{errors.name}</Error>}
           </NameInput>
 
-          <div className="categoryAndServings">
-            <div className="categoryNewRecipe">
+          <CategoryAndServingsContainer>
+            <CategorySelect>
               <label>Categoría: </label>
               <select
                 defaultValue={"DEFAULT"}
-                className="inputCategoryNewRecipe"
                 onChange={(e) => handleSelect(e)}
               >
                 <option value="DEFAULT" disabled>
@@ -289,15 +303,12 @@ export default function RecipeCreate() {
                   </option>
                 ))}
               </select>
-              {errors.CategoryId && (
-                <div className="errorInputVisible">{errors.CategoryId}</div>
-              )}
-            </div>
+              {errors.CategoryId && <Error>{errors.CategoryId}</Error>}
+            </CategorySelect>
 
-            <div className="servingsNewRecipe">
+            <ServingInput>
               <label>Porciones: </label>
               <input
-                className="inputServingsNewRecipe"
                 type="number"
                 placeholder=" Ingrese las porciones"
                 value={input.servings}
@@ -306,83 +317,65 @@ export default function RecipeCreate() {
                 name="servings"
                 onChange={(e) => handleChange(e)}
               />
-              {errors.servings && (
-                <div className="errorInputVisible">{errors.servings}</div>
-              )}
-            </div>
-          </div>
-          <div className="ingredientsNewRecipe">
-            <div className="inputsAddIngredient">
-              <label className="labelIngredients">Ingredientes: </label>
+              {errors.servings && <Error>{errors.servings}</Error>}
+            </ServingInput>
+          </CategoryAndServingsContainer>
+
+          <IngredientInputs>
+            <Ingredients>
+              <label>Ingredientes: </label>
 
               <div>
-                <div>
-                  <select
-                    defaultValue={"DEFAULT"}
-                    className="inputsNewRecipe"
-                    onChange={(e) => handleInputIngredient(e)}
-                  >
-                    <option value="DEFAULT" disabled>
-                      Seleccione un ingrediente
-                    </option>
-                    {ingredients?.map((ing) => (
-                      <option value={ing.id} key={ing.id}>
-                        {ing.name}
-                      </option>
-                    ))}
-                  </select>
-
-                  <input
-                    className="inputQuantityNewRecipe"
-                    type="number"
-                    min="0.1"
-                    step="0.1"
-                    placeholder=" Cantidad"
-                    value={quantityIn}
-                    onChange={(e) => handleInputQuantity(e)}
-                  />
-                </div>
-              </div>
-              <div className="blankSpace">
-                <div className="titlesEditAndLabels">
-                  {obtenerIdUnidad(ingredientIdIn)}
-                </div>
-              </div>
-              <div className="buttonAdd">
-                <button
-                  disabled={
-                    quantityIn.length &&
-                    Number(quantityIn) &&
-                    ingredientIdIn.length
-                      ? false
-                      : true
-                  }
-                  className={
-                    quantityIn.length &&
-                    Number(quantityIn) &&
-                    ingredientIdIn.length
-                      ? "addIngredientItem"
-                      : "addIngredientItemDisabled"
-                  }
-                  onClick={(e) => handleAddIngredient(e)}
+                <select
+                  defaultValue={"DEFAULT"}
+                  onChange={(e) => handleInputIngredient(e)}
                 >
-                  <MdAddCircleOutline />
-                </button>
-              </div>
-            </div>
+                  <option value="DEFAULT" disabled>
+                    Seleccione un ingrediente
+                  </option>
+                  {ingredients?.map((ing) => (
+                    <option value={ing.id} key={ing.id}>
+                      {ing.name}
+                    </option>
+                  ))}
+                </select>
 
-            <div>
-              {repeated && (
-                <div className="errorInputVisible">
-                  El ingrediente seleccionado ya se encuentra añadido en la
-                  receta.
-                </div>
-              )}
-              {errors.ingredients && (
-                <div className="errorInputVisible">{errors.ingredients}</div>
-              )}
-            </div>
-          </div>
+                <input
+                  type="number"
+                  min="0.1"
+                  step="0.1"
+                  placeholder=" Cantidad"
+                  value={quantityIn}
+                  onChange={(e) => handleInputQuantity(e)}
+                />
+              </div>
+
+              <Unit>{obtenerIdUnidad(ingredientIdIn)}</Unit>
+
+              <AddButtonContainer>
+                {quantityIn.length &&
+                Number(quantityIn) &&
+                ingredientIdIn.length ? (
+                  <AddButton onClick={(e) => handleAddIngredient(e)}>
+                    <MdAddCircleOutline />
+                  </AddButton>
+                ) : (
+                  <AddButtonDisabled disabled={true}>
+                    <MdAddCircleOutline />
+                  </AddButtonDisabled>
+                )}
+              </AddButtonContainer>
+            </Ingredients>
+
+            {repeated && (
+              <Error>
+                El ingrediente seleccionado ya se encuentra añadido en la
+                receta.
+              </Error>
+            )}
+            {errors.ingredients && <Error>{errors.ingredients}</Error>}
+          </IngredientInputs>
+
           <div className="allIngredients">
             {input.ingredients.map((ing, index) => (
               <div className="addedIngredient" key={index + 1}>
