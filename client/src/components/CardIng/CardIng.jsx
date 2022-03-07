@@ -1,10 +1,22 @@
 import React from "react";
 import { useState } from "react";
+
+//? STYLES:
+import {
+  Container,
+  FormContainer,
+  IngredientConfirmForm,
+  IngredientItem,
+  IngredientName,
+  IngredientInput,
+  Unit,
+  ConfirmIng,
+  DisabledButton,
+  ErrorContainer,
+} from "./CardIngSC.js";
+
+//? ICONS:
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
-import "../RecipeCreate/RecipeCreate.css";
-import "../NameEdit/NameEdit.css";
-import "../StepsEdit/StepsEdit.css";
-import "../IngredientsEdit/IngredientsEdit.css";
 
 export default function CardIng({
   quantity,
@@ -60,55 +72,43 @@ export default function CardIng({
   }
 
   return (
-    <div className="cardIngContent">
-      {show ? (
-        ""
-      ) : (
-        <div className="confirmStepContent">
-          <form
-            className="formIngConfirmedEditPage"
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            <div className="ingredientItemsEditPage">
-              <div className="titlesEditAndLabels">
+    <Container>
+      {show ? null : (
+        <FormContainer>
+          <IngredientConfirmForm onSubmit={(e) => handleSubmit(e)}>
+            <IngredientItem>
+              <IngredientName>
                 {`${
                   obtenerId(IngredientId) && obtenerId(IngredientId)[0].name
                 }: `}
-              </div>
-              <input
-                className="inputQuantityIngredientsEditPage"
+              </IngredientName>
+
+              <IngredientInput
                 type="number"
                 min="0.1"
                 step="0.1"
                 defaultValue={quantity}
                 onChange={(e) => handleChange(e)}
-              ></input>
-              <div className="unitEditPage">
-                {" "}
-                {`${obtenerIdUnidad(IngredientId)}`}{" "}
-              </div>
-            </div>
-            <button
-              className={
-                Number(ing.quantity)
-                  ? "greenButtonConfirmEditPage"
-                  : "disabledButtonConfirmEditPage"
-              }
-              disabled={Number(ing.quantity) ? false : true}
-              type="submit"
-            >
-              <MdOutlineCheckCircleOutline />
-            </button>
-          </form>
-          {repeated ? (
-            <div className="failure">
-              El ingrediente seleccionado ya se encuentra añadido en la receta.
-            </div>
-          ) : (
-            <br />
-          )}
-        </div>
+              ></IngredientInput>
+
+              <Unit> {`${obtenerIdUnidad(IngredientId)}`} </Unit>
+            </IngredientItem>
+
+            {Number(ing.quantity) ? (
+              <ConfirmIng type="submit">
+                <MdOutlineCheckCircleOutline />
+              </ConfirmIng>
+            ) : (
+              <DisabledButton disabled={true}>
+                <MdOutlineCheckCircleOutline />
+              </DisabledButton>
+            )}
+          </IngredientConfirmForm>
+          <ErrorContainer>
+            {repeated ? `Ya se encuentra añadido en la receta.` : null}
+          </ErrorContainer>
+        </FormContainer>
       )}
-    </div>
+    </Container>
   );
 }
