@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+//?ACTIONS:
 import {
   getDetail,
   getCategories,
@@ -8,13 +10,35 @@ import {
   getIngredients,
   getUnits,
 } from "../../actions";
-import { useEffect } from "react";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  InfoContainer,
+  Image,
+  ButtonsContainer,
+  EditButton,
+  ReturnButton,
+  IngrCateServContainer,
+  Icon,
+  ServingCategoryContainer,
+  DetailTitle,
+  IngredientsContainer,
+  Item,
+  StepsContainer,
+  Step,
+  StepNumber,
+  LoadingAnimation,
+} from "./RecipeDetailsSC";
+
+//? ICONS:
 import { ImSpoonKnife } from "react-icons/im";
 import { GiReturnArrow } from "react-icons/gi";
 import { BiEditAlt, BiDish } from "react-icons/bi";
+
+//? IMAGES:
 import ImgNotFound from "../../img/ImgNotFound.png";
-import "../Globales.css";
-import "../RecipeDetails/RecipeDetails.css";
 
 export default function RecipeDetails(props) {
   const dispatch = useDispatch();
@@ -58,87 +82,79 @@ export default function RecipeDetails(props) {
   }
 
   return (
-    <div>
-      <div className="detailsContent">
-        <div className="detailsRecipe">
-          {recipeDetails?.length ? (
-            <div className="infoRecipe">
-              <div className="imgConteiner">
-                <img
-                  className="imgRecipeDetails"
-                  src={recipeDetails[0].img}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src = ImgNotFound;
-                  }}
-                  alt="not found"
-                />
-              </div>
-              <div className="returnAndDeleteRecipeEditPage">
-                <Link to={`/edit/${recipeDetails[0].id}`}>
-                  <button className="editRecipeButton">
-                    <BiEditAlt />
-                  </button>
-                </Link>
-                <Link to={"/home"}>
-                  <button className="returnButton">
-                    <GiReturnArrow />
-                  </button>
-                </Link>
-              </div>
-              <div className="nameRecipeDetails">
-                <h1>{recipeDetails[0].name}</h1>
-              </div>
-              <div className="nameEditCategoryServingIngDetails">
-                <div className="nameEditCategoryServingDetails">
-                  <div className="categoryServingDetails">
-                    <div className="iconCategoryRecipeDetails">
-                      <BiDish />
-                    </div>
-                    <div className="titleCategoryDetails">{`${cats()}`}</div>
-                    <div>
-                      <ImSpoonKnife />
-                    </div>
-                    <div className="titleSectionsDetails">
-                      {recipeDetails[0].servings} porciones
-                    </div>
-                  </div>
-                </div>
-                <div className="ingredientsDetails">
-                  <span className="titleSectionsDetails">Ingredientes:</span>
-                  {ingredients?.map((i, index) => (
-                    <div key={index}>
-                      <span className="ingredientItems">{`${
-                        obtenerId(i.IngredientId) &&
-                        obtenerId(i.IngredientId)?.name
-                      }: `}</span>
-                      <span className="ingredientItems">{`${i.quantity} `}</span>
-                      <span className="ingredientItems">{`${obtenerIdUnidad(
-                        i.IngredientId
-                      )}`}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+    <Container>
+      <Card>
+        {recipeDetails?.length ? (
+          <InfoContainer>
+            <Image
+              src={recipeDetails[0].img}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = ImgNotFound;
+              }}
+              alt="not found"
+            />
 
-              <div className="stepsDetails">
-                <span className="titleSectionsDetails">Pasos:</span>
+            <ButtonsContainer>
+              <Link to={`/edit/${recipeDetails[0].id}`}>
+                <EditButton>
+                  <BiEditAlt />
+                </EditButton>
+              </Link>
+              <Link to={"/home"}>
+                <ReturnButton>
+                  <GiReturnArrow />
+                </ReturnButton>
+              </Link>
+            </ButtonsContainer>
 
-                <div className="allStepsItems">
-                  {recipeDetails[0].steps.map((st, index) => (
-                    <div className="stepItem" key={index}>
-                      <span className="numberStep">{`${index + 1}. `}</span>
-                      <span>{`${st}`}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="lds-hourglass"></div>
-          )}
-        </div>
-      </div>
-    </div>
+            <h1>{recipeDetails[0].name}</h1>
+
+            <IngrCateServContainer>
+              <ServingCategoryContainer>
+                <Icon>
+                  <BiDish />
+                </Icon>
+
+                <DetailTitle>{`${cats()}`}</DetailTitle>
+
+                <Icon>
+                  <ImSpoonKnife />
+                </Icon>
+
+                <DetailTitle>{recipeDetails[0].servings} porciones</DetailTitle>
+              </ServingCategoryContainer>
+
+              <IngredientsContainer>
+                <p>Ingredientes:</p>
+                {ingredients?.map((i, index) => (
+                  <Item key={index}>
+                    <span>{`${
+                      obtenerId(i.IngredientId) &&
+                      obtenerId(i.IngredientId)?.name
+                    }: `}</span>
+                    <span>{`${i.quantity} `}</span>
+                    <span>{`${obtenerIdUnidad(i.IngredientId)}`}</span>
+                  </Item>
+                ))}
+              </IngredientsContainer>
+            </IngrCateServContainer>
+
+            <StepsContainer>
+              <p>Pasos:</p>
+
+              {recipeDetails[0].steps.map((st, index) => (
+                <Step key={index}>
+                  <StepNumber>{`${index + 1}. `}</StepNumber>
+                  <span>{`${st}`}</span>
+                </Step>
+              ))}
+            </StepsContainer>
+          </InfoContainer>
+        ) : (
+          <LoadingAnimation></LoadingAnimation>
+        )}
+      </Card>
+    </Container>
   );
 }
