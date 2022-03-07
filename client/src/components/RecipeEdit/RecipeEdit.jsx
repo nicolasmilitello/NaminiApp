@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+//? ACTIONS:
 import {
   getDetail,
   getCategories,
@@ -9,15 +11,42 @@ import {
   getIngredients,
   getUnits,
 } from "../../actions/index";
-import { useEffect } from "react";
+
+//? STYLES:
+import {
+  Container,
+  Card,
+  InfoContainer,
+  Image,
+  ButtonsContainer,
+  DeleteButton,
+  ReturnButton,
+  EditButton,
+  NameRecipeContainer,
+  ImageEditContainer,
+  IngrCateServContainer,
+  Icon,
+  ServingCategoryContainer,
+  TitleContainer,
+  IngredientsContainer,
+  Item,
+  StepsContainer,
+  Step,
+  StepNumber,
+  LoadingAnimation,
+} from "./RecipeEditSC";
+import "../RecipeDetails/RecipeDetails.css";
+import "../RecipeEdit/RecipeEdit.css";
+import "../Globales.css";
+
+//? ICONS:
 import { BiEditAlt, BiDish } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { GiReturnArrow } from "react-icons/gi";
 import { ImSpoonKnife } from "react-icons/im";
+
+//? IMAGES:
 import ImgNotFound from "../../img/ImgNotFound.png";
-import "../RecipeDetails/RecipeDetails.css";
-import "../RecipeEdit/RecipeEdit.css";
-import "../Globales.css";
 
 export default function RecipeEdit(props) {
   const dispatch = useDispatch();
@@ -68,149 +97,130 @@ export default function RecipeEdit(props) {
   }
 
   return (
-    <div>
-      <div className="detailsContent">
-        <div className="detailsRecipe">
-          {recipeDetails?.length ? (
-            <div className="infoRecipe">
-              <div className="imgConteiner">
-                <img
-                  className="imgRecipeDetails"
-                  src={recipeDetails[0].img}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src = ImgNotFound;
-                  }}
-                  alt="img not found"
-                />
-              </div>
-              <div className="returnAndDeleteRecipeEditPage">
-                <button
-                  className="deleteRecipeButton"
-                  onClick={(e) => deleteRec(props.match.params.id)}
-                >
-                  <MdDeleteOutline />
-                </button>
-                <Link to={`/home/${props.match.params.id}`}>
-                  <button className="returnButton">
-                    <GiReturnArrow />
-                  </button>
-                </Link>
-              </div>
-              <div className="nameEditPage">
-                <h1 className="nameRecipeEdit">{recipeDetails[0].name}</h1>
-                <Link to={`/name/${props.match.params.id}`}>
-                  <button className="grayEditButton">
-                    <BiEditAlt />
-                  </button>
-                </Link>
-              </div>
+    <Container>
+      <Card>
+        {recipeDetails?.length ? (
+          <InfoContainer>
+            <Image
+              src={recipeDetails[0].img}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = ImgNotFound;
+              }}
+              alt="img not found"
+            />
 
-              <div className="titleAndButtonEdit">
-                <img
-                  className="imageEdit"
-                  src={recipeDetails[0].img}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src = ImgNotFound;
-                  }}
-                  alt="img not found"
-                />
-                <Link
-                  className="imgButtonEdit"
-                  to={`/img/${props.match.params.id}`}
-                >
-                  <button className="grayEditButton ">
-                    <BiEditAlt />
-                  </button>
-                </Link>
-              </div>
+            <ButtonsContainer>
+              <DeleteButton onClick={(e) => deleteRec(props.match.params.id)}>
+                <MdDeleteOutline />
+              </DeleteButton>
 
-              <div className="nameEditCategoryServingIngDetails">
-                <div className="nameEditCategoryServingEdit">
-                  <div className="categoryServingDetails">
-                    <div className="iconCategoryRecipeEdit">
-                      <BiDish />
-                    </div>
-                    <div className="titleAndButtonEdit">
-                      <div className="titleCategoryEdit">
-                        {obtenerNombreCategoria()}
-                      </div>
-                      <Link to={`/category/${props.match.params.id}`}>
-                        <button className="grayEditButton">
-                          <BiEditAlt />
-                        </button>
-                      </Link>
-                    </div>
+              <Link to={`/home/${props.match.params.id}`}>
+                <ReturnButton>
+                  <GiReturnArrow />
+                </ReturnButton>
+              </Link>
+            </ButtonsContainer>
 
-                    <div>
-                      <ImSpoonKnife />
-                    </div>
-                    <div className="titleAndButtonEdit">
-                      <div className="titleSectionsDetails">
-                        {recipeDetails[0].servings} porciones
-                      </div>
-                      <Link to={`/servings/${props.match.params.id}`}>
-                        <button className="grayEditButton">
-                          <BiEditAlt />
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
+            <NameRecipeContainer>
+              <h1>{recipeDetails[0].name}</h1>
 
-                  <div className="ingredientsEdit">
-                    <div className="ingredientsDetails">
-                      <div className="titleAndButtonEdit">
-                        <div className="titleSectionsDetails">
-                          Ingredientes:
-                        </div>
-                        <Link to={`/ingredients/${props.match.params.id}`}>
-                          <button className="grayEditButton">
-                            <BiEditAlt />
-                          </button>
-                        </Link>
-                      </div>
-                      {ingredients?.map((i, index) => (
-                        <div key={index}>
-                          <span className="ingredientItems">{`${
-                            obtenerId(i.IngredientId) &&
-                            obtenerId(i.IngredientId)?.name
-                          }: `}</span>
-                          <span className="ingredientItems">{`${i.quantity} `}</span>
-                          <span className="ingredientItems">{`${obtenerIdUnidad(
-                            i.IngredientId
-                          )}`}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Link to={`/name/${props.match.params.id}`}>
+                <EditButton>
+                  <BiEditAlt />
+                </EditButton>
+              </Link>
+            </NameRecipeContainer>
 
-              <div className="stepsDetails">
-                <div className="titleAndButtonEdit">
-                  <div className="titleSectionsDetails">Pasos:</div>
-                  <Link to={`/steps/${props.match.params.id}`}>
-                    <button className="grayEditButton">
+            <ImageEditContainer>
+              <img
+                src={recipeDetails[0].img}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src = ImgNotFound;
+                }}
+                alt="img not found"
+              />
+              <Link to={`/img/${props.match.params.id}`}>
+                <EditButton>
+                  <BiEditAlt />
+                </EditButton>
+              </Link>
+            </ImageEditContainer>
+
+            <IngrCateServContainer>
+              <ServingCategoryContainer>
+                <Icon>
+                  <BiDish />
+                </Icon>
+
+                <TitleContainer>
+                  <p>{obtenerNombreCategoria()}</p>
+                  <Link to={`/category/${props.match.params.id}`}>
+                    <EditButton>
                       <BiEditAlt />
-                    </button>
+                    </EditButton>
                   </Link>
-                </div>
-                <div className="allStepsItems">
-                  {recipeDetails[0].steps.map((st, index) => (
-                    <div className="stepItem" key={index}>
-                      <span className="numberStep">{`${index + 1}. `}</span>
-                      <span>{`${st}`}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="lds-hourglass"></div>
-          )}
-        </div>
-      </div>
-    </div>
+                </TitleContainer>
+
+                <ImSpoonKnife />
+
+                <TitleContainer>
+                  <p>{recipeDetails[0].servings} porciones</p>
+                  <Link to={`/servings/${props.match.params.id}`}>
+                    <EditButton>
+                      <BiEditAlt />
+                    </EditButton>
+                  </Link>
+                </TitleContainer>
+              </ServingCategoryContainer>
+
+              <IngredientsContainer>
+                <TitleContainer>
+                  <p>Ingredientes:</p>
+                  <Link to={`/ingredients/${props.match.params.id}`}>
+                    <EditButton>
+                      <BiEditAlt />
+                    </EditButton>
+                  </Link>
+                </TitleContainer>
+
+                {ingredients?.map((i, index) => (
+                  <Item key={index}>
+                    <span>{`${
+                      obtenerId(i.IngredientId) &&
+                      obtenerId(i.IngredientId)?.name
+                    }: `}</span>
+                    <span>{`${i.quantity} `}</span>
+                    <span>{`${obtenerIdUnidad(i.IngredientId)}`}</span>
+                  </Item>
+                ))}
+              </IngredientsContainer>
+            </IngrCateServContainer>
+
+            <StepsContainer>
+              <TitleContainer>
+                <p>Pasos:</p>
+
+                <Link to={`/steps/${props.match.params.id}`}>
+                  <EditButton>
+                    <BiEditAlt />
+                  </EditButton>
+                </Link>
+              </TitleContainer>
+
+              {recipeDetails[0].steps.map((st, index) => (
+                <Step key={index}>
+                  <StepNumber>{`${index + 1}. `}</StepNumber>
+                  <span>{`${st}`}</span>
+                </Step>
+              ))}
+            </StepsContainer>
+          </InfoContainer>
+        ) : (
+          <LoadingAnimation></LoadingAnimation>
+        )}
+      </Card>
+    </Container>
   );
 }
