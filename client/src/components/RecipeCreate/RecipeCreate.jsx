@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+//? STYLES:
+import { Container, Card, FormContainer, NameInput } from "./RecipeCreateSC";
+import "./RecipeCreate.css";
+import "../StepsEdit/StepsEdit.css";
+import "../Globales.css";
+
+//? ICONS:
+import { MdAddCircleOutline } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
+
+//? ACTIONS:
 import {
   postRecipe,
   getCategories,
   getIngredients,
   getUnits,
 } from "../../actions/index";
-import { useDispatch, useSelector } from "react-redux";
-import { MdAddCircleOutline } from "react-icons/md";
-import { MdOutlineCancel } from "react-icons/md";
-import "./RecipeCreate.css";
-import "../StepsEdit/StepsEdit.css";
-import "../Globales.css";
 
 function validate(input) {
   let errors = {};
@@ -247,12 +254,12 @@ export default function RecipeCreate() {
   }, []);
 
   return (
-    <div className="recipeCreatorContent">
-      <div className="recipeCreator">
-        <h1 className="titlePage">Crear una receta</h1>
+    <Container>
+      <Card>
+        <h1>Crear una receta</h1>
 
-        <form className="formNewRecipe" onSubmit={(e) => handleSubmit(e)}>
-          <div className="nameNewRecipe">
+        <FormContainer onSubmit={(e) => handleSubmit(e)}>
+          <NameInput>
             <label>Nombre: </label>
             <input
               type="text"
@@ -260,13 +267,10 @@ export default function RecipeCreate() {
               placeholder=" Ingrese el nombre"
               name="name"
               size="40"
-              className="inputNameNewRecipe"
               onChange={(e) => handleChange(e)}
             />
-            {errors.name && (
-              <div className="errorInputVisible">{errors.name}</div>
-            )}
-          </div>
+            {errors.name && <span>{errors.name}</span>}
+          </NameInput>
 
           <div className="categoryAndServings">
             <div className="categoryNewRecipe">
@@ -483,7 +487,7 @@ export default function RecipeCreate() {
               Guardar receta
             </button>
           )}
-        </form>
+        </FormContainer>
         <div>
           {show2 ? (
             code ? (
@@ -500,7 +504,7 @@ export default function RecipeCreate() {
             ""
           )}
         </div>
-      </div>
-    </div>
+      </Card>
+    </Container>
   );
 }

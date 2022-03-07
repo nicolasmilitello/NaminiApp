@@ -38,6 +38,11 @@ nav {
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
 }
 
+label {
+  font-family: "ABeeZee";
+  font-size: 14px;
+}
+
 :root {
   --primaryFont: "Josefin Sans";
   --secondaryFont: "ABeeZee";
