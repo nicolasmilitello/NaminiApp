@@ -35,9 +35,6 @@ import {
   Failure,
   LoadingAnimation,
 } from "./RecipeCreateSC";
-import "./RecipeCreate.css";
-import "../StepsEdit/StepsEdit.css";
-import "../Globales.css";
 
 //? ICONS:
 import { MdAddCircleOutline } from "react-icons/md";
