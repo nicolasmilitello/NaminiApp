@@ -9,8 +9,6 @@ import {
   PageButton,
   SelectedPageButton,
 } from "./PaginadoSC";
-import "../Globales.css";
-import "./Paginado.css";
 
 //? ICONS:
 import { BiFirstPage, BiLastPage } from "react-icons/bi";
