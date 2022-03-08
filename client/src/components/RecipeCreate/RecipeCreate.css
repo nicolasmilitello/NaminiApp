@@ -99,8 +99,7 @@
   display: flex;
   align-self: flex-end;
 }
-
-.inputsAddIngredient {
+inputsNewRecipe .inputsAddIngredient {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
