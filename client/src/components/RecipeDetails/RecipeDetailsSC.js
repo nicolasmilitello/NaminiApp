@@ -30,6 +30,8 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: content-box;
+  width: 100%;
+  backgroun-color: red;
 
   & h1 {
     font-family: var(--primaryFont);

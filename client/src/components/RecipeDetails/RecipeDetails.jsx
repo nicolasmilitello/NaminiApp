@@ -16,6 +16,7 @@ import {
   Container,
   Card,
   InfoContainer,
+  ImageContainer,
   Image,
   ButtonsContainer,
   EditButton,
