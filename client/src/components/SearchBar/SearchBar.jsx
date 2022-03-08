@@ -1,11 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNameRecipes, getRecipes } from "../../actions";
+
+//? STYLES:
+import { Container } from "./SearchBarSC";
+
+//? ICONS:
 import { BiRefresh } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
-import "./SearchBar.css";
-import "../Globales.css";
+
+//? ACTIONS:
+import { getNameRecipes, getRecipes } from "../../actions";
 
 export default function SearchBar(setSearch) {
   const dispatch = useDispatch();
@@ -28,29 +33,23 @@ export default function SearchBar(setSearch) {
   }
 
   return (
-    <div className="inputAndButton">
+    <Container>
       <input
-        className="inputSearchBar"
         type="text"
         value={name}
         placeholder="  Buscar..."
         onChange={(e) => handleInputChange(e)}
       />
-      <button
-        className="grayButtonRefresh"
-        type="submit"
-        onClick={(e) => handleSubmit(e)}
-      >
+      <button type="submit" onClick={(e) => handleSubmit(e)}>
         <AiOutlineSearch />
       </button>
       <button
-        className="grayButtonRefresh"
         onClick={(e) => {
           handleClick(e);
         }}
       >
         <BiRefresh />
       </button>
-    </div>
+    </Container>
   );
 }
