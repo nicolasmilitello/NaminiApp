@@ -345,19 +345,45 @@ export const StepInputAndButtonContainer = styled.div`
   }
 `;
 
-export const ConfirmedStepsContainer = styled.div`
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
+// export const ConfirmedStepsContainer = styled.div`
+//   margin-top: 5px;
+//   margin-bottom: 5px;
+// `;
 
 export const ConfirmedStepContainer = styled.div`
   width: 94%;
-  margin-top: 2px;
-  margin-right: 0px;
-  margin-left: 0px;
-  margin-bottom: 0px;
+  margin: 10px 0 0 0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+
+  & button {
+    display: flex;
+    align-items: center;
+    height: 17px;
+    font-size: 15px;
+    padding: 0px 0px;
+    margin-left: 5px;
+    box-shadow: inset 0px 0px 2px 0px #cf866c;
+    background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+    background-color: #d0451b;
+    border-radius: 13px;
+    border: 1px solid #942911;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0px 0px 0px #854629;
+
+    &:hover {
+      background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+      background-color: #bc3315;
+    }
+
+    &:active {
+      position: relative;
+      top: 1px;
+    }
+  }
 `;
 
 export const Item = styled.div`
@@ -365,6 +391,10 @@ export const Item = styled.div`
   text-align: justify;
   font-size: 12px;
   color: #000000;
+`;
+
+export const Step = styled.span`
+  ${(props) => (props.bold ? `font-weight: bold;` : null)}
 `;
 
 export const ImageContainer = styled.div`
@@ -445,4 +475,41 @@ export const DisabledButton = styled.button`
   padding: 1px 4px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
+`;
+
+export const Failure = styled.span`
+  font-family: var(--secondaryFont);
+  font-size: 12px;
+  color: red;
+`;
+
+export const LoadingAnimation = styled.div`
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 20px solid #691281;
+    border-color: #ffc0db transparent #daf5b1 transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
 `;

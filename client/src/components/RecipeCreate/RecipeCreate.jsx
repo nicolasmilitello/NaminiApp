@@ -27,10 +27,13 @@ import {
   StepInputAndButtonContainer,
   ConfirmedStepContainer,
   Item,
+  Step,
   ImageContainer,
   LabelAndImageInput,
   SaveButton,
   DisabledButton,
+  Failure,
+  LoadingAnimation,
 } from "./RecipeCreateSC";
 import "./RecipeCreate.css";
 import "../StepsEdit/StepsEdit.css";
@@ -253,7 +256,7 @@ export default function RecipeCreate() {
     setShow2(true);
 
     const response = await dispatch(postRecipe(input));
-
+    console.log(response);
     setMessage(response?.data);
     if (response.status === 200) {
       setCode(true);
@@ -443,13 +446,10 @@ export default function RecipeCreate() {
           {input.steps.map((step, index) => (
             <ConfirmedStepContainer key={index + 1}>
               <Item>
-                <span className="numberStep">{`${index + 1}. `}</span>
-                <span>{`${step} `}</span>
+                <Step bold={1}>{`${index + 1}. `}</Step>
+                <Step>{`${step} `}</Step>
               </Item>
-              <button
-                className="redButtonStepEditPage"
-                onClick={(e) => handleDeleteStep(e, step)}
-              >
+              <button onClick={(e) => handleDeleteStep(e, step)}>
                 <MdOutlineCancel />
               </button>
             </ConfirmedStepContainer>
@@ -468,6 +468,7 @@ export default function RecipeCreate() {
             </LabelAndImageInput>
             <div>{errors.img && <Error>{errors.img}</Error>}</div>
           </ImageContainer>
+
           {input.name &&
           input.servings &&
           input.steps.length &&
@@ -476,30 +477,24 @@ export default function RecipeCreate() {
           input.img ? (
             <SaveButton type="submit">Guardar receta</SaveButton>
           ) : (
-            <DisabledButton
-              disabled={true}
-              className="disabledButtonStepEditPage"
-            >
-              Guardar receta
-            </DisabledButton>
+            <DisabledButton disabled={true}>Guardar receta</DisabledButton>
           )}
         </FormContainer>
-        <div>
-          {show2 ? (
-            code ? (
-              // <span className="success">Ingrediente creado exitosamente</span>
-              typeof message === "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
-                <span className="success">Receta creada exitosamente</span>
-              ) : (
-                <span className="failure">{message}</span> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
-              )
-            ) : (
-              <div className="lds-hourglass"></div>
-            )
+
+        {show2 ? (
+          code ? (
+            // <span className="success">Ingrediente creado exitosamente</span>
+            typeof message !== "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
+              // <span className="success">Receta creada exitosamente</span>
+              <Failure>{message}.</Failure>
+            ) : //<span className="failure">{message}</span> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
+            null
           ) : (
-            ""
-          )}
-        </div>
+            <LoadingAnimation></LoadingAnimation>
+          )
+        ) : (
+          ""
+        )}
       </Card>
     </Container>
   );
