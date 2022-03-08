@@ -1,12 +1,19 @@
 import React from "react";
-import { getCategories } from "../../actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+//? ACTIONS:
+import { getCategories } from "../../actions";
+
+//?STYLES
+import { Container, Image, DetailsContainer } from "./CardSC";
+
+//? ICONS:
 import { BiDish } from "react-icons/bi";
 import { ImSpoonKnife } from "react-icons/im";
+
+//? IMAGES:
 import ImgNotFound from "../../img/ImgNotFound.png";
-import "../Globales.css";
-import "./Card.css";
 
 export default function Card({ id, name, servings, category, img }) {
   const dispatch = useDispatch();
@@ -20,33 +27,30 @@ export default function Card({ id, name, servings, category, img }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="card">
-      <div className="cardContent">
-        <img
-          src={img}
-          className="imagenCard"
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null; // prevents looping
-            currentTarget.src = ImgNotFound;
-          }}
-          alt="not found"
-        />
-        <div className="infoCard">
-          <div className="iconAndCategory">
-            <div className="iconCategory">
-              <BiDish />
-            </div>
-            <h6 className="categoryRecipeCard">{cat}</h6>
+    <Container>
+      <Image
+        src={img}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src = ImgNotFound;
+        }}
+        alt="not found"
+      />
+      <DetailsContainer>
+        <div>
+          <div>
+            <BiDish />
           </div>
-          <h3 className="nameRecipeCard">{name}</h3>
-          <div className="iconAndServings">
-            <div>
-              <ImSpoonKnife />
-            </div>
-            <h6 className="servingsRecipeCard">{servings} porciones</h6>
-          </div>
+          <h6>{cat}</h6>
         </div>
-      </div>
-    </div>
+        <h3>{name}</h3>
+        <div>
+          <div>
+            <ImSpoonKnife />
+          </div>
+          <h6>{servings} porciones</h6>
+        </div>
+      </DetailsContainer>
+    </Container>
   );
 }
