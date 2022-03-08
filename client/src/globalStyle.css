@@ -53,7 +53,15 @@ input {
 }
 
 body {
-  /* background-image: url("./img/background_clouds.jpg");
-  background-attachment: scroll;
-  margin-bottom: 40px; */
+  background-image: linear-gradient(
+    90deg,
+    #faf5fa 25%,
+    #ffffff 25%,
+    #ffffff 50%,
+    #faf5fa 50%,
+    #faf5fa 75%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 80px 80px;
 }
