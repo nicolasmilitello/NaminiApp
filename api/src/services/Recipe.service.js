@@ -103,11 +103,15 @@ const createRecipe = async (req, res) => {
 
       if (newRecipe) {
         if (created) {
+          console.log("se creo bien");
           res.status(200).json(newRecipe);
         } else {
+          console.log("receta repetida");
           res.status(200).send("Ya existe una receta con ese nombre");
         }
       } else {
+        console.log("un error");
+        console.log(e);
         res
           .status(400)
           .json({ message: "Error: no se pudo crear la nueva receta" });
@@ -118,9 +122,13 @@ const createRecipe = async (req, res) => {
       //     id: newRecipe.id,
       //   },
       // });
+      console.log("otro error");
+      console.log(e);
       res.status(400).send(e);
     }
   } else {
+    console.log("otro otro error");
+
     res
       .status(400)
       .json({ message: "Error: falta ingresar uno o más datos obligatorios" });
