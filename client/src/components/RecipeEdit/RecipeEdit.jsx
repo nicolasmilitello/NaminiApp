@@ -35,9 +35,6 @@ import {
   StepNumber,
   LoadingAnimation,
 } from "./RecipeEditSC";
-import "../RecipeDetails/RecipeDetails.css";
-import "../RecipeEdit/RecipeEdit.css";
-import "../Globales.css";
 
 //? ICONS:
 import { BiEditAlt, BiDish } from "react-icons/bi";
