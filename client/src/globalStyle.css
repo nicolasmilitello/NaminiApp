@@ -43,6 +43,10 @@ label {
   font-size: 14px;
 }
 
+input {
+  font-size: 12px;
+}
+
 :root {
   --primaryFont: "Josefin Sans";
   --secondaryFont: "ABeeZee";

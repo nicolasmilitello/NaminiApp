@@ -8,12 +8,16 @@ import {
   Card,
   FormContainer,
   NameInput,
+  LabelAndInput,
   CategoryAndServingsContainer,
   CategorySelect,
+  LabelAndSelect,
   Error,
   ServingInput,
+  LabelAndServingsInput,
   IngredientInputs,
   Ingredients,
+  SelectInputContainer,
   Unit,
   AddButtonContainer,
   AddButtonDisabled,
@@ -21,9 +25,12 @@ import {
   AddedIngredientsContainer,
   StepsInputsContainer,
   StepInputAndButtonContainer,
-  ConfirmedStepsContainer,
   ConfirmedStepContainer,
   Item,
+  ImageContainer,
+  LabelAndImageInput,
+  SaveButton,
+  DisabledButton,
 } from "./RecipeCreateSC";
 import "./RecipeCreate.css";
 import "../StepsEdit/StepsEdit.css";
@@ -44,23 +51,17 @@ import {
 function validate(input) {
   let errors = {};
   if (!input.name) {
-    errors.name =
-      "Es un requerimiento obligatorio asignarle un nombre a la receta";
+    errors.name = "Debe asignarle un nombre a la receta.";
   } else if (!input.CategoryId) {
-    errors.CategoryId =
-      "Es un requerimiento obligatorio ingresar una categoría para la receta";
+    errors.CategoryId = "Debe ingresar una categoría para la receta.";
   } else if (!input.servings) {
-    errors.servings =
-      "Es un requerimiento obligatorio introducir las porciones";
+    errors.servings = "Debe introducir las porciones.";
   } else if (!input.ingredients.length) {
-    errors.ingredients =
-      "Es un requerimiento obligatorio ingresar los ingredientes de la receta";
+    errors.ingredients = "Debe ingresar los ingredientes de la receta.";
   } else if (!input.steps.length) {
-    errors.steps =
-      "Es un requerimiento obligatorio ingresar los pasos de la receta";
+    errors.steps = "Debe ingresar los pasos de la receta.";
   } else if (!input.img) {
-    errors.img =
-      "Es un requerimiento obligatorio cargar una imagen para la receta";
+    errors.img = "Debe cargar una imagen para la receta.";
   }
   return errors;
 }
@@ -248,8 +249,11 @@ export default function RecipeCreate() {
   async function handleSubmit(e) {
     e.preventDefault();
     setCode(false);
+
     setShow2(true);
+
     const response = await dispatch(postRecipe(input));
+
     setMessage(response?.data);
     if (response.status === 200) {
       setCode(true);
@@ -281,49 +285,59 @@ export default function RecipeCreate() {
 
         <FormContainer onSubmit={(e) => handleSubmit(e)}>
           <NameInput>
-            <label>Nombre: </label>
-            <input
-              type="text"
-              value={input.name}
-              placeholder=" Ingrese el nombre"
-              name="name"
-              size="40"
-              onChange={(e) => handleChange(e)}
-            />
+            <LabelAndInput>
+              <label>Nombre: </label>
+              <input
+                type="text"
+                value={input.name}
+                placeholder=" Ingrese el nombre"
+                name="name"
+                size="40"
+                onChange={(e) => handleChange(e)}
+              />
+            </LabelAndInput>
             {errors.name && <Error>{errors.name}</Error>}
           </NameInput>
 
           <CategoryAndServingsContainer>
             <CategorySelect>
-              <label>Categoría: </label>
-              <select
-                defaultValue={"DEFAULT"}
-                onChange={(e) => handleSelect(e)}
-              >
-                <option value="DEFAULT" disabled>
-                  Seleccione una categoría
-                </option>
-                {categories?.map((cat) => (
-                  <option value={cat.id} key={cat.id}>
-                    {cat.name}
+              <LabelAndSelect>
+                <label>Categoría: </label>
+                <select
+                  defaultValue={"DEFAULT"}
+                  onChange={(e) => handleSelect(e)}
+                >
+                  <option value="DEFAULT" disabled>
+                    Seleccione una categoría
                   </option>
-                ))}
-              </select>
-              {errors.CategoryId && <Error>{errors.CategoryId}</Error>}
+                  {categories?.map((cat) => (
+                    <option value={cat.id} key={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              </LabelAndSelect>
+
+              <div>
+                {errors.CategoryId && <Error>{errors.CategoryId}</Error>}
+              </div>
             </CategorySelect>
 
             <ServingInput>
-              <label>Porciones: </label>
-              <input
-                type="number"
-                placeholder=" Ingrese las porciones"
-                value={input.servings}
-                min="1"
-                max="99"
-                name="servings"
-                onChange={(e) => handleChange(e)}
-              />
-              {errors.servings && <Error>{errors.servings}</Error>}
+              <LabelAndServingsInput>
+                <label>Porciones: </label>
+                <input
+                  type="number"
+                  placeholder=" Ingrese las porciones"
+                  value={input.servings}
+                  min="1"
+                  max="99"
+                  name="servings"
+                  onChange={(e) => handleChange(e)}
+                />
+              </LabelAndServingsInput>
+
+              <div>{errors.servings && <Error>{errors.servings}</Error>}</div>
             </ServingInput>
           </CategoryAndServingsContainer>
 
@@ -331,7 +345,7 @@ export default function RecipeCreate() {
             <Ingredients>
               <label>Ingredientes: </label>
 
-              <div>
+              <SelectInputContainer>
                 <select
                   defaultValue={"DEFAULT"}
                   onChange={(e) => handleInputIngredient(e)}
@@ -354,7 +368,7 @@ export default function RecipeCreate() {
                   value={quantityIn}
                   onChange={(e) => handleInputQuantity(e)}
                 />
-              </div>
+              </SelectInputContainer>
 
               <Unit>{obtenerIdUnidad(ingredientIdIn)}</Unit>
 
@@ -400,7 +414,6 @@ export default function RecipeCreate() {
             <StepInputAndButtonContainer>
               <textarea
                 maxLength="255"
-                className="inputStepsNewRecipe"
                 type="text"
                 placeholder=" Ingrese paso..."
                 name="steps"
@@ -408,7 +421,7 @@ export default function RecipeCreate() {
                 onChange={(e) => handleInputSteps(e)}
               />
 
-              <AddButtonContainer>
+              <div>
                 {step.length ? (
                   <AddButton onClick={(e) => handleAddStep(e)}>
                     <MdAddCircleOutline />
@@ -418,12 +431,12 @@ export default function RecipeCreate() {
                     <MdAddCircleOutline />
                   </AddButtonDisabled>
                 )}
-              </AddButtonContainer>
+              </div>
             </StepInputAndButtonContainer>
 
             {errors.steps && <Error>{errors.steps}</Error>}
             {step.length === 255 && (
-              <Error>Excede la longitud permitida para cada paso</Error>
+              <Error>Excede la longitud permitida para cada paso.</Error>
             )}
           </StepsInputsContainer>
 
@@ -442,33 +455,33 @@ export default function RecipeCreate() {
             </ConfirmedStepContainer>
           ))}
 
-          <div className="imgNewRecipe">
-            <label>Imagen: </label>
-            <input
-              type="text"
-              className="inputImgNewRecipe"
-              placeholder=" Ingrese la URL de la imagen"
-              value={input.img}
-              name="img"
-              onChange={(e) => handleChange(e)}
-            />
-            {errors.img && (
-              <div className="errorInputVisible">{errors.img}</div>
-            )}
-          </div>
+          <ImageContainer>
+            <LabelAndImageInput>
+              <label>Imagen: </label>
+              <input
+                type="text"
+                placeholder=" Ingrese la URL de la imagen"
+                value={input.img}
+                name="img"
+                onChange={(e) => handleChange(e)}
+              />
+            </LabelAndImageInput>
+            <div>{errors.img && <Error>{errors.img}</Error>}</div>
+          </ImageContainer>
           {input.name &&
           input.servings &&
           input.steps.length &&
           input.ingredients?.length &&
           input.CategoryId &&
           input.img ? (
-            <button className="saveRecipeButton" type="submit">
-              Guardar receta
-            </button>
+            <SaveButton type="submit">Guardar receta</SaveButton>
           ) : (
-            <button disabled={true} className="disabledButtonStepEditPage">
+            <DisabledButton
+              disabled={true}
+              className="disabledButtonStepEditPage"
+            >
               Guardar receta
-            </button>
+            </DisabledButton>
           )}
         </FormContainer>
         <div>
