@@ -53,15 +53,11 @@ export default function Paginado({
       return (
         <div key={number}>
           {currentPage === number ? (
-            <SelectedPageButton
-              key={number}
-              id={number}
-              onClick={handleClickPage}
-            >
+            <SelectedPageButton id={number} onClick={handleClickPage}>
               {number}
             </SelectedPageButton>
           ) : (
-            <PageButton key={number} id={number} onClick={handleClickPage}>
+            <PageButton id={number} onClick={handleClickPage}>
               {number}
             </PageButton>
           )}
