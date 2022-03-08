@@ -1,4 +1,4 @@
-const { Recipe, Ingredient_Recipe, Ingredient } = require("../db.js"); 
+const { Recipe, Ingredient_Recipe, Ingredient } = require("../db.js");
 
 const getAll = async (req, res) => {
   try {
@@ -102,9 +102,11 @@ const createRecipe = async (req, res) => {
       }
 
       if (newRecipe) {
-        created
-          ? res.status(200).json(newRecipe)
-          : res.status(200).send("Ya existe una receta con ese nombre");
+        if (created) {
+          res.status(200).json(newRecipe);
+        } else {
+          res.status(200).send("Ya existe una receta con ese nombre");
+        }
       } else {
         res
           .status(400)
