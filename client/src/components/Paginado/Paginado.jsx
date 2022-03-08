@@ -51,7 +51,7 @@ export default function Paginado({
   const renderPageNumbers = pageNumbers.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
-        <>
+        <div key={number}>
           {currentPage === number ? (
             <SelectedPageButton
               key={number}
@@ -65,7 +65,7 @@ export default function Paginado({
               {number}
             </PageButton>
           )}
-        </>
+        </div>
       );
     } else {
       return null;
