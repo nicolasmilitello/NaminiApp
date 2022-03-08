@@ -1,20 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 //importo los hooks de react-redux (previamente lo instalo -npm i react-redux-):
 import { useDispatch, useSelector } from "react-redux";
+
+//? STYLES:
+import {
+  Container,
+  FiltersTitleAndSearchBarContainer,
+  FiltersContainer,
+  CategoryFilter,
+  AToZFilter,
+  SearchBarContainer,
+  Grid,
+  CardContainer,
+  NoResultsContainer,
+  AnimationContainer,
+  LoadingAnimation,
+} from "./HomeSC";
+
+//? ICONS:
+import { MdSearchOff } from "react-icons/md";
+
+//? COMPONENTS:
+import Card from "../Card/Card";
+import Paginado from "../Paginado/Paginado";
+import SearchBar from "../SearchBar/SearchBar";
+
+//? ACTIONS:
 import {
   getRecipes,
   filterRecipesByCategory,
   orderByName,
   getCategories,
 } from "../../actions";
-import { MdSearchOff } from "react-icons/md";
-import Card from "../Card/Card";
-import Paginado from "../Paginado/Paginado";
-import SearchBar from "../SearchBar/SearchBar";
-import "./Home.css";
-import "../Globales.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -58,39 +75,37 @@ export default function Home() {
   }
 
   return (
-    <div className="homeContent">
-      <div className="filtersAndSearchBar">
-        <div className="filtersAndButton">
-          <div className="filtersHome">
-            <select
-              className="categoryFilter"
-              onChange={(e) => handleFilterCategory(e)}
-            >
-              <option value="all">Todos</option>
-              {categories?.map((cat) => (
-                <option value={cat.id} key={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-            <select className="aToZFilter" onChange={(e) => handleOrderName(e)}>
-              <option value="asc">A - Z</option>
-              <option value="desc">Z - A</option>
-            </select>
-          </div>
-        </div>
+    <Container>
+      <FiltersTitleAndSearchBarContainer>
+        <FiltersContainer>
+          <CategoryFilter onChange={(e) => handleFilterCategory(e)}>
+            <option value="all">Todos</option>
+            {categories?.map((cat) => (
+              <option value={cat.id} key={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </CategoryFilter>
 
-        <h1 className="titlePage">Recetas</h1>
-        <div className="searchBarSize">
+          <AToZFilter onChange={(e) => handleOrderName(e)}>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
+          </AToZFilter>
+        </FiltersContainer>
+
+        <h1>Recetas</h1>
+
+        <SearchBarContainer>
           <SearchBar />
-        </div>
-      </div>
+        </SearchBarContainer>
+      </FiltersTitleAndSearchBarContainer>
+
       <div>
         {typeof allRecipes === "object" && currentRecipes ? (
-          <div className="cards">
+          <Grid>
             {currentRecipes?.map((el) => {
               return (
-                <Link to={`/home/${el.id}`} className="cardsLink" key={el.id}>
+                <CardContainer to={`/home/${el.id}`} key={el.id}>
                   <Card
                     img={el.img}
                     name={el.name}
@@ -99,21 +114,19 @@ export default function Home() {
                     key={el.id}
                     id={el.id}
                   />
-                </Link>
+                </CardContainer>
               );
             })}
-          </div>
+          </Grid>
         ) : typeof allRecipes === "string" ? (
-          <div className="noResults">
-            <div className="scale-down-center">
+          <NoResultsContainer>
+            <AnimationContainer>
               <MdSearchOff />
-            </div>
-            <div className="noResultsText">No se encontraron coincidencias</div>
-          </div>
+            </AnimationContainer>
+            <span>No se encontraron coincidencias.</span>
+          </NoResultsContainer>
         ) : (
-          <div className="loading">
-            <div className="lds-hourglass"></div>
-          </div>
+          <LoadingAnimation></LoadingAnimation>
         )}
       </div>
       {typeof allRecipes !== "string" ? (
@@ -124,9 +137,7 @@ export default function Home() {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-      ) : (
-        ""
-      )}
-    </div>
+      ) : null}
+    </Container>
   );
 }
