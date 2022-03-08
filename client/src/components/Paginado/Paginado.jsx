@@ -1,8 +1,19 @@
 import React from "react";
 import { useState } from "react";
-import { BiFirstPage, BiLastPage } from "react-icons/bi";
+
+//? STYLES:
+import {
+  Container,
+  NextPreviousButtonDisabled,
+  NextPreviousButton,
+  PageButton,
+  SelectedPageButton,
+} from "./PaginadoSC";
 import "../Globales.css";
 import "./Paginado.css";
+
+//? ICONS:
+import { BiFirstPage, BiLastPage } from "react-icons/bi";
 
 export default function Paginado({
   recipesPerPage,
@@ -42,16 +53,21 @@ export default function Paginado({
   const renderPageNumbers = pageNumbers.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
-        <button
-          key={number}
-          id={number}
-          onClick={handleClickPage}
-          className={
-            currentPage === number ? "pageSelected" : "pageButtonSelected"
-          }
-        >
-          {number}
-        </button>
+        <>
+          {currentPage === number ? (
+            <SelectedPageButton
+              key={number}
+              id={number}
+              onClick={handleClickPage}
+            >
+              {number}
+            </SelectedPageButton>
+          ) : (
+            <PageButton key={number} id={number} onClick={handleClickPage}>
+              {number}
+            </PageButton>
+          )}
+        </>
       );
     } else {
       return null;
@@ -59,34 +75,28 @@ export default function Paginado({
   });
 
   return (
-    <div className="pageNumberBar">
-      <button
-        onClick={handleClickPrev}
-        className={
-          currentPage === pageNumbers[0]
-            ? "backNextDisabledButton"
-            : "backNextButton"
-        }
-        disabled={currentPage === pageNumbers[0] ? true : false}
-      >
-        <BiFirstPage />
-      </button>
+    <Container>
+      {currentPage === pageNumbers[0] ? (
+        <NextPreviousButtonDisabled disabled={true}>
+          <BiFirstPage />
+        </NextPreviousButtonDisabled>
+      ) : (
+        <NextPreviousButton onClick={handleClickPrev}>
+          <BiFirstPage />
+        </NextPreviousButton>
+      )}
 
       {renderPageNumbers}
 
-      <button
-        onClick={handleClickNext}
-        className={
-          currentPage === pageNumbers[pageNumbers.length - 1]
-            ? "backNextDisabledButton"
-            : "backNextButton"
-        }
-        disabled={
-          currentPage === pageNumbers[pageNumbers.length - 1] ? true : false
-        }
-      >
-        <BiLastPage />
-      </button>
-    </div>
+      {currentPage === pageNumbers[pageNumbers.length - 1] ? (
+        <NextPreviousButtonDisabled disabled={true}>
+          <BiLastPage />
+        </NextPreviousButtonDisabled>
+      ) : (
+        <NextPreviousButton onClick={handleClickNext}>
+          <BiLastPage />
+        </NextPreviousButton>
+      )}
+    </Container>
   );
 }
