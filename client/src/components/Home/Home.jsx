@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 //importo los hooks de react-redux (previamente lo instalo -npm i react-redux-):
 import { useDispatch, useSelector } from "react-redux";
 
@@ -105,7 +106,7 @@ export default function Home() {
           <Grid>
             {currentRecipes?.map((el) => {
               return (
-                <CardContainer to={`/home/${el.id}`} key={el.id}>
+                <Link to={`/home/${el.id}`} key={el.id}>
                   <Card
                     img={el.img}
                     name={el.name}
@@ -114,7 +115,7 @@ export default function Home() {
                     key={el.id}
                     id={el.id}
                   />
-                </CardContainer>
+                </Link>
               );
             })}
           </Grid>

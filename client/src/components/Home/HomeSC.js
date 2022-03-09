@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { ScaleDownCenter } from "../Animations/ScaleDownCenter";
 
 export const Container = styled.div`
@@ -66,10 +65,6 @@ export const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0px;
   align-items: center;
-`;
-
-export const CardContainer = styled(Link)`
-  text-decoration: none;
 `;
 
 export const NoResultsContainer = styled.div`
