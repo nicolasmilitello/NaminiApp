@@ -12,7 +12,6 @@ import {
   AToZFilter,
   SearchBarContainer,
   Grid,
-  CardContainer,
   NoResultsContainer,
   AnimationContainer,
   LoadingAnimation,
