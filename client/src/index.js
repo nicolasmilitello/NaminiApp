@@ -7,8 +7,8 @@ import { store } from "./store";
 import dotenv from "react-dotenv";
 
 //? STYLES:
-import "./globalStyle.css";
 import "./normalize.css";
+import "./globalStyle.css";
 import "./index.css";
 
 //? COMPONENTS:
