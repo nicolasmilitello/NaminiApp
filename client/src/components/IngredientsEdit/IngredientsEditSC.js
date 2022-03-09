@@ -26,9 +26,7 @@ export const Card = styled.div`
   padding-bottom: 15px;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 100%;
-    margin-top: 20px;
   }
 `;
 
@@ -48,7 +46,6 @@ export const ReturnButton = styled.button`
   border: 1px solid #566963;
   cursor: pointer;
   color: #ffffff;
-
   font-size: 15px;
   padding: 3px 8px;
   text-decoration: none;
@@ -65,14 +62,17 @@ export const ReturnButton = styled.button`
   }
 `;
 
-export const ConfirmedIngrContainer = styled.p`
-  font-family: "Josefin Sans";
+export const ConfirmedIngrContainer = styled.span`
+  font-family: var(--primaryFont);
+  font-size: 14px;
   font-weight: bold;
   align-self: center;
   margin: 0;
 `;
 
-export const NoConfirmedIngr = styled.p`
+export const NoConfirmedIngr = styled.span`
+  font-family: var(--primaryFont);
+  font-size: 14px;
   color: red;
   margin: 0;
 `;
@@ -97,7 +97,6 @@ export const Item = styled.div`
     font-family: var(--secondaryFont);
     text-align: justify;
     font-size: 12px;
-    color: #000000;
   }
 `;
 
@@ -119,12 +118,12 @@ export const RemoveIngrButton = styled.button`
   text-decoration: none;
   text-shadow: 0px 0px 0px #854629;
 
-  .redButtonStepEditPage:hover {
+  &:hover {
     background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
     background-color: #bc3315;
   }
 
-  .redButtonStepEditPage:active {
+  &:active {
     position: relative;
     top: 1px;
   }
@@ -132,9 +131,10 @@ export const RemoveIngrButton = styled.button`
 
 export const ConfirmTitle = styled.p`
   font-family: var(--primaryFont);
+  font-size: 14px;
   font-weight: bold;
   align-self: center;
-  margin: 10px 0 0 0;
+  margin: 10px 0 5px 0;
 `;
 
 export const LoadingAnimation = styled.div`

@@ -24,9 +24,7 @@ export const FiltersTitleAndSearchBarContainer = styled.div`
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 75%;
-    margin-top: 20px;
   }
 `;
 
@@ -40,17 +38,11 @@ export const FiltersContainer = styled.div`
 `;
 
 export const CategoryFilter = styled.select`
-  background-color: #eee;
-  border: none;
-  border-radius: 10px;
   height: 18px;
   width: 64%;
 `;
 
 export const AToZFilter = styled.select`
-  background-color: #eee;
-  border: none;
-  border-radius: 10px;
   height: 18px;
   width: 31%;
   margin-left: 8px;

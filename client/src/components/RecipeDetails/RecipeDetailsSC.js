@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+const P = `
+    font-family: var(--primaryFont);
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    `;
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -34,7 +41,6 @@ export const InfoContainer = styled.div`
   backgroun-color: red;
 
   & h1 {
-    font-family: var(--primaryFont);
     margin-bottom: 10px;
   }
 `;
@@ -75,10 +81,12 @@ margin: 5px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #2b665e;
 }
+
 &:hover {
   background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
   background-color: #408c99;
 }
+
 &:active {
   position: relative;
   top: 1px;
@@ -132,9 +140,8 @@ export const ServingCategoryContainer = styled.div`
 
 export const DetailTitle = styled.p`
   font-family: var(--primaryFont);
-  font-weight: bold;
   font-size: 15px;
-  color: black;
+  font-weight: bold;
   margin: 0 0 12px 0;
 `;
 
@@ -145,47 +152,33 @@ export const IngredientsContainer = styled.div`
   margin-right: 75px;
 
   & p {
-    font-family: var(--primaryFont);
-    font-weight: bold;
-    font-size: 15px;
-    color: black;
-    margin: 0;
+    ${P}
   }
 `;
 
 export const Item = styled.div`
   & span {
-    font-size: 14px;
-    font-family: var(--secondaryFont);
-    color: black;
     margin-left: 15px;
   }
 `;
 
 export const StepsContainer = styled.div`
-  margin-top: 20px;
-  margin-left: 25px;
-  margin-right: 25px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
 
   & p {
-    font-family: var(--primaryFont);
-    font-weight: bold;
-    font-size: 15px;
-    color: black;
-    margin: 0;
+    ${P}
   }
 `;
 
 export const Step = styled.div`
-  font-size: 14px;
-  font-family: var(--secondaryFont);
-  color: black;
   text-align: justify;
-  margin: 2px 15px 5px 15px;
+  margin: 5px 15px 5px 15px;
 `;
 
 export const StepNumber = styled.span`

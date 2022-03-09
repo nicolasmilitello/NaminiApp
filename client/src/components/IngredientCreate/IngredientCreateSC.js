@@ -25,9 +25,7 @@ export const CreatorCard = styled.div`
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 100%;
-    margin-top: 20px;
   }
 `;
 
@@ -49,17 +47,12 @@ export const InputsContainer = styled.div`
 
 export const NameInput = styled.div`
   & label {
-    font-family: var(--secondaryFont);
-    font-size: 14px;
     height: 14px;
   }
 
   & input {
     // width: 475px;
     width: 89%;
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 `;
 
@@ -70,9 +63,7 @@ export const ErrorContainer = styled.div`
   align-items: center;
 
   & p {
-    height: 10px;
-    font-size: 10px;
-    font-family: var(--secondaryFont);
+    height: 11px;
     color: red;
     margin: 0;
   }
@@ -80,17 +71,12 @@ export const ErrorContainer = styled.div`
 
 export const UnitInput = styled.div`
   & label {
-    font-family: var(--secondaryFont);
-    font-size: 14px;
     height: 14px;
   }
 
   & select {
     // width: 475px;
     width: 79%;
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 `;
 
@@ -178,8 +164,7 @@ export const DisabledButton = styled.button`
 `;
 
 export const Failure = styled.span`
-  font-family: var(--secondaryFont);
-  font-size: 12px;
+  font-size: 11px;
   color: red;
 `;
 

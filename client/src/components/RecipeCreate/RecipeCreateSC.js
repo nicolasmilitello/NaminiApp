@@ -24,9 +24,7 @@ export const Card = styled.div`
   padding-bottom: 10px;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 75%;
-    margin-top: 20px;
   }
 `;
 
@@ -41,45 +39,35 @@ export const FormContainer = styled.form`
 `;
 
 export const NameInput = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 5px 0 0 0;
   width: 100%;
   height: 33px;
-
-  display: flex;
-  flex-direction: column;
 `;
 
 export const LabelAndInput = styled.div`
-  width: 100%;
-
   display: flex;
   align-items: flex-end;
+  width: 100%;
 
   & label {
     display: flex;
     justify-content: flex-start;
     width: 12%;
-
     float: left;
   }
 
   & input {
     width: 88%;
-    font-size: 12px;
-    color: rgb(73, 72, 72);
-    font-family: var(--secondaryFont);
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 `;
 
 export const Error = styled.span`
   display: block;
-  font-family: var(--secondaryFont);
-  font-size: 10px;
+  font-size: 11px;
   color: red;
-  margin: 1px 0 0 0;
+  margin: 2px 0 0 0;
 `;
 
 export const CategoryAndServingsContainer = styled.div`
@@ -114,10 +102,6 @@ export const LabelAndSelect = styled.div`
     display: flex;
     align-items: flex-start;
     width: 75%;
-    color: rgb(73, 72, 72);
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 `;
 
@@ -144,12 +128,6 @@ export const LabelAndServingsInput = styled.div`
 
   & input {
     width: 61%;
-    font-size: 12px;
-    font-family: var(--secondaryFont);
-    color: rgb(73, 72, 72);
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 `;
 
@@ -179,20 +157,11 @@ export const SelectInputContainer = styled.div`
   width: 70%;
 
   & select {
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
     width: 75%;
   }
 
   & input {
     width: 21%;
-    font-size: 12px;
-    font-family: var(--secondaryFont);
-    color: rgb(73, 72, 72);
-    background-color: #eee;
-    border: none;
-    border-radius: 10px;
     margin-left: 2%;
   }
 `;
@@ -201,8 +170,6 @@ export const Unit = styled.span`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-family: var(--secondaryFont);
-  font-size: 14px;
   width: 21.5%;
 `;
 
@@ -273,10 +240,8 @@ export const AddedIngredientsContainer = styled.div`
   & span {
     display: flex;
     align-items: center;
-    font-family: var(--secondaryFont);
     text-align: justify;
     font-size: 12px;
-    color: #000000;
   }
 
   & button {
@@ -330,11 +295,6 @@ export const StepInputAndButtonContainer = styled.div`
   & textarea {
     width: 96.2%;
     height: 70px;
-    font-family: var(--secondaryFont);
-    color: rgb(73, 72, 72);
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 
   & div {
@@ -344,11 +304,6 @@ export const StepInputAndButtonContainer = styled.div`
     width: 3.8%;
   }
 `;
-
-// export const ConfirmedStepsContainer = styled.div`
-//   margin-top: 5px;
-//   margin-bottom: 5px;
-// `;
 
 export const ConfirmedStepContainer = styled.div`
   width: 94%;
@@ -387,13 +342,11 @@ export const ConfirmedStepContainer = styled.div`
 `;
 
 export const Item = styled.div`
-  font-family: var(--secondaryFont);
   text-align: justify;
-  font-size: 12px;
-  color: #000000;
 `;
 
 export const Step = styled.span`
+  font-size: 12px;
   ${(props) => (props.bold ? `font-weight: bold;` : null)}
 `;
 
@@ -420,12 +373,6 @@ export const LabelAndImageInput = styled.div`
 
   & input {
     width: 89%;
-    color: rgb(73, 72, 72);
-    font-family: var(--secondaryFont);
-    background-color: #eee;
-    border-radius: 10px;
-    border: 0;
-    font-size: 12px;
   }
 `;
 
@@ -478,8 +425,7 @@ export const DisabledButton = styled.button`
 `;
 
 export const Failure = styled.span`
-  font-family: var(--secondaryFont);
-  font-size: 12px;
+  font-size: 11px;
   color: red;
 `;
 

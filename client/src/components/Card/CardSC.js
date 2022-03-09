@@ -26,8 +26,8 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  max-width: 60%;
-  min-width: 60%;
+  // max-width: 60%;
+  // min-width: 60%;
   width: 60%;
   height: 100%;
   object-fit: cover;
@@ -46,14 +46,14 @@ export const DetailsContainer = styled.div`
     height: 21px;
   }
 
-  & h6 {
-    font-family: var(--primaryFont);
-    margin: 0;
-  }
+  // & h6 {
+  //   font-family: var(--primaryFont);
+  //   margin: 0;
+  // }
 
-  & h3 {
-    font-family: var(--primaryFont);
-    font-size: 20px;
-    margin: 0;
-  }
+  // & h3 {
+  //   font-family: var(--primaryFont);
+  //   font-size: 20px;
+  //   margin: 0;
+  // }
 `;

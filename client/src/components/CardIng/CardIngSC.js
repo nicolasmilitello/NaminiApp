@@ -28,8 +28,6 @@ export const IngredientItem = styled.div`
 `;
 
 export const IngredientName = styled.span`
-  font-family: var(--secondaryFont);
-  font-size: 14px;
   display: flex;
   align-items: flex-end;
 `;
@@ -37,15 +35,11 @@ export const IngredientName = styled.span`
 export const IngredientInput = styled.input`
   width: 50px;
   background: inherit;
-  border: none;
-  border-radius: 10px;
   margin-left: 10px;
 `;
 
 export const Unit = styled.span`
   margin-right: 5px;
-  font-family: var(--secondaryFont);
-  font-size: 14px;
 `;
 
 export const ConfirmIng = styled.button`
@@ -64,7 +58,6 @@ export const ConfirmIng = styled.button`
   color: #ffffff;
   font-family: var(--secondaryFont);
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 0px 0px #2f6627;
 
@@ -94,18 +87,15 @@ export const DisabledButton = styled.button`
   cursor: default;
   color: #666666;
   font-family: var(--secondaryFont);
-
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
 `;
 
 export const ErrorContainer = styled.span`
-  font-family: var(--secondaryFont);
   height: 14px;
   width: 100%;
   margin: 2px;
-  font-size: 12px;
+  font-size: 11px;
   color: red;
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 20px;
+  width: 100%;
 `;
 
 export const EditStepFormContainer = styled.form`
@@ -18,18 +18,15 @@ export const TexteareaAndButtonContainer = styled.div`
 `;
 
 export const StepNumber = styled.span`
-  font-family: var(--secondaryFont);
-  margin-top: 3px;
-  font-size: 14px;
+  margin-top: 2px;
   font-weight: bold;
+  font-size: 12px;
 `;
 
 export const Textarea = styled.textarea`
   width: 80%;
   height: 10%;
-  font-family: var(--secondaryFont);
   background: inherit;
-  border: none;
 `;
 
 export const ConfirmStep = styled.button`
@@ -48,7 +45,6 @@ export const ConfirmStep = styled.button`
   color: #ffffff;
   font-family: var(--secondaryFont);
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 0px 0px #2f6627;
 
@@ -78,15 +74,13 @@ export const DisabledButton = styled.button`
   cursor: default;
   color: #666666;
   font-family: var(--secondaryFont);
-
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
 `;
 
 export const ErrorStepLength = styled.span`
   height: 14px;
-  font-size: 10px;
+  font-size: 11px;
   color: red;
 `;

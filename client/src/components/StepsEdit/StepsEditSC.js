@@ -26,9 +26,7 @@ export const Card = styled.div`
   padding-bottom: 15px;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 100%;
-    margin-top: 20px;
   }
 `;
 
@@ -48,7 +46,6 @@ export const ReturnButton = styled.button`
   border: 1px solid #566963;
   cursor: pointer;
   color: #ffffff;
-
   font-size: 15px;
   padding: 3px 8px;
   text-decoration: none;
@@ -72,16 +69,21 @@ export const ConfirmedStepsContainer = styled.div`
   width: 100%;
 `;
 
-export const ConfirmedTitle = styled.p`
+const FontAndSize = `
   font-family: var(--primaryFont);
-  font-weight: bold;
-  align-self: center;
+  font-size: 14px;
   margin: 0;
+  align-self: center;
+`;
+
+export const ConfirmedTitle = styled.span`
+  ${FontAndSize}
+  font-weight: bold;
 `;
 
 export const NoConfirmedIngr = styled.span`
+  ${FontAndSize}
   color: red;
-  margin: 0;
 `;
 
 export const ItemsContainer = styled.div`
@@ -93,12 +95,14 @@ export const ItemsContainer = styled.div`
 `;
 
 export const Item = styled.div`
-  font-family: var(--secondaryFont);
   text-align: justify;
   width: 100%;
-  font-size: 12px;
-  color: #000000;
   margin-bottom: 7px;
+`;
+
+export const Step = styled.span`
+  font-size: 12px;
+  ${(props) => (props.bold ? `font-weight: bold;` : null)}
 `;
 
 export const RemoveStepButton = styled.button`
@@ -119,22 +123,21 @@ export const RemoveStepButton = styled.button`
   text-decoration: none;
   text-shadow: 0px 0px 0px #854629;
 
-  .redButtonStepEditPage:hover {
+  &:hover {
     background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
     background-color: #bc3315;
   }
 
-  .redButtonStepEditPage:active {
+  &:active {
     position: relative;
     top: 1px;
   }
 `;
 
 export const ConfirmTitle = styled.p`
-  font-family: var(--primaryFont);
+  ${FontAndSize}
   font-weight: bold;
-  align-self: center;
-  margin: 10px 0 0 0;
+  margin: 10px 0 5px 0;
 `;
 
 export const LoadingAnimation = styled.div`

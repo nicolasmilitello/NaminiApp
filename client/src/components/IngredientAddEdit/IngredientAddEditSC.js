@@ -19,9 +19,6 @@ export const InputsContainer = styled.div`
     display: flex;
     align-self: flex-end;
     height: 18px;
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 
   & input {
@@ -29,12 +26,8 @@ export const InputsContainer = styled.div`
     align-self: flex-end;
     width: 100px;
     height: 18px;
-    background-color: #eee;
-    border: none;
     margin-left: 10px;
-    border-radius: 10px;
-    padding: 0px;
-    color: grey;
+    padding: 0;
   }
 `;
 
@@ -42,7 +35,6 @@ export const Unit = styled.span`
   width: 100px;
   font-size: 13px;
   margin-left: 5px;
-  font-family: var(--secondaryFont);
 `;
 
 export const AddIngrButton = styled.button`
@@ -60,18 +52,16 @@ export const AddIngrButton = styled.button`
   cursor: pointer;
   color: #ffffff;
   font-family: var(--secondaryFont);
-
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 0px 0px #2f6627;
 
-  .greenButtonStepEditPage:hover {
+  &:hover {
     background: linear-gradient(to bottom, #4d9925 5%, #23b84a 100%);
     background-color: #4d9925;
   }
 
-  .greenButtonStepEditPage:active {
+  &:active {
     position: relative;
     top: 1px;
   }
@@ -92,17 +82,14 @@ export const DisabledAddButton = styled.button`
   cursor: default;
   color: #666666;
   font-family: var(--secondaryFont);
-
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
 `;
 
 export const IngrError = styled.p`
-  font-family: var(--secondaryFont);
   height: 10px;
-  font-size: 12px;
+  font-size: 11px;
   color: red;
   margin: 2px 0 3.5px 0;
 `;

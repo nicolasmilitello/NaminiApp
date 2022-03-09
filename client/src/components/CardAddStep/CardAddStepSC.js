@@ -18,9 +18,6 @@ export const TexteareaAndButton = styled.div`
 export const Textarea = styled.textarea`
   width: 80%;
   height: 10%;
-  font-family: var(--secondaryFont);
-  background-color: #eee;
-  border: none;
 `;
 
 export const AddStepButton = styled.button`
@@ -38,18 +35,16 @@ export const AddStepButton = styled.button`
   cursor: pointer;
   color: #ffffff;
   font-family: var(--secondaryFont);
-
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 0px 0px #2f6627;
 
-  .greenButtonStepEditPage:hover {
+  &:hover {
     background: linear-gradient(to bottom, #4d9925 5%, #23b84a 100%);
     background-color: #4d9925;
   }
 
-  .greenButtonStepEditPage:active {
+  &:active {
     position: relative;
     top: 1px;
   }
@@ -70,16 +65,13 @@ export const DisabledAddButton = styled.button`
   cursor: default;
   color: #666666;
   font-family: var(--secondaryFont);
-
   font-weight: bold;
-
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
 `;
 
 export const ErrorStepLength = styled.p`
-  height: 10px;
-  font-size: 10px;
+  height: 11px;
   color: red;
   margin: 2px 0 3.5px 0;
 `;

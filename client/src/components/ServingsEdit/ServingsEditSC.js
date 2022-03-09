@@ -26,9 +26,7 @@ export const Card = styled.div`
   padding-bottom: 15px;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 100%;
-    margin-top: 20px;
   }
 `;
 
@@ -48,7 +46,6 @@ export const ReturnButton = styled.button`
   border: 1px solid #566963;
   cursor: pointer;
   color: #ffffff;
-
   font-size: 15px;
   padding: 3px 8px;
   text-decoration: none;
@@ -72,19 +69,13 @@ export const NameForm = styled.form`
 export const InputContainer = styled.div`
   width: 100%;
   margin-bottom: 10px;
-  font-family: var(--secondaryFont);
 
   & label {
-    font-size: 14px;
     height: 14px;
   }
 
   & input {
     width: 80%;
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
   }
 `;
 

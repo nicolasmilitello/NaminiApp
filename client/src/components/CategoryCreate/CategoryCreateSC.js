@@ -25,9 +25,7 @@ export const CreatorCard = styled.div`
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
 
   & h1 {
-    font-family: var(--primaryFont);
     width: 100%;
-    margin-top: 20px;
   }
 `;
 
@@ -40,17 +38,9 @@ export const InputContainer = styled.div`
   margin-left: 5%;
   margin-right: 5%;
 
-  & label {
-    font-family: var(--secondaryFont);
-    font-size: 14px;
-  }
-
   & input {
     // width: 475px;
     width: 70%;
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
   }
 `;
 
@@ -62,8 +52,7 @@ export const ErrorContainer = styled.div`
 
   & p {
     height: 10px;
-    font-size: 10px;
-    font-family: var(--secondaryFont);
+    font-size: 11px;
     color: red;
     margin: 0;
   }
@@ -153,8 +142,7 @@ export const DisabledButton = styled.button`
 `;
 
 export const Failure = styled.span`
-  font-family: var(--secondaryFont);
-  font-size: 12px;
+  font-size: 11px;
   color: red;
 `;
 

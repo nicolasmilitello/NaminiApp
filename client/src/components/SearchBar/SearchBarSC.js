@@ -7,10 +7,6 @@ export const Container = styled.div`
   & input {
     width: 75%;
     height: 18px;
-    background-color: #eee;
-    border-radius: 10px;
-    border: none;
-    font-size: 12px;
   }
 
   & button {
@@ -41,5 +37,3 @@ export const Container = styled.div`
     }
   }
 `;
-
-export const Input = styled.input``;

@@ -14,6 +14,7 @@ import {
   NoConfirmedIngr,
   ItemsContainer,
   Item,
+  Step,
   RemoveStepButton,
   ConfirmTitle,
   LoadingAnimation,
@@ -89,8 +90,8 @@ export default function StepsEdit(props) {
           {stepState.steps?.map((st, index) => (
             <ItemsContainer key={index}>
               <Item>
-                <span className="numberStep">{`${index + 1}. `}</span>
-                <span>{`${st} `}</span>
+                <Step bold={1}>{`${index + 1}. `}</Step>
+                <Step>{`${st} `}</Step>
               </Item>
               <RemoveStepButton onClick={(e) => handleDeleteStep(e, st)}>
                 <MdOutlineCancel />

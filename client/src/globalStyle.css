@@ -5,6 +5,139 @@
   min-height: 100%;
   position: relative;
 } */
+:root {
+  --primaryFont: "Josefin Sans";
+  --secondaryFont: "ABeeZee";
+}
+
+a::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  /* padding: 2px 1px 0; */
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:focus {
+  /* border-bottom: 1px solid; */
+  background: none;
+}
+
+a:hover {
+  background: none;
+}
+
+a:active {
+  background: none;
+  color: none;
+}
+
+body {
+  background-image: linear-gradient(
+    90deg,
+    #faf5fa 25%,
+    #ffffff 25%,
+    #ffffff 50%,
+    #faf5fa 50%,
+    #faf5fa 75%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 80px 80px;
+}
+
+button::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+div::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+h1 {
+  font-family: "Josefin Sans";
+  margin-top: 20px;
+}
+
+h1::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+h3 {
+  /* En CardSC: */
+  font-family: "Josefin Sans";
+  font-size: 20px;
+  margin: 0;
+}
+
+h3::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+h5::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+h6 {
+  /* En CardSC: */
+  font-family: var(--primaryFont);
+  margin: 0;
+}
+
+h6::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+img::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+input {
+  font-family: "ABeeZee";
+  font-size: 12px;
+  color: rgb(73, 72, 72);
+  background-color: #eee;
+  border-radius: 10px;
+  border: none;
+}
+
+input::placeholder {
+  font-family: "ABeeZee";
+  font-size: 12px;
+  color: rgb(73, 72, 72);
+}
+
+input::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+label {
+  font-family: "ABeeZee";
+  font-size: 14px;
+}
+
+label::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
 
 nav {
   display: flex;
@@ -38,30 +171,55 @@ nav {
   border-right: 2px rgba(40, 40, 40, 0.35) solid;
 }
 
-label {
+p {
+  font-family: "ABeeZee";
+  font-size: 11px;
+  /* En CardAddStepSC y CategoryCreateSC:
+  height: 11px;
+  font-size: 11px;*/
+}
+
+select {
+  font-family: "ABeeZee";
+  font-size: 12px;
+  color: rgb(73, 72, 72);
+  background-color: #eee;
+  border-radius: 10px;
+  border: none;
+}
+
+select::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+span {
   font-family: "ABeeZee";
   font-size: 14px;
 }
 
-input {
+span::selection {
+  background: rgb(222, 144, 233);
+  color: black;
+}
+
+textarea {
+  font-family: "ABeeZee";
   font-size: 12px;
+  color: rgb(73, 72, 72);
+  background-color: #eee;
+  border-radius: 10px;
+  border: none;
+  resize: none;
 }
 
-:root {
-  --primaryFont: "Josefin Sans";
-  --secondaryFont: "ABeeZee";
+textarea::selection {
+  background: rgb(222, 144, 233);
+  color: black;
 }
 
-body {
-  background-image: linear-gradient(
-    90deg,
-    #faf5fa 25%,
-    #ffffff 25%,
-    #ffffff 50%,
-    #faf5fa 50%,
-    #faf5fa 75%,
-    #ffffff 75%,
-    #ffffff 100%
-  );
-  background-size: 80px 80px;
+textarea::placeholder {
+  font-family: "ABeeZee";
+  font-size: 12px;
+  color: rgb(90, 89, 89);
 }

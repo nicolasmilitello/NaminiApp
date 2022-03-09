@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+const P = `
+    font-family: var(--primaryFont);
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    `;
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -49,7 +56,6 @@ export const ButtonsContainer = styled.div`
   align-items: flex-end;
   margin-top: 15px;
   width: 97%;
-  border: 3px black;
 `;
 
 export const DeleteButton = styled.button`
@@ -73,6 +79,7 @@ export const DeleteButton = styled.button`
     background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
     background-color: #bc3315;
   }
+
   &:active {
     position: relative;
     top: 1px;
@@ -143,7 +150,6 @@ export const NameRecipeContainer = styled.div`
   margin-top: 21px;
 
   & h1 {
-    font-family: var(--primaryFont);
     margin: 0;
   }
 `;
@@ -214,11 +220,7 @@ export const TitleContainer = styled.div`
   justify-content: center;
 
   & p {
-    font-family: var(--primaryFont);
-    font-weight: bold;
-    font-size: 15px;
-    color: black;
-    margin: 0;
+    ${P}
   }
 `;
 
@@ -233,19 +235,12 @@ export const IngredientsContainer = styled.div`
   margin-right: 75px;
 
   & p {
-    font-family: var(--primaryFont);
-    font-weight: bold;
-    font-size: 15px;
-    color: black;
-    margin: 0;
+    ${P}
   }
 `;
 
 export const Item = styled.div`
   & span {
-    font-size: 14px;
-    font-family: var(--secondaryFont);
-    color: black;
     margin-left: 15px;
   }
 `;
@@ -260,20 +255,13 @@ export const StepsContainer = styled.div`
   align-items: flex-start;
 
   & p {
-    font-family: var(--primaryFont);
-    font-weight: bold;
-    font-size: 15px;
-    color: black;
-    margin: 0;
+    ${P}
   }
 `;
 
 export const Step = styled.div`
-  font-size: 14px;
-  font-family: var(--secondaryFont);
-  color: black;
   text-align: justify;
-  margin: 2px 15px 5px 15px;
+  margin: 5px 15px 5px 15px;
 `;
 
 export const StepNumber = styled.span`
