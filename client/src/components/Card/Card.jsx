@@ -9,6 +9,7 @@ import { getCategories } from "../../actions";
 import { Container, Image, DetailsContainer } from "./CardSC";
 
 //? ICONS:
+
 import { BiDish } from "react-icons/bi";
 import { ImSpoonKnife } from "react-icons/im";
 
