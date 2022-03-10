@@ -1,20 +1,17 @@
-import { someProps } from "./EditRecipeButton";
+import {
+  deleteEditReturnSharedProps,
+  deleteSharedProps,
+  activePseudoClass,
+} from "./SharedProps";
 
 export const deleteRecipeButton = `
-  ${someProps}
+  ${deleteEditReturnSharedProps}
 
-  box-shadow: inset 0px 1px 0px 0px #cf866c;
-  background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
-  background-color: #d0451b;
-  border: 1px solid #942911;
+  box-shadow: inset 0px 1px 0px 0px #5c0a07;
 
-  &:hover {
-    background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
-    background-color: #bc3315;
-  }
-
+  ${deleteSharedProps}
+  
   &:active {
-    position: relative;
-    top: 1px;
+    ${activePseudoClass}
   }
 `;
