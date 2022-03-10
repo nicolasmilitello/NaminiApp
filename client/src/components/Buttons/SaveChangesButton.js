@@ -1,7 +1,4 @@
-const sharedProps = `
-  display: flex;
-  align-self: center;
-
+export const sharedProps = `
   margin: 5px;
 
   font-family: var(--secondaryFont);
