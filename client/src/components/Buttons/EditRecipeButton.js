@@ -2,7 +2,7 @@ export const someProps = `
 display: flex;
 align-self: center;
 margin: 5px;
-border-radius: 15px;
+border-radius: 13px;
 cursor: pointer;
 color: #ffffff;
 font-size: 15px;
