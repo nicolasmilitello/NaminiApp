@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { returnButton } from "../Buttons/ReturnButton";
+import { deleteRecipeButton } from "../Buttons/DeleteRecipeButton";
+import { editItemButton } from "../Buttons/EditItemButton";
 
 const P = `
     font-family: var(--primaryFont);
@@ -59,87 +62,15 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  margin: 5px;
-  display: flex;
-  align-self: center;
-  box-shadow: inset 0px 0px 2px 0px #cf866c;
-  background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
-  background-color: #d0451b;
-  border-radius: 13px;
-  border: 1px solid #942911;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: "ABeeZee";
-  font-size: 15px;
-  padding: 3px 8px;
-  text-decoration: none;
-  text-shadow: 0px 0px 0px #854629;
-
-  &:hover {
-    background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
-    background-color: #bc3315;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${deleteRecipeButton}
 `;
 
 export const ReturnButton = styled.button`
-  margin: 5px;
-  display: flex;
-  align-self: center;
-  box-shadow: inset 0px 0px 0px 0px #91b8b3;
-  background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-  background-color: #768d87;
-  border-radius: 15px;
-  border: 1px solid #566963;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: "ABeeZee";
-  font-size: 15px;
-  padding: 3px 8px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2b665e;
-
-  &:hover {
-    background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-    background-color: #6c7c7c;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${returnButton}
 `;
 
 export const EditButton = styled.button`
-  display: flex;
-  align-self: center;
-  box-shadow: inset 0px 1px 0px 0px #276873;
-  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-  background-color: #599bb3;
-  border: 1px solid #29668f;
-  border-radius: 15px;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: "ABeeZee";
-  font-size: 12px;
-  padding: 1px 4px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2b665e;
-  margin-left: 5px;
-
-  &:hover {
-    background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-    background-color: #408c99;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${editItemButton}
 `;
 
 export const NameRecipeContainer = styled.div`
