@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { editRecipeButton } from "../Buttons/EditRecipeButton";
+import { returnButton } from "../Buttons/ReturnButton";
 
 const P = `
     font-family: var(--primaryFont);
@@ -66,59 +68,11 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const EditButton = styled.button`
-margin: 5px;
-  display: flex;
-  align-self: center;
-  box-shadow: inset 0px 1px 0px 0px #276873;
-  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-  background-color: #599bb3;
-  border: 1px solid #29668f;
-  border-radius: 13px;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 15px;
-  padding: 3px 8px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2b665e;
-}
-
-&:hover {
-  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-  background-color: #408c99;
-}
-
-&:active {
-  position: relative;
-  top: 1px;
-}
+  ${editRecipeButton}
 `;
 
 export const ReturnButton = styled.button`
-  margin: 5px;
-  display: flex;
-  align-self: center;
-  box-shadow: inset 0px 0px 0px 0px #91b8b3;
-  background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-  background-color: #768d87;
-  border-radius: 15px;
-  border: 1px solid #566963;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: "ABeeZee";
-  font-size: 15px;
-  padding: 3px 8px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2b665e;
-
-  &:hover {
-    background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-    background-color: #6c7c7c;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${returnButton}
 `;
 
 export const IngrCateServContainer = styled.div`
