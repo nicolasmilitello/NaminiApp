@@ -172,7 +172,6 @@ export default function IngredientCreate() {
 
         {show2 ? (
           code ? (
-            // <span className="success">Ingrediente creado exitosamente</span>
             typeof message === "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
               <></>
             ) : (
@@ -187,9 +186,7 @@ export default function IngredientCreate() {
       {intermedio.length ? (
         <IngredientsContainer>
           {intermedio?.map((ing) => (
-            <p className="ings" key={ing.id}>
-              {`‣ ${ing.name}`}
-            </p>
+            <p key={ing.id}>{`‣ ${ing.name}`}</p>
           ))}
         </IngredientsContainer>
       ) : null}
