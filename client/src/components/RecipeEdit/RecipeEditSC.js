@@ -21,7 +21,6 @@ export const Container = styled.div`
 export const Card = styled.div`
   ${glassStyle}
 
-  //NO ESTÁ:
   justify-content: center;
   flex-direction: column;
   width: 50%;
@@ -35,6 +34,7 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: content-box;
+  width: 100%;
 `;
 
 export const Image = styled.img`
