@@ -1,22 +1,16 @@
 import styled from "styled-components";
+import { glassStyle } from "../GlassStyle/GlassStyle";
 
 export const Container = styled.div`
-  display: flex;
+  ${glassStyle}
+
   justify-content: center;
-  align-items: center;
+  padding-bottom: 4px;
   padding-left: 15px;
   padding-right: 13px;
   margin-top: 5px;
   margin-bottom: 20px;
   box-sizing: content-box;
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  background-color: rgba(242, 242, 205, 0.075);
-  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
-  border: 2px rgba(255, 255, 255, 0.4) solid;
-  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
-  border-right: 2px rgba(40, 40, 40, 0.35) solid;
-  padding-bottom: 4px;
 `;
 
 export const NextPreviousButtonDisabled = styled.button`
