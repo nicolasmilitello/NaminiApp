@@ -1,17 +1,8 @@
-export const someProps = `
-display: flex;
-align-self: center;
-margin: 5px;
-border-radius: 13px;
-cursor: pointer;
-color: #ffffff;
-font-size: 15px;
-padding: 3px 8px;
-text-decoration: none;
-`;
+import { deleteEditReturnSharedProps, activePseudoClass } from "./SharedProps";
 
 export const editRecipeButton = `
-  ${someProps}
+  ${deleteEditReturnSharedProps}
+
   box-shadow: inset 0px 1px 0px 0px #276873;
   background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
   background-color: #599bb3;
@@ -23,7 +14,6 @@ export const editRecipeButton = `
   }
 
   &:active {
-    position: relative;
-    top: 1px;
+    ${activePseudoClass}
   }
 `;
