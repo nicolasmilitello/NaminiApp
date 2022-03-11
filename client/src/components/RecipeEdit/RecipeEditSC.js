@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { returnButton } from "../Buttons/ReturnButton";
 import { deleteRecipeButton } from "../Buttons/DeleteRecipeButton";
 import { editItemButton } from "../Buttons/EditItemButton";
+import { glassStyle } from "../GlassStyle/GlassStyle";
 
 const P = `
     font-family: var(--primaryFont);
@@ -18,20 +19,14 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  display: flex;
+  ${glassStyle}
+
+  //NO ESTÁ:
   justify-content: center;
   flex-direction: column;
-  align-items: center;
   width: 50%;
   box-sizing: content-box;
   margin-bottom: 0px;
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  background-color: rgba(242, 242, 205, 0.075);
-  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
-  border: 2px rgba(255, 255, 255, 0.4) solid;
-  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
-  border-right: 2px rgba(40, 40, 40, 0.35) solid;
   padding-bottom: 15px;
 `;
 
