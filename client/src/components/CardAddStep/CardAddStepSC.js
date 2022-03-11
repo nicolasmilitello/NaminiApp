@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { disabledPlusButton, plusButton } from "../Buttons/PlusButtons";
 
 export const Container = styled.div`
   margin-top: 20px;
@@ -21,53 +22,11 @@ export const Textarea = styled.textarea`
 `;
 
 export const AddStepButton = styled.button`
-  display: flex;
-  align-items: center;
-  height: 17px;
-  font-size: 15px;
-  padding: 0px 0px;
-  margin-left: 1%;
-  box-shadow: inset 0px 0px 2px 0px #3dc21b;
-  background: linear-gradient(to bottom, #23b84a 5%, #4d9925 100%);
-  background-color: #23b84a;
-  border-radius: 13px;
-  border: 1px solid #18ab29;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: var(--secondaryFont);
-  font-weight: bold;
-  text-decoration: none;
-  text-shadow: 0px 0px 0px #2f6627;
-
-  &:hover {
-    background: linear-gradient(to bottom, #4d9925 5%, #23b84a 100%);
-    background-color: #4d9925;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${plusButton}
 `;
 
 export const DisabledAddButton = styled.button`
-  display: flex;
-  align-items: center;
-  height: 17px;
-  font-size: 15px;
-  padding: 0px 0px;
-  margin-left: 1%;
-  box-shadow: inset 0px 1px 0px 0px #ffffff;
-  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-  background-color: #ffffff;
-  border-radius: 13px;
-  border: 1px solid #dcdcdc;
-  cursor: default;
-  color: #666666;
-  font-family: var(--secondaryFont);
-  font-weight: bold;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #ffffff;
+  ${disabledPlusButton}
 `;
 
 export const ErrorStepLength = styled.p`
