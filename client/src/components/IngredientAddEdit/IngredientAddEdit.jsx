@@ -102,9 +102,7 @@ export default function IngredientAddEdit({
           onChange={(e) => handleInputQuantity(e)}
         />
 
-        {/* <div className="buttonsConfirmNewIngredient"> */}
         <Unit>{completed && `${unitName}`}</Unit>
-        {/* </div> */}
 
         {input.quantity && input.IngredientId ? (
           <AddIngrButton type="submit">
