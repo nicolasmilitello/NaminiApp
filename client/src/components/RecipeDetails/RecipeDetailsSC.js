@@ -34,7 +34,6 @@ export const InfoContainer = styled.div`
   justify-content: flex-start;
   box-sizing: content-box;
   width: 100%;
-  backgroun-color: red;
 
   & h1 {
     margin-bottom: 10px;
