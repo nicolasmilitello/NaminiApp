@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {
+  disabledSaveChangesButton,
+  saveChangesButton,
+} from "../Buttons/SaveChangesButton";
+import { returnButton } from "../Buttons/ReturnButton";
+import { deleteConfirmedItemButton } from "../Buttons/DeleteConfirmedItemButton";
 
 export const Container = styled.div`
   display: flex;
@@ -36,30 +42,7 @@ export const ReturnButtonContainer = styled(Link)`
 `;
 
 export const ReturnButton = styled.button`
-  margin: 5px;
-  display: flex;
-  align-self: center;
-  box-shadow: inset 0px 0px 0px 0px #91b8b3;
-  background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-  background-color: #768d87;
-  border-radius: 15px;
-  border: 1px solid #566963;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 15px;
-  padding: 3px 8px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2b665e;
-
-  &:hover {
-    background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-    background-color: #6c7c7c;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${returnButton}
 `;
 
 export const ConfirmedStepsContainer = styled.div`
@@ -106,32 +89,7 @@ export const Step = styled.span`
 `;
 
 export const RemoveStepButton = styled.button`
-  display: flex;
-  align-items: center;
-  height: 17px;
-  font-size: 15px;
-  padding: 0px 0px;
-  margin-left: 5px;
-  box-shadow: inset 0px 0px 2px 0px #cf866c;
-  background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
-  background-color: #d0451b;
-  border-radius: 13px;
-  border: 1px solid #942911;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: var(--secondaryFont);
-  text-decoration: none;
-  text-shadow: 0px 0px 0px #854629;
-
-  &:hover {
-    background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
-    background-color: #bc3315;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${deleteConfirmedItemButton}
 `;
 
 export const ConfirmTitle = styled.p`
@@ -177,49 +135,9 @@ export const ButtonContainer = styled.div`
 `;
 
 export const SaveButton = styled.button`
-  display: flex;
-  align-self: center;
-  margin: 5px;
-  box-shadow: inset 0px 0px 2px 0px #3dc21b;
-  background: linear-gradient(to bottom, #23b84a 5%, #4d9925 100%);
-  background-color: #23b84a;
-  border-radius: 13px;
-  border: 1px solid #18ab29;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: var(--secondaryFont);
-  font-size: 12px;
-  font-weight: bold;
-  padding: 1px 4px;
-  text-decoration: none;
-  text-shadow: 0px 0px 0px #2f6627;
-
-  &:hover {
-    background: linear-gradient(to bottom, #4d9925 5%, #23b84a 100%);
-    background-color: #4d9925;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  ${saveChangesButton}
 `;
 
 export const DisabledButton = styled.button`
-  display: flex;
-  align-items: center;
-  margin: 5px;
-  box-shadow: inset 0px 1px 0px 0px #ffffff;
-  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-  background-color: #ffffff;
-  border-radius: 13px;
-  border: 1px solid #dcdcdc;
-  cursor: default;
-  color: #666666;
-  font-family: var(--secondaryFont);
-  font-size: 12px;
-  font-weight: bold;
-  padding: 1px 4px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #ffffff;
+  ${disabledSaveChangesButton}
 `;
