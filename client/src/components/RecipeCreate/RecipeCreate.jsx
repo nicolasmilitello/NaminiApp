@@ -480,12 +480,9 @@ export default function RecipeCreate() {
 
         {show2 ? (
           code ? (
-            // <span className="success">Ingrediente creado exitosamente</span>
             typeof message !== "object" ? ( //si message es un objeto es porque se creó la categoría exitosamente ya que la ruta devuelve como un objeto la nueva categoría
-              // <span className="success">Receta creada exitosamente</span>
               <Failure>{message}.</Failure>
-            ) : //<span className="failure">{message}</span> //sino me envió una string que dice "Ya existe una categoría con ese nombre"
-            null
+            ) : null
           ) : (
             <LoadingAnimation></LoadingAnimation>
           )
